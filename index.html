@@ -1,103 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>A Letter For You ♡</title>
+<title>A Letter For You ♡</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
 
-  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
 
-    body {
-      min-height: 100vh;
-      overflow: hidden;
-      font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 25%),
+    linear-gradient(135deg, #6f4b8b, #9b73b5, #60427d);
 
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.10), transparent 30%),
-        linear-gradient(135deg, #6f4b8b, #9b73b5, #60427d);
-    }
-
-
-    /* MAIN CONTAINER */
-
-    .container {
-      width: 100%;
-      min-height: 100vh;
-
-      display: flex;
-      flex-direction: column;
-
-      justify-content: center;
-      align-items: center;
-
-      position: relative;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
-    /* INSTRUCTION */
+/* SCREEN */
 
-    .instruction {
-      color: rgba(255,255,255,0.85);
+.screen {
+  width: 100%;
+  height: 100vh;
 
-      font-size: 14px;
-      letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
 
-      margin-bottom: 40px;
+  justify-content: center;
+  align-items: center;
 
-      transition: opacity 0.5s ease;
-
-      animation: fadeIn 1s ease;
-    }
-
-    .instruction.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
+  position: relative;
+}
 
 
-    /* ENVELOPE WRAPPER */
+/* INSTRUCTION */
 
-    .envelope-wrapper {
-      position: relative;
+.instruction {
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
 
-      width: 280px;
-      height: 180px;
+  margin-bottom: 35px;
 
-      cursor: pointer;
-
-      transition:
-        opacity 0.8s ease,
-        transform 0.3s ease;
-    }
-
-    .envelope-wrapper:hover {
-      transform: translateY(-6px);
-    }
-
-    .envelope-wrapper.opened {
-      cursor: default;
-    }
+  transition: opacity 0.5s ease;
+}
 
 
-    /* PAPER */
+/* ENVELOPE AREA */
 
-    .paper {
-      position: absolute;
+.envelope-area {
+  width: 280px;
+  height: 180px;
 
-      width: min(85vw, 420px);
-      height: min(68vh, 570px);
+  position: relative;
 
-      background: #fffdf8
+  cursor: pointer;
+}
+
+
+/* ENVELOPE */
+
+.envelope {
+  width: 280px;
+  height: 180px;
+
+  position: absolute;
+
+  bottom: 0;
+
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.25));
+
+  transition: opacity 0.8s ease;
+}
+
+
+/* BACK */
+
+.envelope-back {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background: #f3e5d5;
+}
+
+
+/* FLAP */
+
+.flap {
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 90px solid #e6d2be;
+
+  top: 0;
+  left: 0;
+
+  transform-origin: top;
+
+  z-index: 5;
+
+  transition: transform 0.8s ease;
+}
+
+
+/* LEFT FOLD */
+
+.left {
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  border-top: 90px solid transparent;
+  border-bottom: 90px solid transparent;
+  border-left: 140px solid #ead9c8;
+
+  z-index: 3;
+}
+
+
+/* RIGHT FOLD */
+
+.right {
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  border-top: 90px solid transparent;
+  border-bottom: 90px solid transparent;
+  border-right: 140px solid #e1cbb6;
+
+  right: 0;
+
+  z-index: 3;
+}
+
+
+/* BOTTOM */
+
+.bottom {
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 90px solid #f7ecdf;
+
+  bottom: 0;
+
+  z-index: 4;
+}
+
+
+/* SEAL */
+
+.seal {
+  position: absolute;
+
+  top: 68px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 38px;
+  height: 38px;
+
+  background: #8b5ca5;
+
+  border-radius: 50%;
+
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
+}
+
+
+/* PAPER */
+
+.paper {
+  position: absolute;
+
+  width: min(85vw, 420px);
+  height: min(65vh, 550px);
+
+  background: #fffdf8;
+
+  left: 50%;
+
+  bottom: 20px;
+
+  transform:
+    translateX(-50%)
+    translateY(80px);
+
+  opacity: 0;
+
+  z-index: 2;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+
+  transition:
+    transform 2s ease,
+    opacity 0.5s ease;
+
+  overflow: hidden;
+}
+
+
+/* LETTER */
+
+.letter-content {
+
+  height: 100%;
+
+  overflow-y: auto;
+
+  padding: 30px 25px;
+
+  font-family: "Playfair Display", serif;
+
+  color: #59495d;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  text-align: left;
+}
+
+.letter-content p {
+  margin-bottom: 18px;
+}
+
+.ending {
+  text-align: center;
+}
+
+
+/* OPEN STATES */
+
+.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.open .seal {
+  opacity: 0;
+}
+
+.open .paper {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(-220px);
+}
+
+
+/* FINAL PAPER */
+
+.paper.final {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  bottom: auto;
+
+  transform:
+    translate(-50%, -50%);
+
+  opacity: 1;
+
+  z-index: 20;
+}
+
+
+/* DONE BUTTON */
+
+.done-btn {
+
+  position: fixed;
+
+  bottom: 5vh;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  padding: 13px 28px;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(255,255,255,0.5);
+
+  background: rgba(255,255,255,0.15);
+
+  color: white;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.5s ease;
+
+  z-index: 30;
+}
+
+.done-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* SPARKLES */
+
+.sparkle {
+  position: fixed;
+
+  color: white;
+
+  pointer-events: none;
+
+  animation: twinkle 3s infinite;
+}
+
+.s1 {
+  top: 15%;
+  left: 15%;
+}
+
+.s2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.s3 {
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+
+@keyframes twinkle {
+
+  0%, 100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="sparkle s1">✦</div>
+<div class="sparkle s2">✧</div>
+<div class="sparkle s3">✦</div>
+
+
+<div class="screen">
+
+
+  <p class="instruction" id="instruction">
+    tap the envelope ♡
+  </p>
+
+
+  <div
+    class="envelope-area"
+    id="envelopeArea"
+    onclick="openEnvelope()"
+  >
+
+
+    <!-- PAPER -->
+
+    <div class="paper" id="paper">
+
+      <div class="letter-content">
+
+        <p>
+          since it's your birthday, i just want to wish you all the good things in life. i hope this new year brings you happiness, peace, good opportunities, and beautiful memories. i hope you achieve the things you've been working hard and hoping for, even the ones you don't talk about much.
+        </p>
+
+        <p>
+          life might not always go the way you want it to, and there might be times when things get difficult or overwhelming, but please don't give up. take your time when you need to, rest when you're tired, but always remember to keep going. you've made it through so many days already, and i'm sure you'll continue to get through whatever comes your way.
+        </p>
+
+        <p>
+          i hope you never lose yourself while trying to survive the difficult parts of life. i hope you continue to grow into the person you want to become and find the things that genuinely make you happy.
+        </p>
+
+        <p>
+          and if ever you feel like things are getting too heavy, or you just need someone to talk to, please remember that i'm here. you don't always have to handle everything alone. you can talk to me, rant to me, sit in silence with me, or even just annoy me. i'll still be here. 🙄
+        </p>
+
+        <p>
+          i might not always know the right words to say, but i'll always try my best to listen and be there for you.
+        </p>
+
+        <p>
+          so please keep going, kupal. there are still so many things waiting for you, so many places to see, memories to make, and good things that i hope life gives you.
+        </p>
+
+        <p>
+          i'll be cheering for you from here, always.
+        </p>
+
+        <p class="ending">
+          mwaa! happy birthday, baby. 💜
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ENVELOPE -->
+
+    <div class="envelope">
+
+      <div class="envelope-back"></div>
+
+      <div class="flap"></div>
+
+      <div class="left"></div>
+
+      <div class="right"></div>
+
+      <div class="bottom"></div>
+
+      <div class="seal">♡</div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<button
+  class="done-btn"
+  id="doneBtn"
+  onclick="doneReading()"
+>
+  DONE READING →
+</button>
+
+
+<script>
+
+let hasOpened = false;
+
+
+function openEnvelope() {
+
+  if (hasOpened) return;
+
+  hasOpened = true;
+
+
+  const area =
+    document.getElementById("envelopeArea");
+
+  const envelope =
+    document.querySelector(".envelope");
+
+  const instruction =
+    document.getElementById("instruction");
+
+  const paper =
+    document.getElementById("paper");
+
+  const doneBtn =
+    document.getElementById("doneBtn");
+
+
+  instruction.style.opacity = "0";
+
+
+  /* OPEN */
+
+  area.classList.add("open");
+
+
+  /* PAPER COMES OUT */
+
+  setTimeout(function () {
+
+    envelope.style.opacity = "0";
+
+    paper.classList.add("final");
+
+  }, 2500);
+
+
+  /* REMOVE ENVELOPE AREA CLICK */
+
+  setTimeout(function () {
+
+    area.style.pointerEvents = "none";
+
+  }, 3200);
+
+
+  /* SHOW BUTTON */
+
+  setTimeout(function () {
+
+    doneBtn.classList.add("show");
+
+  }, 3300);
+
+}
+
+
+function doneReading() {
+
+  alert("next surprise coming soon ♡");
+
+}
+
+</script>
+
+
+</body>
+</html>
