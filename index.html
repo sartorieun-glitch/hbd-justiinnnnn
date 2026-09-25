@@ -4,216 +4,293 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A Letter For You ♡</title>
+<title>Happy Birthday, Baby ♡</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+/* =========================
+   GENERAL
+========================= */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
-  min-height: 100vh;
-  overflow: hidden;
-  font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans", sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.10), transparent 25%),
+        linear-gradient(135deg, #6f4b8b, #9b73b5, #60427d);
 
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 25%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.10), transparent 30%),
-    linear-gradient(135deg, #6f4b8b, #9b73b5, #60427d);
+    color: white;
 }
 
 
 /* =========================
-   SPARKLES
-========================= */
-
-.sparkle {
-  position: fixed;
-  color: white;
-  pointer-events: none;
-  animation: twinkle 3s infinite ease-in-out;
-}
-
-.s1 { top: 15%; left: 15%; font-size: 18px; }
-.s2 { top: 25%; right: 15%; font-size: 14px; animation-delay: 1s; }
-.s3 { bottom: 20%; left: 20%; font-size: 16px; animation-delay: 2s; }
-.s4 { bottom: 15%; right: 15%; font-size: 18px; animation-delay: 0.5s; }
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.3);
-  }
-}
-
-
-/* =========================
-   SCREEN
+   SCREENS
 ========================= */
 
 .screen {
-  width: 100%;
-  height: 100vh;
+    position: fixed;
+    inset: 0;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  justify-content: center;
-  align-items: center;
+    opacity: 0;
+    visibility: hidden;
 
-  position: relative;
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 
 /* =========================
-   INSTRUCTION
+   LITTLE SPARKLES
 ========================= */
 
-.instruction {
-  color: white;
-  font-size: 14px;
-  letter-spacing: 2px;
-  margin-bottom: 35px;
-  transition: opacity 0.5s ease;
+.sparkle {
+    position: absolute;
+    color: rgba(255,255,255,.6);
+    font-size: 18px;
+    animation: float 4s ease-in-out infinite;
 }
 
-.instruction.hide {
-  opacity: 0;
+.s1 {
+    top: 12%;
+    left: 15%;
+}
+
+.s2 {
+    top: 20%;
+    right: 17%;
+    animation-delay: 1s;
+}
+
+.s3 {
+    bottom: 18%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.s4 {
+    bottom: 12%;
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    50% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
 }
 
 
 /* =========================
-   ENVELOPE
+   SLIDE 1
 ========================= */
+
+.opening {
+    text-align: center;
+    width: min(90%, 500px);
+    padding: 30px;
+}
+
+.hearts {
+    font-size: 18px;
+    letter-spacing: 5px;
+    margin-bottom: 18px;
+    opacity: .85;
+}
+
+.opening h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.opening h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 12vw, 72px);
+    line-height: 1;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+}
+
+.opening p {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 390px;
+    margin: 0 auto 28px;
+    opacity: .92;
+}
+
+.main-button {
+    border: none;
+    background: rgba(255,255,255,.95);
+    color: #69477f;
+
+    padding: 13px 24px;
+    border-radius: 30px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.main-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.main-button:active {
+    transform: scale(.96);
+}
+
+
+/* =========================
+   ENVELOPE SCENE
+========================= */
+
+.envelope-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
 
 .envelope-area {
-  width: 280px;
-  height: 180px;
-  position: relative;
-  cursor: pointer;
+    position: relative;
+    width: 320px;
+    height: 250px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .envelope {
-  width: 280px;
-  height: 180px;
+    position: absolute;
 
-  position: absolute;
-  bottom: 0;
+    width: 260px;
+    height: 165px;
 
-  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.25));
-  transition: opacity 0.8s ease;
+    background: #d8b9e6;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 20px 40px rgba(35,20,50,.25);
+
+    cursor: pointer;
+
+    transition:
+        transform 1s ease,
+        opacity .8s ease;
 }
 
-.envelope-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #f3e5d5;
-  border-radius: 3px;
+
+/* envelope bottom */
+
+.envelope::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: #c9a4dc;
+
+    clip-path: polygon(
+        0 0,
+        50% 52%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    border-radius: 8px;
 }
+
+
+/* envelope flap */
 
 .flap {
-  position: absolute;
+    position: absolute;
 
-  width: 0;
-  height: 0;
+    top: 0;
+    left: 0;
 
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-top: 90px solid #e6d2be;
+    width: 100%;
+    height: 95px;
 
-  top: 0;
-  left: 0;
+    background: #e5c9ef;
 
-  transform-origin: top center;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
 
-  z-index: 5;
+    transform-origin: top center;
 
-  transition: transform 0.8s ease;
+    transition: transform 1s ease;
+
+    z-index: 5;
 }
 
-.left {
-  position: absolute;
 
-  width: 0;
-  height: 0;
+/* opening text */
 
-  border-top: 90px solid transparent;
-  border-bottom: 90px solid transparent;
-  border-left: 140px solid #ead9c8;
+.tap-envelope {
+    position: absolute;
 
-  left: 0;
-  z-index: 3;
-}
+    bottom: -48px;
 
-.right {
-  position: absolute;
+    font-size: 14px;
 
-  width: 0;
-  height: 0;
+    opacity: .9;
 
-  border-top: 90px solid transparent;
-  border-bottom: 90px solid transparent;
-  border-right: 140px solid #e1cbb6;
-
-  right: 0;
-  z-index: 3;
-}
-
-.bottom {
-  position: absolute;
-
-  width: 0;
-  height: 0;
-
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-bottom: 90px solid #f7ecdf;
-
-  bottom: 0;
-  z-index: 4;
-}
-
-.seal {
-  position: absolute;
-
-  top: 68px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 38px;
-  height: 38px;
-
-  background: #8b5ca5;
-  border-radius: 50%;
-
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 10;
-  transition: opacity 0.4s ease;
+    transition:
+        opacity .5s ease;
 }
 
 
@@ -222,378 +299,416 @@ body {
 ========================= */
 
 .paper {
-  position: absolute;
+    position: absolute;
 
-  width: min(88vw, 420px);
-  height: min(68vh, 560px);
+    width: min(88vw, 390px);
+    height: min(72vh, 540px);
 
-  background: #fffdf8;
+    background: #fffafc;
+    color: #49364f;
 
-  left: 50%;
-  bottom: 20px;
+    border-radius: 5px;
 
-  transform: translateX(-50%) translateY(80px);
+    padding: 30px 25px 28px;
 
-  opacity: 0;
-  z-index: 2;
+    box-shadow:
+        0 20px 45px rgba(25,15,35,.28);
 
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(80px);
 
-  transition: transform 2s ease, opacity 0.5s ease;
+    pointer-events: none;
 
-  overflow: hidden;
-}
+    transition:
+        transform 1.5s ease,
+        opacity 1s ease;
 
-.letter-content {
-  width: 100%;
-  height: 100%;
-
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-
-  padding: 30px 25px 60px;
-
-  font-family: "Playfair Display", serif;
-
-  color: #59495d;
-
-  font-size: 14px;
-  line-height: 1.75;
-
-  text-align: left;
-}
-
-.letter-content p {
-  margin-bottom: 20px;
-}
-
-.ending {
-  text-align: center;
-  font-size: 16px;
-  margin-top: 30px;
+    z-index: 10;
 }
 
 
-/* OPEN LETTER */
+/* paper shown */
 
-.open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.open .seal {
-  opacity: 0;
-}
-
-.open .paper {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-220px);
+.paper.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 
-/* FINAL LETTER */
+/* hide envelope after opening */
 
-.paper.final {
-  position: fixed;
+.envelope.hide {
+    opacity: 0;
+    transform: translateY(100px) scale(.9);
+    pointer-events: none;
+}
 
-  width: min(88vw, 430px);
-  height: min(70vh, 600px);
 
-  top: 44%;
-  left: 50%;
+/* open flap */
 
-  bottom: auto;
-
-  transform: translate(-50%, -50%);
-
-  opacity: 1;
-
-  z-index: 20;
-
-  pointer-events: auto;
-  touch-action: pan-y;
+.envelope.open .flap {
+    transform: rotateX(180deg);
 }
 
 
 /* =========================
-   BUTTON
+   LETTER CONTENT
 ========================= */
 
-.done-btn {
-  position: fixed;
+.paper-content {
+    height: 100%;
 
-  bottom: 4vh;
-  left: 50%;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-  transform: translateX(-50%) translateY(20px);
+    -webkit-overflow-scrolling: touch;
 
-  padding: 13px 28px;
+    touch-action: pan-y;
 
-  border-radius: 30px;
-
-  border: 1px solid rgba(255,255,255,0.5);
-
-  background: rgba(255,255,255,0.15);
-
-  color: white;
-
-  font-family: "DM Sans", sans-serif;
-
-  font-size: 12px;
-
-  letter-spacing: 2px;
-
-  cursor: pointer;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition: all 0.5s ease;
-
-  z-index: 30;
+    padding-right: 5px;
 }
 
-.done-btn.show {
-  opacity: 1;
+.paper-content::-webkit-scrollbar {
+    width: 4px;
+}
 
-  transform: translateX(-50%) translateY(0);
+.paper-content::-webkit-scrollbar-thumb {
+    background: #c8a9d4;
+    border-radius: 10px;
+}
 
-  pointer-events: auto;
+.letter-title {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+
+    text-align: center;
+
+    color: #704985;
+
+    margin-bottom: 22px;
+}
+
+.paper-content p {
+    font-size: 14px;
+    line-height: 1.75;
+
+    margin-bottom: 16px;
+}
+
+.signature {
+    text-align: center;
+
+    font-family: "Playfair Display", serif;
+
+    color: #704985;
+
+    font-size: 20px;
+
+    margin-top: 25px;
 }
 
 
 /* =========================
-   POLAROID SURPRISE
+   DONE BUTTON
+========================= */
+
+.done-button {
+    position: absolute;
+
+    bottom: -58px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    white-space: nowrap;
+
+    border: none;
+
+    background: #fffafc;
+    color: #704985;
+
+    padding: 12px 22px;
+
+    border-radius: 25px;
+
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+    transition:
+        transform .25s ease,
+        opacity .5s ease;
+}
+
+.done-button:hover {
+    transform: translateX(-50%) translateY(-3px);
+}
+
+
+/* =========================
+   POLAROID SCENE
 ========================= */
 
 .polaroid-scene {
-  position: fixed;
+    position: fixed;
+    inset: 0;
 
-  inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  display: none;
+    cursor: pointer;
 
-  justify-content: center;
-  align-items: center;
-
-  z-index: 50;
+    overflow: hidden;
 }
 
 
 /* envelope behind photos */
 
 .photo-envelope {
-  position: absolute;
+    position: absolute;
 
-  width: 280px;
-  height: 180px;
+    width: 270px;
+    height: 170px;
 
-  background: #f3e5d5;
+    background: #d8b9e6;
 
-  bottom: 22%;
+    bottom: 18%;
 
-  border-radius: 3px;
+    border-radius: 8px;
 
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    box-shadow:
+        0 20px 40px rgba(35,20,50,.25);
 
-  opacity: 0;
-
-  transform: translateY(40px);
-
-  transition: 1s ease;
+    z-index: 1;
 }
 
-.polaroid-scene.show .photo-envelope {
-  opacity: 1;
-  transform: translateY(0);
-}
+.photo-envelope::before {
+    content: "";
 
+    position: absolute;
+    inset: 0;
 
-/* POLAROIDS */
+    background: #c9a4dc;
 
-.polaroid {
-  position: absolute;
+    clip-path: polygon(
+        0 0,
+        50% 52%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
 
-  width: 140px;
-  height: 175px;
-
-  background: white;
-
-  padding: 8px 8px 28px;
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-
-  opacity: 0;
-
-  cursor: pointer;
-
-  transition: 0.6s ease;
-}
-
-
-/* placeholder image */
-
-.photo-placeholder {
-  width: 100%;
-  height: 120px;
-
-  background: #d8c5df;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  color: #72518c;
-
-  font-size: 12px;
-
-  letter-spacing: 1px;
-}
-
-
-/* photo labels */
-
-.polaroid p {
-  text-align: center;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 15px;
-
-  margin-top: 5px;
-
-  color: #59495d;
-}
-
-
-/* PHOTO POSITIONS */
-
-.photo1 {
-  transform: translate(-95px, -55px) rotate(-12deg);
-  z-index: 3;
-}
-
-.photo2 {
-  transform: translate(0px, -75px) rotate(3deg);
-  z-index: 4;
-}
-
-.photo3 {
-  transform: translate(95px, -50px) rotate(12deg);
-  z-index: 5;
-}
-
-
-/* SHOW PHOTOS */
-
-.polaroid-scene.show .polaroid {
-  opacity: 1;
-}
-
-
-/* TAP GUIDE */
-
-.tap-guide {
-  position: absolute;
-
-  top: -28px;
-
-  color: white;
-
-  font-size: 13px;
-
-  letter-spacing: 2px;
-
-  animation: pulse 1.5s infinite;
-
-  pointer-events: none;
-}
-
-@keyframes pulse {
-
-  0%, 100% {
-    opacity: 0.4;
-    transform: translateY(0);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translateY(-5px);
-  }
-
-}
-
-
-/* SELECTED PHOTO */
-
-.polaroid.active {
-  position: fixed;
-
-  left: 50%;
-  top: 45%;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(0deg)
-    scale(1.7);
-
-  z-index: 100;
+    border-radius: 8px;
 }
 
 
 /* =========================
-   MOBILE
+   POLAROIDS
 ========================= */
 
-@media (max-width: 500px) {
+.polaroid {
+    position: absolute;
 
-  .letter-content {
-    font-size: 13.5px;
-    padding: 28px 22px 70px;
-  }
+    left: 50%;
+    top: 48%;
 
-  .polaroid {
-    width: 115px;
-    height: 150px;
-  }
+    width: 155px;
 
-  .photo-placeholder {
-    height: 100px;
-  }
+    padding: 9px 9px 15px;
 
-  .photo1 {
-    transform: translate(-70px, -50px) rotate(-12deg);
-  }
+    background: #fff;
 
-  .photo2 {
-    transform: translate(0px, -70px) rotate(3deg);
-  }
+    box-shadow:
+        0 12px 30px rgba(30,15,40,.25);
 
-  .photo3 {
-    transform: translate(70px, -45px) rotate(12deg);
-  }
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1),
+        opacity .5s ease;
 
-  .polaroid.active {
+    pointer-events: none;
+}
+
+.polaroid img {
+    display: block;
+
+    width: 100%;
+    height: 175px;
+
+    object-fit: cover;
+
+    background: #eee;
+}
+
+.polaroid-caption {
+    text-align: center;
+
+    color: #4d3b50;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 13px;
+
+    margin-top: 9px;
+}
+
+
+/* starting positions */
+
+.photo1 {
     transform:
-      translate(-50%, -50%)
-      rotate(0deg)
-      scale(1.9);
-  }
+        translate(-50%, -50%)
+        translate(-72px, -35px)
+        rotate(-10deg);
 
+    z-index: 4;
+}
+
+.photo2 {
+    transform:
+        translate(-50%, -50%)
+        translate(0px, -55px)
+        rotate(3deg);
+
+    z-index: 3;
+}
+
+.photo3 {
+    transform:
+        translate(-50%, -50%)
+        translate(72px, -35px)
+        rotate(11deg);
+
+    z-index: 2;
+}
+
+
+/* =========================
+   FORWARD MOVEMENTS
+========================= */
+
+.photo1.forward {
+    transform:
+        translate(-50%, -50%)
+        translate(0, -10px)
+        rotate(-2deg)
+        scale(1.08);
+
+    z-index: 10;
+}
+
+.photo2.forward {
+    transform:
+        translate(-50%, -50%)
+        translate(0, -10px)
+        rotate(2deg)
+        scale(1.08);
+
+    z-index: 10;
+}
+
+.photo3.forward {
+    transform:
+        translate(-50%, -50%)
+        translate(0, -10px)
+        rotate(-2deg)
+        scale(1.08);
+
+    z-index: 10;
+}
+
+
+/* =========================
+   TAP GUIDE
+========================= */
+
+.tap-guide {
+    position: absolute;
+
+    bottom: 9%;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    opacity: .85;
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+
+    z-index: 20;
+}
+
+.tap-guide.hide {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 380px) {
+
+    .polaroid {
+        width: 140px;
+    }
+
+    .polaroid img {
+        height: 155px;
+    }
+
+    .photo1 {
+        transform:
+            translate(-50%, -50%)
+            translate(-55px, -30px)
+            rotate(-10deg);
+    }
+
+    .photo2 {
+        transform:
+            translate(-50%, -50%)
+            translate(0px, -45px)
+            rotate(3deg);
+    }
+
+    .photo3 {
+        transform:
+            translate(-50%, -50%)
+            translate(55px, -30px)
+            rotate(11deg);
+    }
+
+}
+
+
+/* =========================
+   FADE OUT
+========================= */
+
+.fade-out {
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- SPARKLES -->
+<!-- =========================
+     SPARKLES
+========================= -->
 
 <div class="sparkle s1">✦</div>
 <div class="sparkle s2">✧</div>
@@ -601,296 +716,451 @@ body {
 <div class="sparkle s4">✧</div>
 
 
-<!-- LETTER SCREEN -->
+<!-- =========================
+     SLIDE 1
+========================= -->
 
-<div class="screen" id="letterScreen">
+<section id="openingScreen" class="screen active">
 
-  <p class="instruction" id="instruction">
-    tap the envelope ♡
-  </p>
+    <div class="opening">
 
+        <div class="hearts">
+            ♡♡♡
+        </div>
 
-  <div
-    class="envelope-area"
-    id="envelopeArea"
-    onclick="openEnvelope()"
-  >
+        <h2>
+            hi baby!
+        </h2>
 
-
-    <!-- LETTER -->
-
-    <div class="paper" id="paper">
-
-      <div class="letter-content">
-
-        <p>
-          since it's your birthday, i just want to wish you all the good things in life. i hope this new year brings you happiness, peace, good opportunities, and beautiful memories. i hope you achieve the things you've been working hard and hoping for, even the ones you don't talk about much.
-        </p>
+        <h1>
+            HAPPY<br>
+            BIRTHDAY!
+        </h1>
 
         <p>
-          life might not always go the way you want it to, and there might be times when things get difficult or overwhelming, but please don't give up. take your time when you need to, rest when you're tired, but always remember to keep going. you've made it through so many days already, and i'm sure you'll continue to get through whatever comes your way.
+            i honestly didn't know what to give you,
+            so i made this instead.
+            i know it's just a small thing,
+            but i hope you'll still appreciate it :>
         </p>
 
-        <p>
-          i hope you never lose yourself while trying to survive the difficult parts of life. i hope you continue to grow into the person you want to become and find the things that genuinely make you happy.
-        </p>
-
-        <p>
-          and if ever you feel like things are getting too heavy, or you just need someone to talk to, please remember that i'm here. you don't always have to handle everything alone. you can talk to me, rant to me, sit in silence with me, or even just annoy me. i'll still be here. 🙄
-        </p>
-
-        <p>
-          i might not always know the right words to say, but i'll always try my best to listen and be there for you.
-        </p>
-
-        <p>
-          so please keep going, kupal. there are still so many things waiting for you, so many places to see, memories to make, and good things that i hope life gives you.
-        </p>
-
-        <p>
-          i'll be cheering for you from here, always.
-        </p>
-
-        <p class="ending">
-          mwaa! happy birthday, baby. 💜
-        </p>
-
-      </div>
+        <button class="main-button" onclick="startLetter()">
+            CLICK →
+        </button>
 
     </div>
 
+</section>
 
-    <!-- ENVELOPE -->
 
-    <div class="envelope">
 
-      <div class="envelope-back"></div>
+<!-- =========================
+     SLIDE 2 — LETTER
+========================= -->
 
-      <div class="flap"></div>
+<section id="letterScreen" class="screen">
 
-      <div class="left"></div>
+    <div class="envelope-scene">
 
-      <div class="right"></div>
+        <div class="envelope-area">
 
-      <div class="bottom"></div>
+            <!-- ENVELOPE -->
 
-      <div class="seal">♡</div>
+            <div
+                id="mainEnvelope"
+                class="envelope"
+                onclick="openEnvelope()"
+            >
+
+                <div class="flap"></div>
+
+            </div>
+
+
+            <!-- PAPER -->
+
+            <div id="paper" class="paper">
+
+                <div class="paper-content">
+
+                    <div class="letter-title">
+                        for you, baby ♡
+                    </div>
+
+
+                    <p>
+                        wait lang, ga panumdom pa ko kon ano ihambal ko HAHAHAHAHAHAHAHA
+                    </p>
+
+                    <p>
+                        okayy, first of all, i hope you don't find this cringe HAHAHAHA.
+                        seriousness na, ano... since it’s your birthday, i hope this new year
+                        of yours brings you happiness, peace, and all the good things in life.
+                    </p>
+
+                    <p>
+                        i hope you achieve the things you've been working hard for,
+                        even the ones you don't really talk about much.
+                    </p>
+
+                    <p>
+                        life might not always go the way you want it to, but please remember
+                        that i'm always here for you — through your ups and downs.
+                        when you're tired, don't give up, okay? remember to keep going.
+                        there may be days where you feel like you can't handle everything
+                        anymore, but i'm here, and i'll still be here through whatever
+                        comes your way.
+                    </p>
+
+                    <p>
+                        no matter how difficult life gets, i hope you won't forget that
+                        there are still so many good things waiting for you.
+                    </p>
+
+                    <p>
+                        and if ever things get too heavy, or you just need someone to talk to,
+                        know that i'm always here. you don't always have to handle everything
+                        alone. you can talk to me, rant to me, or just annoy me — i'll still
+                        be here. i might not always find the right words, but i'll still try
+                        my best to listen and be there for you.
+                    </p>
+
+                    <p>
+                        cringe-an ka na? HAHAHA bahala ka da.
+                        basaha tanan because i just put a lot of thought into this because
+                        you matter to me more than i probably say.
+                        mwamwa ka sa 'kin 🔥
+                    </p>
+
+                    <p>
+                        but seriously, thank you for choosing to hear me out instead of
+                        ignoring me every time there's something bothering me, or whenever
+                        we have misunderstandings. and thank you for not judging me for it.
+                    </p>
+
+                    <p>
+                        do remember that i'll always be proud of everything that you do.
+                        i hope you get the improvements you've been craving for.
+                    </p>
+
+                    <p>
+                        so please, keep going. kupal, there are still so many things waiting
+                        for you, many places to see, memories to make, and good things that
+                        life might give you.
+                    </p>
+
+                    <p>
+                        huo na, lapit na lang ma tapos, isa na lang.
+                        last na. HUAHAHAHAHA
+                    </p>
+
+                    <p>
+                        and i guess that's all i wanted to say.
+                        i'm not really good at saying these things out loud,
+                        so i hope this somehow makes up for it.
+                        thank you for being someone i can laugh with, annoy,
+                        and share random things with.
+                        i hope you know that you're appreciated more than you think.
+                    </p>
+
+                    <p>
+                        whatever happens, i hope you keep choosing yourself,
+                        keep growing, and keep going.
+                        and if life gets a little too much,
+                        you already know where to find me, okaayyyy?????
+                    </p>
+
+                    <p>
+                        happy birthday, baby.
+                        enjoy your day, and don't get too emo over this letter HAHAHAHAHA
+                    </p>
+
+                    <div class="signature">
+                        I LOVE YOU, BABY! 💜
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="done-button"
+                    onclick="doneReading(event)"
+                >
+                    DONE READING →
+                </button>
+
+            </div>
+
+
+            <div id="tapEnvelopeText" class="tap-envelope">
+                tap the envelope ♡
+            </div>
+
+        </div>
 
     </div>
 
-  </div>
-
-</div>
+</section>
 
 
-<!-- DONE READING BUTTON -->
 
-<button
-  class="done-btn"
-  id="doneBtn"
-  onclick="doneReading()"
->
-  DONE READING →
-</button>
+<!-- =========================
+     SLIDE 3 — PHOTOS
+========================= -->
 
+<section id="polaroidScreen" class="screen">
 
-<!-- POLAROID SCENE -->
+    <div
+        id="polaroidScene"
+        class="polaroid-scene"
+        onclick="nextPolaroid()"
+    >
 
-<div
-  class="polaroid-scene"
-  id="polaroidScene"
->
+        <!-- ENVELOPE -->
 
-
-  <div class="photo-envelope"></div>
+        <div class="photo-envelope"></div>
 
 
-  <!-- PHOTO 1 -->
+        <!-- PHOTO 1 -->
 
-  <div
-    class="polaroid photo1"
-    id="photo1"
-    onclick="openPhoto(1)"
-  >
+        <div
+            id="photo1"
+            class="polaroid photo1"
+        >
 
-    <div class="tap-guide" id="guide1">
-      TAP
+            <img
+                src="photo1.jpeg"
+                alt="photo 1"
+            >
+
+            <div class="polaroid-caption">
+                happy ♡
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 2 -->
+
+        <div
+            id="photo2"
+            class="polaroid photo2"
+        >
+
+            <img
+                src="photo2.jpeg"
+                alt="photo 2"
+            >
+
+            <div class="polaroid-caption">
+                birthday ♡
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 3 -->
+
+        <div
+            id="photo3"
+            class="polaroid photo3"
+        >
+
+            <img
+                src="photo3.jpeg"
+                alt="photo 3"
+            >
+
+            <div class="polaroid-caption">
+                justin ♡
+            </div>
+
+        </div>
+
+
+        <!-- TAP GUIDE -->
+
+        <div
+            id="tapGuide"
+            class="tap-guide"
+        >
+            TAP ♡
+        </div>
+
     </div>
 
-    <div class="photo-placeholder">
-      PHOTO 1
-    </div>
+</section>
 
-    <p>happy</p>
-
-  </div>
-
-
-  <!-- PHOTO 2 -->
-
-  <div
-    class="polaroid photo2"
-    id="photo2"
-    onclick="openPhoto(2)"
-  >
-
-    <div class="tap-guide" id="guide2" style="display:none;">
-      TAP
-    </div>
-
-    <div class="photo-placeholder">
-      PHOTO 2
-    </div>
-
-    <p>birthday</p>
-
-  </div>
-
-
-  <!-- PHOTO 3 -->
-
-  <div
-    class="polaroid photo3"
-    id="photo3"
-    onclick="openPhoto(3)"
-  >
-
-    <div class="tap-guide" id="guide3" style="display:none;">
-      TAP
-    </div>
-
-    <div class="photo-placeholder">
-      PHOTO 3
-    </div>
-
-    <p>justin ♡</p>
-
-  </div>
-
-
-</div>
 
 
 <script>
 
-let hasOpened = false;
-let currentPhoto = 0;
+/* =========================
+   SCREEN SWITCHING
+========================= */
+
+const openingScreen =
+    document.getElementById("openingScreen");
+
+const letterScreen =
+    document.getElementById("letterScreen");
+
+const polaroidScreen =
+    document.getElementById("polaroidScreen");
 
 
-/* OPEN ENVELOPE */
+function showScreen(screen) {
+
+    openingScreen.classList.remove("active");
+    letterScreen.classList.remove("active");
+    polaroidScreen.classList.remove("active");
+
+    screen.classList.add("active");
+
+}
+
+
+/* =========================
+   SLIDE 1 → LETTER
+========================= */
+
+function startLetter() {
+
+    showScreen(letterScreen);
+
+}
+
+
+/* =========================
+   OPEN ENVELOPE
+========================= */
+
+let envelopeOpened = false;
 
 function openEnvelope() {
 
-  if (hasOpened) return;
+    if (envelopeOpened) return;
 
-  hasOpened = true;
+    envelopeOpened = true;
 
-  const area = document.getElementById("envelopeArea");
-  const envelope = document.querySelector(".envelope");
-  const instruction = document.getElementById("instruction");
-  const paper = document.getElementById("paper");
-  const doneBtn = document.getElementById("doneBtn");
+    const envelope =
+        document.getElementById("mainEnvelope");
 
-  instruction.classList.add("hide");
+    const text =
+        document.getElementById("tapEnvelopeText");
 
-  area.classList.add("open");
-
-
-  setTimeout(function () {
-
-    envelope.style.opacity = "0";
-
-    paper.classList.add("final");
-
-  }, 2500);
+    const paper =
+        document.getElementById("paper");
 
 
-  setTimeout(function () {
+    /* open flap */
 
-    doneBtn.classList.add("show");
+    envelope.classList.add("open");
 
-  }, 3300);
-
-}
+    text.style.opacity = "0";
 
 
-/* DONE READING */
+    /* wait before paper appears */
 
-function doneReading() {
+    setTimeout(() => {
 
-  const paper = document.getElementById("paper");
-  const doneBtn = document.getElementById("doneBtn");
-  const scene = document.getElementById("polaroidScene");
+        paper.classList.add("show");
 
-
-  doneBtn.classList.remove("show");
+    }, 900);
 
 
-  paper.style.opacity = "0";
+    /* hide envelope after paper comes out */
 
-  paper.style.transform =
-    "translate(-50%, -55%) scale(0.95)";
+    setTimeout(() => {
 
+        envelope.classList.add("hide");
 
-  setTimeout(function () {
-
-    document.getElementById("letterScreen").style.display = "none";
-
-    scene.style.display = "flex";
-
-
-    setTimeout(function () {
-
-      scene.classList.add("show");
-
-    }, 100);
-
-  }, 700);
+    }, 1900);
 
 }
 
 
-/* OPEN POLAROID */
+/* =========================
+   DONE READING
+========================= */
 
-function openPhoto(number) {
+function doneReading(event) {
 
-  const photo =
-    document.getElementById("photo" + number);
+    event.stopPropagation();
 
-  const guide =
-    document.getElementById("guide" + number);
-
-
-  /* prevent skipping */
-
-  if (number !== currentPhoto + 1) return;
+    const paper =
+        document.getElementById("paper");
 
 
-  guide.style.display = "none";
+    paper.classList.add("fade-out");
 
 
-  photo.classList.add("active");
+    setTimeout(() => {
+
+        showScreen(polaroidScreen);
+
+        paper.classList.remove("fade-out");
+
+    }, 700);
+
+}
 
 
-  currentPhoto = number;
+/* =========================
+   POLAROID TAPS
+========================= */
+
+let photoTapCount = 0;
 
 
-  /* show next TAP guide */
+function nextPolaroid() {
 
-  setTimeout(function () {
+    const guide =
+        document.getElementById("tapGuide");
 
-    if (number < 3) {
 
-      const nextGuide =
-        document.getElementById(
-          "guide" + (number + 1)
-        );
+    if (photoTapCount === 0) {
 
-      nextGuide.style.display = "block";
+        document
+            .getElementById("photo1")
+            .classList.add("forward");
+
+        photoTapCount = 1;
+
+        guide.classList.add("hide");
 
     }
 
-  }, 700);
+    else if (photoTapCount === 1) {
+
+        document
+            .getElementById("photo2")
+            .classList.add("forward");
+
+        photoTapCount = 2;
+
+    }
+
+    else if (photoTapCount === 2) {
+
+        document
+            .getElementById("photo3")
+            .classList.add("forward");
+
+        photoTapCount = 3;
+
+    }
+
+    else {
+
+        /*
+         * Third photo is already forward.
+         * Nothing else happens yet.
+         *
+         * We can add another ending/slide here later.
+         */
+
+    }
 
 }
 
