@@ -8,14 +8,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   GENERAL
-========================= */
 
 * {
     box-sizing: border-box;
@@ -32,26 +27,39 @@ body {
 
 body {
     font-family: "DM Sans", sans-serif;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 25%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,.10), transparent 25%),
-        linear-gradient(135deg, #6f4b8b, #9b73b5, #60427d);
-
     color: white;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.20),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255,255,255,.16),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #76538f,
+            #a77bc0,
+            #72508b
+        );
 }
 
 
-/* =========================
+/* ==============================
    SCREENS
-========================= */
+============================== */
 
 .screen {
     position: fixed;
     inset: 0;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     opacity: 0;
     visibility: hidden;
@@ -67,15 +75,16 @@ body {
 }
 
 
-/* =========================
-   LITTLE SPARKLES
-========================= */
+/* ==============================
+   SPARKLES
+============================== */
 
 .sparkle {
-    position: absolute;
-    color: rgba(255,255,255,.6);
+    position: fixed;
+    color: rgba(255,255,255,.65);
     font-size: 18px;
-    animation: float 4s ease-in-out infinite;
+    pointer-events: none;
+    animation: sparkleFloat 4s ease-in-out infinite;
 }
 
 .s1 {
@@ -91,7 +100,7 @@ body {
 
 .s3 {
     bottom: 18%;
-    left: 20%;
+    left: 18%;
     animation-delay: 2s;
 }
 
@@ -101,10 +110,11 @@ body {
     animation-delay: 1.5s;
 }
 
-@keyframes float {
-    0%,100% {
+@keyframes sparkleFloat {
+
+    0%, 100% {
         transform: translateY(0);
-        opacity: .5;
+        opacity: .45;
     }
 
     50% {
@@ -114,21 +124,21 @@ body {
 }
 
 
-/* =========================
-   SLIDE 1
-========================= */
+/* ==============================
+   OPENING
+============================== */
 
 .opening {
-    text-align: center;
     width: min(90%, 500px);
+    text-align: center;
     padding: 30px;
 }
 
 .hearts {
-    font-size: 18px;
+    font-size: 17px;
     letter-spacing: 5px;
     margin-bottom: 18px;
-    opacity: .85;
+    opacity: .9;
 }
 
 .opening h2 {
@@ -141,40 +151,59 @@ body {
     font-family: "Playfair Display", serif;
     font-size: clamp(42px, 12vw, 72px);
     line-height: 1;
-    margin-bottom: 22px;
     letter-spacing: 1px;
+    margin-bottom: 22px;
 }
 
 .opening p {
-    font-size: 15px;
-    line-height: 1.7;
     max-width: 390px;
     margin: 0 auto 28px;
-    opacity: .92;
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: .95;
 }
 
-.main-button {
-    border: none;
-    background: rgba(255,255,255,.95);
-    color: #69477f;
 
-    padding: 13px 24px;
-    border-radius: 30px;
+/* ==============================
+   BUTTON
+============================== */
+
+.main-button,
+.done-button {
+
+    border: none;
+
+    background: #fffaff;
+    color: #704889;
 
     font-family: "DM Sans", sans-serif;
-    font-size: 14px;
     font-weight: 700;
 
     cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(45,20,65,.18);
 
     transition:
         transform .25s ease,
         box-shadow .25s ease;
 }
 
+.main-button {
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+}
+
 .main-button:hover {
+
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+
+    box-shadow:
+        0 12px 30px rgba(45,20,65,.22);
 }
 
 .main-button:active {
@@ -182,110 +211,147 @@ body {
 }
 
 
-/* =========================
+/* ==============================
    ENVELOPE SCENE
-========================= */
+============================== */
 
 .envelope-scene {
+
     position: relative;
+
     width: 100%;
     height: 100%;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
 
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .envelope-area {
+
     position: relative;
-    width: 320px;
-    height: 250px;
+
+    width: 330px;
+    height: 270px;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
+    justify-content: center;
 }
 
+
+/* ==============================
+   ENVELOPE
+============================== */
+
 .envelope {
+
     position: absolute;
 
-    width: 260px;
-    height: 165px;
+    width: 270px;
+    height: 175px;
 
-    background: #d8b9e6;
+    background: #ead8f3;
 
-    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,.55);
+
+    border-radius: 11px;
 
     box-shadow:
-        0 20px 40px rgba(35,20,50,.25);
+        0 18px 40px rgba(40,20,60,.25),
+        0 0 25px rgba(245,225,255,.25);
 
     cursor: pointer;
+
+    z-index: 5;
 
     transition:
         transform 1s ease,
         opacity .8s ease;
 }
 
-
-/* envelope bottom */
-
 .envelope::before {
+
     content: "";
 
     position: absolute;
+
     inset: 0;
 
-    background: #c9a4dc;
+    background: #d9bce8;
 
-    clip-path: polygon(
-        0 0,
-        50% 52%,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
+    clip-path:
+        polygon(
+            0 0,
+            50% 54%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
 
-    border-radius: 8px;
+    border-radius: 9px;
+
+    z-index: 1;
 }
 
-
-/* envelope flap */
-
 .flap {
+
     position: absolute;
 
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 95px;
+    height: 105px;
 
-    background: #e5c9ef;
+    background: #f1e3f7;
 
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        50% 100%
-    );
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
 
     transform-origin: top center;
 
-    transition: transform 1s ease;
+    transition:
+        transform 1s ease;
 
     z-index: 5;
 }
 
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
 
-/* opening text */
+.envelope.hide {
+
+    opacity: 0;
+
+    transform:
+        translateY(100px)
+        scale(.9);
+
+    pointer-events: none;
+}
+
+
+/* ==============================
+   ENVELOPE TEXT
+============================== */
 
 .tap-envelope {
+
     position: absolute;
 
-    bottom: -48px;
+    bottom: -45px;
 
     font-size: 14px;
+
+    color: white;
 
     opacity: .9;
 
@@ -294,69 +360,53 @@ body {
 }
 
 
-/* =========================
-   LETTER PAPER
-========================= */
+/* ==============================
+   LETTER
+============================== */
 
 .paper {
+
     position: absolute;
 
-    width: min(88vw, 390px);
-    height: min(72vh, 540px);
+    width: min(88vw, 400px);
 
-    background: #fffafc;
-    color: #49364f;
+    height: min(70vh, 540px);
 
-    border-radius: 5px;
+    background: #fffafd;
 
-    padding: 30px 25px 28px;
+    color: #4c3a52;
+
+    border-radius: 7px;
+
+    padding: 30px 25px 30px;
 
     box-shadow:
-        0 20px 45px rgba(25,15,35,.28);
+        0 20px 50px rgba(30,15,45,.28);
 
     opacity: 0;
-    transform: translateY(80px);
+
+    transform: translateY(100px);
 
     pointer-events: none;
+
+    z-index: 10;
 
     transition:
         transform 1.5s ease,
         opacity 1s ease;
-
-    z-index: 10;
 }
 
-
-/* paper shown */
-
 .paper.show {
+
     opacity: 1;
+
     transform: translateY(0);
+
     pointer-events: auto;
 }
 
-
-/* hide envelope after opening */
-
-.envelope.hide {
-    opacity: 0;
-    transform: translateY(100px) scale(.9);
-    pointer-events: none;
-}
-
-
-/* open flap */
-
-.envelope.open .flap {
-    transform: rotateX(180deg);
-}
-
-
-/* =========================
-   LETTER CONTENT
-========================= */
-
 .paper-content {
+
     height: 100%;
 
     overflow-y: auto;
@@ -374,150 +424,147 @@ body {
 }
 
 .paper-content::-webkit-scrollbar-thumb {
-    background: #c8a9d4;
+
+    background: #c7a6d6;
+
     border-radius: 10px;
 }
 
-.letter-title {
-    font-family: "Playfair Display", serif;
-    font-size: 25px;
-
-    text-align: center;
-
-    color: #704985;
-
-    margin-bottom: 22px;
-}
-
 .paper-content p {
+
     font-size: 14px;
+
     line-height: 1.75;
 
-    margin-bottom: 16px;
+    margin-bottom: 17px;
 }
 
 .signature {
+
     text-align: center;
 
     font-family: "Playfair Display", serif;
 
-    color: #704985;
+    color: #704889;
 
     font-size: 20px;
 
     margin-top: 25px;
+
+    padding-bottom: 10px;
 }
 
 
-/* =========================
-   DONE BUTTON
-========================= */
+/* ==============================
+   DONE READING
+============================== */
 
 .done-button {
+
     position: absolute;
 
     bottom: -58px;
+
     left: 50%;
 
     transform: translateX(-50%);
 
     white-space: nowrap;
 
-    border: none;
-
-    background: #fffafc;
-    color: #704985;
-
     padding: 12px 22px;
 
     border-radius: 25px;
 
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
-
     font-size: 13px;
-
-    cursor: pointer;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-
-    transition:
-        transform .25s ease,
-        opacity .5s ease;
 }
 
 .done-button:hover {
-    transform: translateX(-50%) translateY(-3px);
+
+    transform:
+        translateX(-50%)
+        translateY(-3px);
 }
 
 
-/* =========================
+/* ==============================
    POLAROID SCENE
-========================= */
+============================== */
 
 .polaroid-scene {
+
     position: fixed;
+
     inset: 0;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
 
-    cursor: pointer;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
+
+    cursor: pointer;
 }
 
 
-/* envelope behind photos */
+/* ==============================
+   PHOTO ENVELOPE
+============================== */
 
 .photo-envelope {
+
     position: absolute;
 
-    width: 270px;
-    height: 170px;
+    width: 280px;
+    height: 175px;
 
-    background: #d8b9e6;
+    bottom: 16%;
 
-    bottom: 18%;
+    background: #ead8f3;
 
-    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,.45);
+
+    border-radius: 10px;
 
     box-shadow:
-        0 20px 40px rgba(35,20,50,.25);
+        0 18px 40px rgba(40,20,60,.23);
 
     z-index: 1;
 }
 
 .photo-envelope::before {
+
     content: "";
 
     position: absolute;
+
     inset: 0;
 
-    background: #c9a4dc;
+    background: #d9bce8;
 
-    clip-path: polygon(
-        0 0,
-        50% 52%,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
+    clip-path:
+        polygon(
+            0 0,
+            50% 54%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
 
-    border-radius: 8px;
+    border-radius: 9px;
 }
 
 
-/* =========================
+/* ==============================
    POLAROIDS
-========================= */
+============================== */
 
 .polaroid {
+
     position: absolute;
 
     left: 50%;
-    top: 48%;
+    top: 46%;
 
     width: 155px;
 
@@ -526,16 +573,16 @@ body {
     background: #fff;
 
     box-shadow:
-        0 12px 30px rgba(30,15,40,.25);
+        0 14px 32px rgba(30,15,40,.27);
 
     transition:
-        transform 1s cubic-bezier(.2,.8,.2,1),
-        opacity .5s ease;
+        transform 1s cubic-bezier(.2,.8,.2,1);
 
     pointer-events: none;
 }
 
 .polaroid img {
+
     display: block;
 
     width: 100%;
@@ -547,6 +594,7 @@ body {
 }
 
 .polaroid-caption {
+
     text-align: center;
 
     color: #4d3b50;
@@ -559,9 +607,12 @@ body {
 }
 
 
-/* starting positions */
+/* ==============================
+   INITIAL POSITIONS
+============================== */
 
 .photo1 {
+
     transform:
         translate(-50%, -50%)
         translate(-72px, -35px)
@@ -571,6 +622,7 @@ body {
 }
 
 .photo2 {
+
     transform:
         translate(-50%, -50%)
         translate(0px, -55px)
@@ -580,6 +632,7 @@ body {
 }
 
 .photo3 {
+
     transform:
         translate(-50%, -50%)
         translate(72px, -35px)
@@ -589,11 +642,12 @@ body {
 }
 
 
-/* =========================
-   FORWARD MOVEMENTS
-========================= */
+/* ==============================
+   FORWARD MOVEMENT
+============================== */
 
 .photo1.forward {
+
     transform:
         translate(-50%, -50%)
         translate(0, -10px)
@@ -604,40 +658,53 @@ body {
 }
 
 .photo2.forward {
+
     transform:
         translate(-50%, -50%)
         translate(0, -10px)
         rotate(2deg)
         scale(1.08);
 
-    z-index: 10;
+    z-index: 11;
 }
 
 .photo3.forward {
+
     transform:
         translate(-50%, -50%)
         translate(0, -10px)
         rotate(-2deg)
         scale(1.08);
 
-    z-index: 10;
+    z-index: 12;
 }
 
 
-/* =========================
-   TAP GUIDE
-========================= */
+/* ==============================
+   TAP INDICATOR
+============================== */
 
 .tap-guide {
+
     position: absolute;
 
     bottom: 9%;
 
-    font-size: 13px;
+    font-family: "DM Sans", sans-serif;
 
-    letter-spacing: 1px;
+    font-size: 14px;
 
-    opacity: .85;
+    font-weight: 600;
+
+    letter-spacing: .5px;
+
+    color: rgba(255,255,255,.95);
+
+    text-shadow:
+        0 2px 8px rgba(60,30,80,.25);
+
+    animation:
+        tapBounce 1.5s ease-in-out infinite;
 
     transition:
         opacity .6s ease,
@@ -646,27 +713,63 @@ body {
     z-index: 20;
 }
 
+@keyframes tapBounce {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
 .tap-guide.hide {
+
     opacity: 0;
+
     transform: translateY(10px);
+
+    animation: none;
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ==============================
+   FADE
+============================== */
+
+.fade-out {
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ==============================
+   SMALL PHONES
+============================== */
 
 @media (max-width: 380px) {
 
+    .envelope {
+
+        width: 245px;
+        height: 158px;
+    }
+
     .polaroid {
+
         width: 140px;
     }
 
     .polaroid img {
+
         height: 155px;
     }
 
     .photo1 {
+
         transform:
             translate(-50%, -50%)
             translate(-55px, -30px)
@@ -674,29 +777,20 @@ body {
     }
 
     .photo2 {
+
         transform:
             translate(-50%, -50%)
-            translate(0px, -45px)
+            translate(0, -45px)
             rotate(3deg);
     }
 
     .photo3 {
+
         transform:
             translate(-50%, -50%)
             translate(55px, -30px)
             rotate(11deg);
     }
-
-}
-
-
-/* =========================
-   FADE OUT
-========================= */
-
-.fade-out {
-    opacity: 0 !important;
-    pointer-events: none !important;
 }
 
 </style>
@@ -706,9 +800,7 @@ body {
 <body>
 
 
-<!-- =========================
-     SPARKLES
-========================= -->
+<!-- SPARKLES -->
 
 <div class="sparkle s1">✦</div>
 <div class="sparkle s2">✧</div>
@@ -716,11 +808,14 @@ body {
 <div class="sparkle s4">✧</div>
 
 
-<!-- =========================
-     SLIDE 1
-========================= -->
+<!-- =================================
+     OPENING
+================================= -->
 
-<section id="openingScreen" class="screen active">
+<section
+    id="openingScreen"
+    class="screen active"
+>
 
     <div class="opening">
 
@@ -744,7 +839,10 @@ body {
             but i hope you'll still appreciate it :>
         </p>
 
-        <button class="main-button" onclick="startLetter()">
+        <button
+            class="main-button"
+            onclick="startLetter()"
+        >
             CLICK →
         </button>
 
@@ -753,16 +851,19 @@ body {
 </section>
 
 
+<!-- =================================
+     LETTER
+================================= -->
 
-<!-- =========================
-     SLIDE 2 — LETTER
-========================= -->
-
-<section id="letterScreen" class="screen">
+<section
+    id="letterScreen"
+    class="screen"
+>
 
     <div class="envelope-scene">
 
         <div class="envelope-area">
+
 
             <!-- ENVELOPE -->
 
@@ -777,16 +878,22 @@ body {
             </div>
 
 
-            <!-- PAPER -->
+            <div
+                id="tapEnvelopeText"
+                class="tap-envelope"
+            >
+                tap the envelope ♡
+            </div>
 
-            <div id="paper" class="paper">
+
+            <!-- LETTER PAPER -->
+
+            <div
+                id="paper"
+                class="paper"
+            >
 
                 <div class="paper-content">
-
-                    <div class="letter-title">
-                        for you, baby ♡
-                    </div>
-
 
                     <p>
                         wait lang, ga panumdom pa ko kon ano ihambal ko HAHAHAHAHAHAHAHA
@@ -891,11 +998,6 @@ body {
 
             </div>
 
-
-            <div id="tapEnvelopeText" class="tap-envelope">
-                tap the envelope ♡
-            </div>
-
         </div>
 
     </div>
@@ -903,18 +1005,21 @@ body {
 </section>
 
 
+<!-- =================================
+     POLAROIDS
+================================= -->
 
-<!-- =========================
-     SLIDE 3 — PHOTOS
-========================= -->
-
-<section id="polaroidScreen" class="screen">
+<section
+    id="polaroidScreen"
+    class="screen"
+>
 
     <div
         id="polaroidScene"
         class="polaroid-scene"
         onclick="nextPolaroid()"
     >
+
 
         <!-- ENVELOPE -->
 
@@ -978,14 +1083,15 @@ body {
         </div>
 
 
-        <!-- TAP GUIDE -->
+        <!-- TAP INDICATOR -->
 
         <div
             id="tapGuide"
             class="tap-guide"
         >
-            TAP ♡
+            tap! ♡
         </div>
+
 
     </div>
 
@@ -995,9 +1101,9 @@ body {
 
 <script>
 
-/* =========================
-   SCREEN SWITCHING
-========================= */
+/* ==============================
+   SCREENS
+============================== */
 
 const openingScreen =
     document.getElementById("openingScreen");
@@ -1012,17 +1118,18 @@ const polaroidScreen =
 function showScreen(screen) {
 
     openingScreen.classList.remove("active");
+
     letterScreen.classList.remove("active");
+
     polaroidScreen.classList.remove("active");
 
     screen.classList.add("active");
-
 }
 
 
-/* =========================
-   SLIDE 1 → LETTER
-========================= */
+/* ==============================
+   OPEN LETTER SCREEN
+============================== */
 
 function startLetter() {
 
@@ -1031,17 +1138,21 @@ function startLetter() {
 }
 
 
-/* =========================
+/* ==============================
    OPEN ENVELOPE
-========================= */
+============================== */
 
 let envelopeOpened = false;
 
+
 function openEnvelope() {
 
-    if (envelopeOpened) return;
+    if (envelopeOpened) {
+        return;
+    }
 
     envelopeOpened = true;
+
 
     const envelope =
         document.getElementById("mainEnvelope");
@@ -1053,23 +1164,21 @@ function openEnvelope() {
         document.getElementById("paper");
 
 
-    /* open flap */
-
     envelope.classList.add("open");
 
     text.style.opacity = "0";
 
 
-    /* wait before paper appears */
+    /* paper comes out */
 
     setTimeout(() => {
 
         paper.classList.add("show");
 
-    }, 900);
+    }, 850);
 
 
-    /* hide envelope after paper comes out */
+    /* envelope disappears */
 
     setTimeout(() => {
 
@@ -1080,13 +1189,14 @@ function openEnvelope() {
 }
 
 
-/* =========================
+/* ==============================
    DONE READING
-========================= */
+============================== */
 
 function doneReading(event) {
 
     event.stopPropagation();
+
 
     const paper =
         document.getElementById("paper");
@@ -1101,14 +1211,14 @@ function doneReading(event) {
 
         paper.classList.remove("fade-out");
 
-    }, 700);
+    }, 650);
 
 }
 
 
-/* =========================
-   POLAROID TAPS
-========================= */
+/* ==============================
+   POLAROIDS
+============================== */
 
 let photoTapCount = 0;
 
@@ -1118,6 +1228,8 @@ function nextPolaroid() {
     const guide =
         document.getElementById("tapGuide");
 
+
+    /* FIRST TAP */
 
     if (photoTapCount === 0) {
 
@@ -1131,6 +1243,9 @@ function nextPolaroid() {
 
     }
 
+
+    /* SECOND TAP */
+
     else if (photoTapCount === 1) {
 
         document
@@ -1141,6 +1256,9 @@ function nextPolaroid() {
 
     }
 
+
+    /* THIRD TAP */
+
     else if (photoTapCount === 2) {
 
         document
@@ -1148,17 +1266,6 @@ function nextPolaroid() {
             .classList.add("forward");
 
         photoTapCount = 3;
-
-    }
-
-    else {
-
-        /*
-         * Third photo is already forward.
-         * Nothing else happens yet.
-         *
-         * We can add another ending/slide here later.
-         */
 
     }
 
