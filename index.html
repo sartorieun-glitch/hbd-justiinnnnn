@@ -4,1270 +4,1442 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Happy Birthday, Baby ♡</title>
+<title>Happy Birthday, Baby 💜</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: "DM Sans", sans-serif;
-    color: white;
-
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(255,255,255,.20),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(255,255,255,.16),
-            transparent 28%
-        ),
-        linear-gradient(
-            135deg,
-            #76538f,
-            #a77bc0,
-            #72508b
-        );
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(190,150,255,.25), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(130,80,200,.3), transparent 35%),
+    linear-gradient(135deg, #eee1ff, #cdb1ef, #a982d1);
+  color: #39204f;
 }
 
-
-/* ==============================
-   SCREENS
-============================== */
+/* =========================
+   GENERAL
+========================= */
 
 .screen {
-    position: fixed;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity .7s ease,
-        visibility .7s ease;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .7s ease;
 }
 
 .screen.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
-
-
-/* ==============================
-   SPARKLES
-============================== */
 
 .sparkle {
-    position: fixed;
-    color: rgba(255,255,255,.65);
-    font-size: 18px;
-    pointer-events: none;
-    animation: sparkleFloat 4s ease-in-out infinite;
+  position: absolute;
+  color: rgba(255,255,255,.75);
+  font-size: 16px;
+  animation: sparkle 2.5s ease-in-out infinite;
 }
 
-.s1 {
-    top: 12%;
-    left: 15%;
+.sparkle:nth-child(1) {
+  top: 12%;
+  left: 15%;
 }
 
-.s2 {
-    top: 20%;
-    right: 17%;
-    animation-delay: 1s;
+.sparkle:nth-child(2) {
+  top: 25%;
+  right: 17%;
+  animation-delay: .7s;
 }
 
-.s3 {
-    bottom: 18%;
-    left: 18%;
-    animation-delay: 2s;
+.sparkle:nth-child(3) {
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 1.2s;
 }
 
-.s4 {
-    bottom: 12%;
-    right: 20%;
-    animation-delay: 1.5s;
+.sparkle:nth-child(4) {
+  bottom: 14%;
+  right: 15%;
+  animation-delay: 1.8s;
 }
 
-@keyframes sparkleFloat {
+@keyframes sparkle {
+  0%,100% {
+    opacity: .25;
+    transform: scale(.8);
+  }
 
-    0%, 100% {
-        transform: translateY(0);
-        opacity: .45;
-    }
-
-    50% {
-        transform: translateY(-10px);
-        opacity: 1;
-    }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
 }
 
-
-/* ==============================
+/* =========================
    OPENING
-============================== */
+========================= */
 
-.opening {
-    width: min(90%, 500px);
-    text-align: center;
-    padding: 30px;
+.opening-content {
+  width: min(90%, 500px);
+  text-align: center;
+  padding: 30px;
 }
 
-.hearts {
-    font-size: 17px;
-    letter-spacing: 5px;
-    margin-bottom: 18px;
-    opacity: .9;
+.opening-hearts {
+  font-size: 18px;
+  letter-spacing: 6px;
+  margin-bottom: 18px;
+  color: #75459b;
 }
 
-.opening h2 {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 10px;
+.opening-small {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #69447f;
 }
 
-.opening h1 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(42px, 12vw, 72px);
-    line-height: 1;
-    letter-spacing: 1px;
-    margin-bottom: 22px;
+.opening-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 11vw, 78px);
+  line-height: .95;
+  color: #552879;
+  margin-bottom: 22px;
 }
 
-.opening p {
-    max-width: 390px;
-    margin: 0 auto 28px;
-    font-size: 15px;
-    line-height: 1.7;
-    opacity: .95;
-}
-
-
-/* ==============================
-   BUTTON
-============================== */
-
-.main-button,
-.done-button {
-
-    border: none;
-
-    background: #fffaff;
-    color: #704889;
-
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(45,20,65,.18);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+.opening-message {
+  max-width: 420px;
+  margin: auto;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #553d64;
 }
 
 .main-button {
-
-    padding: 13px 25px;
-
-    border-radius: 30px;
-
-    font-size: 14px;
+  margin-top: 28px;
+  border: none;
+  background: #74429b;
+  color: white;
+  padding: 13px 23px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: .3s ease;
+  box-shadow: 0 8px 25px rgba(87,45,120,.18);
 }
 
 .main-button:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 30px rgba(45,20,65,.22);
+  transform: translateY(-3px);
+  background: #66378b;
 }
 
-.main-button:active {
-    transform: scale(.96);
-}
-
-
-/* ==============================
-   ENVELOPE SCENE
-============================== */
+/* =========================
+   ENVELOPE
+========================= */
 
 .envelope-scene {
-
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.envelope-area {
-
-    position: relative;
-
-    width: 330px;
-    height: 270px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+.envelope-title {
+  position: absolute;
+  top: 15%;
+  font-size: 14px;
+  color: #634276;
+  animation: softPulse 2s infinite;
 }
 
-
-/* ==============================
-   ENVELOPE
-============================== */
+@keyframes softPulse {
+  0%,100% { opacity: .45; }
+  50% { opacity: 1; }
+}
 
 .envelope {
-
-    position: absolute;
-
-    width: 270px;
-    height: 175px;
-
-    background: #ead8f3;
-
-    border: 2px solid rgba(255,255,255,.55);
-
-    border-radius: 11px;
-
-    box-shadow:
-        0 18px 40px rgba(40,20,60,.25),
-        0 0 25px rgba(245,225,255,.25);
-
-    cursor: pointer;
-
-    z-index: 5;
-
-    transition:
-        transform 1s ease,
-        opacity .8s ease;
+  position: relative;
+  width: 270px;
+  height: 175px;
+  cursor: pointer;
+  transition: .8s ease;
+  z-index: 5;
 }
 
-.envelope::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background: #d9bce8;
-
-    clip-path:
-        polygon(
-            0 0,
-            50% 54%,
-            100% 0,
-            100% 100%,
-            0 100%
-        );
-
-    border-radius: 9px;
-
-    z-index: 1;
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #c4a1e5;
+  border-radius: 5px;
+  box-shadow: 0 20px 40px rgba(70,35,90,.2);
 }
 
-.flap {
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 105px;
-
-    background: #f1e3f7;
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
-
-    transform-origin: top center;
-
-    transition:
-        transform 1s ease;
-
-    z-index: 5;
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #d6b8ee;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 5px;
+  z-index: 4;
 }
 
-.envelope.open .flap {
-    transform: rotateX(180deg);
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #b98bdd;
+  clip-path: polygon(0 0, 50% 62%, 100% 0);
+  transform-origin: top;
+  transition: transform .8s ease;
+  z-index: 5;
 }
 
-.envelope.hide {
-
-    opacity: 0;
-
-    transform:
-        translateY(100px)
-        scale(.9);
-
-    pointer-events: none;
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
 }
 
-
-/* ==============================
-   ENVELOPE TEXT
-============================== */
-
-.tap-envelope {
-
-    position: absolute;
-
-    bottom: -45px;
-
-    font-size: 14px;
-
-    color: white;
-
-    opacity: .9;
-
-    transition:
-        opacity .5s ease;
+.envelope.open .envelope-front {
+  z-index: 3;
 }
-
-
-/* ==============================
-   LETTER
-============================== */
 
 .paper {
-
-    position: absolute;
-
-    width: min(88vw, 400px);
-
-    height: min(70vh, 540px);
-
-    background: #fffafd;
-
-    color: #4c3a52;
-
-    border-radius: 7px;
-
-    padding: 30px 25px 30px;
-
-    box-shadow:
-        0 20px 50px rgba(30,15,45,.28);
-
-    opacity: 0;
-
-    transform: translateY(100px);
-
-    pointer-events: none;
-
-    z-index: 10;
-
-    transition:
-        transform 1.5s ease,
-        opacity 1s ease;
+  position: absolute;
+  width: 235px;
+  height: 315px;
+  background: #fffaff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 20%);
+  border-radius: 3px;
+  padding: 24px 20px;
+  overflow-y: auto;
+  z-index: 2;
+  opacity: 0;
+  transition:
+    transform 1.5s ease,
+    opacity .7s ease;
+  box-shadow: 0 15px 35px rgba(50,20,70,.15);
 }
 
-.paper.show {
-
-    opacity: 1;
-
-    transform: translateY(0);
-
-    pointer-events: auto;
+.paper::-webkit-scrollbar {
+  width: 4px;
 }
 
-.paper-content {
-
-    height: 100%;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    -webkit-overflow-scrolling: touch;
-
-    touch-action: pan-y;
-
-    padding-right: 5px;
+.paper::-webkit-scrollbar-thumb {
+  background: #c2a1d8;
+  border-radius: 10px;
 }
 
-.paper-content::-webkit-scrollbar {
-    width: 4px;
+.envelope.open .paper {
+  opacity: 1;
+  transform: translate(-50%, -65%);
 }
 
-.paper-content::-webkit-scrollbar-thumb {
-
-    background: #c7a6d6;
-
-    border-radius: 10px;
+.letter {
+  color: #4d3859;
+  font-size: 12px;
+  line-height: 1.75;
 }
 
-.paper-content p {
-
-    font-size: 14px;
-
-    line-height: 1.75;
-
-    margin-bottom: 17px;
+.letter p {
+  margin-bottom: 14px;
 }
-
-.signature {
-
-    text-align: center;
-
-    font-family: "Playfair Display", serif;
-
-    color: #704889;
-
-    font-size: 20px;
-
-    margin-top: 25px;
-
-    padding-bottom: 10px;
-}
-
-
-/* ==============================
-   DONE READING
-============================== */
 
 .done-button {
-
-    position: absolute;
-
-    bottom: -58px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    white-space: nowrap;
-
-    padding: 12px 22px;
-
-    border-radius: 25px;
-
-    font-size: 13px;
+  position: absolute;
+  bottom: 9%;
+  opacity: 0;
+  pointer-events: none;
+  transition: .5s ease;
 }
 
-.done-button:hover {
-
-    transform:
-        translateX(-50%)
-        translateY(-3px);
+.done-button.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-
-/* ==============================
-   POLAROID SCENE
-============================== */
+/* =========================
+   POLAROIDS
+========================= */
 
 .polaroid-scene {
-
-    position: fixed;
-
-    inset: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-
-/* ==============================
-   PHOTO ENVELOPE
-============================== */
-
 .photo-envelope {
-
-    position: absolute;
-
-    width: 280px;
-    height: 175px;
-
-    bottom: 16%;
-
-    background: #ead8f3;
-
-    border: 2px solid rgba(255,255,255,.45);
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 18px 40px rgba(40,20,60,.23);
-
-    z-index: 1;
+  position: absolute;
+  width: 285px;
+  height: 185px;
+  background: #b991db;
+  border-radius: 5px;
+  box-shadow: 0 20px 40px rgba(60,30,80,.2);
 }
 
 .photo-envelope::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background: #d9bce8;
-
-    clip-path:
-        polygon(
-            0 0,
-            50% 54%,
-            100% 0,
-            100% 100%,
-            0 100%
-        );
-
-    border-radius: 9px;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d3b6eb;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 5px;
 }
 
-
-/* ==============================
-   POLAROIDS
-============================== */
-
 .polaroid {
-
-    position: absolute;
-
-    left: 50%;
-    top: 46%;
-
-    width: 155px;
-
-    padding: 9px 9px 15px;
-
-    background: #fff;
-
-    box-shadow:
-        0 14px 32px rgba(30,15,40,.27);
-
-    transition:
-        transform 1s cubic-bezier(.2,.8,.2,1);
-
-    pointer-events: none;
+  position: absolute;
+  width: 175px;
+  height: 220px;
+  background: white;
+  padding: 10px 10px 27px;
+  box-shadow: 0 14px 35px rgba(50,25,70,.2);
+  transition:
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    opacity .7s ease;
+  transform-origin: center;
+  opacity: 1;
+  z-index: 3;
 }
 
 .polaroid img {
-
-    display: block;
-
-    width: 100%;
-    height: 175px;
-
-    object-fit: cover;
-
-    background: #eee;
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  display: block;
 }
 
 .polaroid-caption {
-
-    text-align: center;
-
-    color: #4d3b50;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 13px;
-
-    margin-top: 9px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  color: #56346d;
+  font-size: 13px;
+  margin-top: 7px;
 }
 
-
-/* ==============================
-   INITIAL POSITIONS
-============================== */
-
 .photo1 {
-
-    transform:
-        translate(-50%, -50%)
-        translate(-72px, -35px)
-        rotate(-10deg);
-
-    z-index: 4;
+  transform: rotate(-9deg) translate(-28px, 5px);
+  z-index: 3;
 }
 
 .photo2 {
-
-    transform:
-        translate(-50%, -50%)
-        translate(0px, -55px)
-        rotate(3deg);
-
-    z-index: 3;
+  transform: rotate(6deg) translate(25px, 10px);
+  z-index: 2;
 }
 
 .photo3 {
-
-    transform:
-        translate(-50%, -50%)
-        translate(72px, -35px)
-        rotate(11deg);
-
-    z-index: 2;
+  transform: rotate(-2deg) translate(0, 0);
+  z-index: 1;
 }
 
-
-/* ==============================
-   FORWARD MOVEMENT
-============================== */
-
 .photo1.forward {
-
-    transform:
-        translate(-50%, -50%)
-        translate(0, -10px)
-        rotate(-2deg)
-        scale(1.08);
-
-    z-index: 10;
+  transform: rotate(-2deg) translate(-100px, -25px) scale(1.08);
+  z-index: 10;
 }
 
 .photo2.forward {
-
-    transform:
-        translate(-50%, -50%)
-        translate(0, -10px)
-        rotate(2deg)
-        scale(1.08);
-
-    z-index: 11;
+  transform: rotate(2deg) translate(100px, -25px) scale(1.08);
+  z-index: 10;
 }
 
 .photo3.forward {
-
-    transform:
-        translate(-50%, -50%)
-        translate(0, -10px)
-        rotate(-2deg)
-        scale(1.08);
-
-    z-index: 12;
+  transform: rotate(0deg) translate(0, -45px) scale(1.08);
+  z-index: 10;
 }
 
+/* SECOND SET */
 
-/* ==============================
-   TAP INDICATOR
-============================== */
+.photo4,
+.photo5 {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.photo4 {
+  transform: rotate(-8deg) translate(-25px, 5px);
+  z-index: 2;
+}
+
+.photo5 {
+  transform: rotate(7deg) translate(25px, 8px);
+  z-index: 1;
+}
+
+.photo4.visible,
+.photo5.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.photo4.forward {
+  transform: rotate(-2deg) translate(-85px, -30px) scale(1.08);
+  z-index: 10;
+}
+
+.photo5.forward {
+  transform: rotate(2deg) translate(85px, -30px) scale(1.08);
+  z-index: 10;
+}
+
+.fade-polaroid {
+  opacity: 0 !important;
+  transform: translateY(50px) scale(.9) !important;
+}
 
 .tap-guide {
-
-    position: absolute;
-
-    bottom: 9%;
-
-    font-family: "DM Sans", sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    letter-spacing: .5px;
-
-    color: rgba(255,255,255,.95);
-
-    text-shadow:
-        0 2px 8px rgba(60,30,80,.25);
-
-    animation:
-        tapBounce 1.5s ease-in-out infinite;
-
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
-
-    z-index: 20;
-}
-
-@keyframes tapBounce {
-
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+  position: absolute;
+  bottom: 12%;
+  font-size: 13px;
+  color: #674879;
+  animation: tapPulse 1.5s infinite;
+  z-index: 20;
+  transition: opacity .4s ease;
 }
 
 .tap-guide.hide {
-
-    opacity: 0;
-
-    transform: translateY(10px);
-
-    animation: none;
+  opacity: 0;
 }
 
+@keyframes tapPulse {
+  0%,100% {
+    opacity: .45;
+  }
 
-/* ==============================
-   FADE
-============================== */
-
-.fade-out {
-
-    opacity: 0 !important;
-
-    pointer-events: none !important;
+  50% {
+    opacity: 1;
+  }
 }
 
+/* =========================
+   LED SCREEN
+========================= */
 
-/* ==============================
-   SMALL PHONES
-============================== */
+.led-screen {
+  position: fixed;
+  inset: 0;
+  background: #130b19;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease;
+  z-index: 100;
+}
 
-@media (max-width: 380px) {
+.led-screen.show {
+  opacity: 1;
+  visibility: visible;
+}
 
-    .envelope {
+.led-screen.fade-led {
+  opacity: 0;
+}
 
-        width: 245px;
-        height: 158px;
-    }
+.led-track {
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: clamp(24px, 7vw, 55px);
+  color: #d9a7ff;
+  text-shadow:
+    0 0 5px #c77cff,
+    0 0 15px #b65cff,
+    0 0 30px #9b3dff;
+  animation: ledMove 5s linear infinite;
+}
 
-    .polaroid {
+@keyframes ledMove {
+  from {
+    transform: translateX(100vw);
+  }
 
-        width: 140px;
-    }
+  to {
+    transform: translateX(-100%);
+  }
+}
 
-    .polaroid img {
+/* =========================
+   BIOLOGY
+========================= */
 
-        height: 155px;
-    }
+.biology-screen {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, #f1ddff, #c99de7 65%, #a871ca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .8s ease;
+  z-index: 200;
+}
 
-    .photo1 {
+.biology-screen.show {
+  opacity: 1;
+  visibility: visible;
+}
 
-        transform:
-            translate(-50%, -50%)
-            translate(-55px, -30px)
-            rotate(-10deg);
-    }
+.egg {
+  position: absolute;
+  width: 130px;
+  height: 150px;
+  border-radius: 50%;
+  background: #fff3bc;
+  border: 5px solid #e6c875;
+  box-shadow:
+    0 0 25px rgba(255,230,120,.7),
+    0 0 60px rgba(255,220,100,.4);
+  opacity: 0;
+  transform: scale(.5);
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
 
-    .photo2 {
+.egg.show {
+  opacity: 1;
+  transform: scale(1);
+}
 
-        transform:
-            translate(-50%, -50%)
-            translate(0, -45px)
-            rotate(3deg);
-    }
+.egg::after {
+  content: "♡";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  color: #d59acb;
+}
 
-    .photo3 {
+.sperm {
+  position: absolute;
+  left: -100px;
+  top: 50%;
+  width: 70px;
+  height: 20px;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
 
-        transform:
-            translate(-50%, -50%)
-            translate(55px, -30px)
-            rotate(11deg);
-    }
+.sperm.show {
+  opacity: 1;
+}
+
+.sperm-head {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.sperm-tail {
+  position: absolute;
+  left: 15px;
+  top: 9px;
+  width: 55px;
+  height: 2px;
+  background: #fff;
+  transform-origin: left;
+  animation: wiggle .3s infinite alternate;
+}
+
+@keyframes wiggle {
+  from {
+    transform: rotate(15deg);
+  }
+
+  to {
+    transform: rotate(-15deg);
+  }
+}
+
+.sperm.swim {
+  animation: swim 3.2s ease-in-out forwards;
+}
+
+@keyframes swim {
+  0% {
+    left: -100px;
+    top: 48%;
+  }
+
+  45% {
+    left: 35%;
+    top: 53%;
+  }
+
+  75% {
+    left: 45%;
+    top: 49%;
+  }
+
+  100% {
+    left: calc(50% - 35px);
+    top: calc(50% - 10px);
+  }
+}
+
+.bio-reveal {
+  position: absolute;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s ease;
+}
+
+.bio-reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bio-reveal h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 10vw, 70px);
+  color: #60327e;
+  margin-bottom: 12px;
+}
+
+.bio-reveal p {
+  color: #704c83;
+  font-size: 14px;
+}
+
+.celebrate {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.celebrate.show {
+  opacity: 1;
+}
+
+.celebrate span {
+  position: absolute;
+  font-size: 25px;
+  animation: floatHeart 3s ease-in-out infinite;
+}
+
+.celebrate span:nth-child(1) {
+  left: 15%;
+  top: 25%;
+}
+
+.celebrate span:nth-child(2) {
+  left: 25%;
+  top: 70%;
+  animation-delay: .4s;
+}
+
+.celebrate span:nth-child(3) {
+  right: 18%;
+  top: 20%;
+  animation-delay: .8s;
+}
+
+.celebrate span:nth-child(4) {
+  right: 25%;
+  bottom: 20%;
+  animation-delay: 1.2s;
+}
+
+.celebrate span:nth-child(5) {
+  left: 50%;
+  top: 12%;
+  animation-delay: 1.6s;
+}
+
+@keyframes floatHeart {
+  0%,100% {
+    transform: translateY(0) rotate(0);
+    opacity: .4;
+  }
+
+  50% {
+    transform: translateY(-25px) rotate(12deg);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+  .envelope {
+    width: 250px;
+    height: 160px;
+  }
+
+  .paper {
+    width: 220px;
+    height: 310px;
+  }
+
+  .polaroid {
+    width: 155px;
+    height: 200px;
+    padding: 8px 8px 24px;
+  }
+
+  .polaroid img {
+    height: 157px;
+  }
+
+  .photo1 {
+    transform: rotate(-9deg) translate(-20px, 5px);
+  }
+
+  .photo2 {
+    transform: rotate(6deg) translate(20px, 10px);
+  }
+
+  .photo3 {
+    transform: rotate(-2deg);
+  }
+
+  .photo1.forward {
+    transform: rotate(-2deg) translate(-75px, -25px) scale(1.06);
+  }
+
+  .photo2.forward {
+    transform: rotate(2deg) translate(75px, -25px) scale(1.06);
+  }
+
+  .photo3.forward {
+    transform: rotate(0deg) translate(0, -35px) scale(1.06);
+  }
+
+  .photo4 {
+    transform: rotate(-8deg) translate(-20px, 5px);
+  }
+
+  .photo5 {
+    transform: rotate(7deg) translate(20px, 8px);
+  }
+
+  .photo4.forward {
+    transform: rotate(-2deg) translate(-65px, -25px) scale(1.06);
+  }
+
+  .photo5.forward {
+    transform: rotate(2deg) translate(65px, -25px) scale(1.06);
+  }
 }
 
 </style>
 </head>
 
-
 <body>
 
+<!-- =========================
+     OPENING SCREEN
+========================= -->
 
-<!-- SPARKLES -->
+<section id="opening" class="screen active">
 
-<div class="sparkle s1">✦</div>
-<div class="sparkle s2">✧</div>
-<div class="sparkle s3">✦</div>
-<div class="sparkle s4">✧</div>
+  <span class="sparkle">✦</span>
+  <span class="sparkle">✧</span>
+  <span class="sparkle">✦</span>
+  <span class="sparkle">✧</span>
 
+  <div class="opening-content">
 
-<!-- =================================
-     OPENING
-================================= -->
-
-<section
-    id="openingScreen"
-    class="screen active"
->
-
-    <div class="opening">
-
-        <div class="hearts">
-            ♡♡♡
-        </div>
-
-        <h2>
-            hi baby!
-        </h2>
-
-        <h1>
-            HAPPY<br>
-            BIRTHDAY!
-        </h1>
-
-        <p>
-            i honestly didn't know what to give you,
-            so i made this instead.
-            i know it's just a small thing,
-            but i hope you'll still appreciate it :>
-        </p>
-
-        <button
-            class="main-button"
-            onclick="startLetter()"
-        >
-            CLICK →
-        </button>
-
+    <div class="opening-hearts">
+      ♡♡♡
     </div>
+
+    <div class="opening-small">
+      hi baby!
+    </div>
+
+    <h1 class="opening-title">
+      HAPPY<br>
+      BIRTHDAY!
+    </h1>
+
+    <p class="opening-message">
+      i honestly didn't know what to give you, so i made this instead.
+      i know it's just a small thing, but i hope you'll still appreciate it :>
+    </p>
+
+    <button class="main-button" onclick="startLetter()">
+      CLICK →
+    </button>
+
+  </div>
 
 </section>
 
 
-<!-- =================================
-     LETTER
-================================= -->
+<!-- =========================
+     LETTER SCREEN
+========================= -->
 
-<section
-    id="letterScreen"
-    class="screen"
->
+<section id="letterScreen" class="screen">
 
-    <div class="envelope-scene">
+  <div class="envelope-scene">
 
-        <div class="envelope-area">
-
-
-            <!-- ENVELOPE -->
-
-            <div
-                id="mainEnvelope"
-                class="envelope"
-                onclick="openEnvelope()"
-            >
-
-                <div class="flap"></div>
-
-            </div>
-
-
-            <div
-                id="tapEnvelopeText"
-                class="tap-envelope"
-            >
-                tap the envelope ♡
-            </div>
-
-
-            <!-- LETTER PAPER -->
-
-            <div
-                id="paper"
-                class="paper"
-            >
-
-                <div class="paper-content">
-
-                    <p>
-                        wait lang, ga panumdom pa ko kon ano ihambal ko HAHAHAHAHAHAHAHA
-                    </p>
-
-                    <p>
-                        okayy, first of all, i hope you don't find this cringe HAHAHAHA.
-                        seriousness na, ano... since it’s your birthday, i hope this new year
-                        of yours brings you happiness, peace, and all the good things in life.
-                    </p>
-
-                    <p>
-                        i hope you achieve the things you've been working hard for,
-                        even the ones you don't really talk about much.
-                    </p>
-
-                    <p>
-                        life might not always go the way you want it to, but please remember
-                        that i'm always here for you — through your ups and downs.
-                        when you're tired, don't give up, okay? remember to keep going.
-                        there may be days where you feel like you can't handle everything
-                        anymore, but i'm here, and i'll still be here through whatever
-                        comes your way.
-                    </p>
-
-                    <p>
-                        no matter how difficult life gets, i hope you won't forget that
-                        there are still so many good things waiting for you.
-                    </p>
-
-                    <p>
-                        and if ever things get too heavy, or you just need someone to talk to,
-                        know that i'm always here. you don't always have to handle everything
-                        alone. you can talk to me, rant to me, or just annoy me — i'll still
-                        be here. i might not always find the right words, but i'll still try
-                        my best to listen and be there for you.
-                    </p>
-
-                    <p>
-                        cringe-an ka na? HAHAHA bahala ka da.
-                        basaha tanan because i just put a lot of thought into this because
-                        you matter to me more than i probably say.
-                        mwamwa ka sa 'kin 🔥
-                    </p>
-
-                    <p>
-                        but seriously, thank you for choosing to hear me out instead of
-                        ignoring me every time there's something bothering me, or whenever
-                        we have misunderstandings. and thank you for not judging me for it.
-                    </p>
-
-                    <p>
-                        do remember that i'll always be proud of everything that you do.
-                        i hope you get the improvements you've been craving for.
-                    </p>
-
-                    <p>
-                        so please, keep going. kupal, there are still so many things waiting
-                        for you, many places to see, memories to make, and good things that
-                        life might give you.
-                    </p>
-
-                    <p>
-                        huo na, lapit na lang ma tapos, isa na lang.
-                        last na. HUAHAHAHAHA
-                    </p>
-
-                    <p>
-                        and i guess that's all i wanted to say.
-                        i'm not really good at saying these things out loud,
-                        so i hope this somehow makes up for it.
-                        thank you for being someone i can laugh with, annoy,
-                        and share random things with.
-                        i hope you know that you're appreciated more than you think.
-                    </p>
-
-                    <p>
-                        whatever happens, i hope you keep choosing yourself,
-                        keep growing, and keep going.
-                        and if life gets a little too much,
-                        you already know where to find me, okaayyyy?????
-                    </p>
-
-                    <p>
-                        happy birthday, baby.
-                        enjoy your day, and don't get too emo over this letter HAHAHAHAHA
-                    </p>
-
-                    <div class="signature">
-                        I LOVE YOU, BABY! 💜
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="done-button"
-                    onclick="doneReading(event)"
-                >
-                    DONE READING →
-                </button>
-
-            </div>
-
-        </div>
-
+    <div class="envelope-title">
+      tap the envelope ♡
     </div>
-
-</section>
-
-
-<!-- =================================
-     POLAROIDS
-================================= -->
-
-<section
-    id="polaroidScreen"
-    class="screen"
->
 
     <div
-        id="polaroidScene"
-        class="polaroid-scene"
-        onclick="nextPolaroid()"
+      class="envelope"
+      id="mainEnvelope"
+      onclick="openEnvelope()"
     >
 
+      <div class="envelope-back"></div>
 
-        <!-- ENVELOPE -->
+      <div class="paper">
 
-        <div class="photo-envelope"></div>
+        <div class="letter">
 
+          <p>
+            Wait lang, ga panumdom pa ko kon ano ihambal ko
+            HAHAHAHAHAHAHAHA.
+          </p>
 
-        <!-- PHOTO 1 -->
+          <p>
+            Okayy, seriousness na. Since it's your birthday,
+            I hope this new year of yours brings you happiness,
+            peace, and all the good things in life.
+          </p>
 
-        <div
-            id="photo1"
-            class="polaroid photo1"
-        >
+          <p>
+            I hope you achieve the things you've been working hard
+            for, even the ones you don't talk about much.
+            I hope you get more reasons to be proud of yourself
+            and more moments that make you genuinely happy.
+          </p>
 
-            <img
-                src="photo1.jpeg"
-                alt="photo 1"
-            >
+          <p>
+            Life might not always go the way you want it to,
+            and I know there will be days when things get tiring
+            or overwhelming. When that happens, please don't
+            forget to rest. You don't always have to have
+            everything figured out.
+          </p>
 
-            <div class="polaroid-caption">
-                happy ♡
-            </div>
+          <p>
+            Just don't give up on yourself, okay?
+            You've made it this far, and that's already something
+            worth being proud of.
+          </p>
+
+          <p>
+            And just so you know, I'm always here.
+            If you want to talk, rant, complain, laugh about
+            something stupid, or even just sit there and do
+            absolutely nothing, I'm here.
+          </p>
+
+          <p>
+            Also, thank you for being you.
+            Thank you for making me laugh, for staying even
+            when I'm not exactly at my best, and for somehow
+            making ordinary moments feel a little more special.
+          </p>
+
+          <p>
+            I hope you know how much I appreciate you,
+            even if I don't always know how to say it properly.
+          </p>
+
+          <p>
+            Anywayyy, enough of the serious stuff HAHAHAHA.
+            It's your birthday, so enjoy your day, enjoy your food,
+            and don't let anyone ruin it.
+          </p>
+
+          <p>
+            Happy birthday, baby.
+            I hope this year is kind to you.
+            You deserve all the good things coming your way.
+          </p>
+
+          <p>
+            And yes, unfortunately for you,
+            you're stuck with me annoying you for a while.
+          </p>
+
+          <p>
+            I LOVE YOU, BABY! 💜
+          </p>
 
         </div>
 
+      </div>
 
-        <!-- PHOTO 2 -->
-
-        <div
-            id="photo2"
-            class="polaroid photo2"
-        >
-
-            <img
-                src="photo2.jpeg"
-                alt="photo 2"
-            >
-
-            <div class="polaroid-caption">
-                birthday ♡
-            </div>
-
-        </div>
-
-
-        <!-- PHOTO 3 -->
-
-        <div
-            id="photo3"
-            class="polaroid photo3"
-        >
-
-            <img
-                src="photo3.jpeg"
-                alt="photo 3"
-            >
-
-            <div class="polaroid-caption">
-                justin ♡
-            </div>
-
-        </div>
-
-
-        <!-- TAP INDICATOR -->
-
-        <div
-            id="tapGuide"
-            class="tap-guide"
-        >
-            tap! ♡
-        </div>
-
+      <div class="envelope-flap"></div>
+      <div class="envelope-front"></div>
 
     </div>
 
+    <button
+      id="doneButton"
+      class="main-button done-button"
+      onclick="finishLetter()"
+    >
+      DONE READING →
+    </button>
+
+  </div>
+
 </section>
 
+
+<!-- =========================
+     POLAROID SCREEN
+========================= -->
+
+<section id="polaroidScreen" class="screen">
+
+  <div
+    class="polaroid-scene"
+    onclick="nextPolaroid()"
+  >
+
+    <div class="photo-envelope"></div>
+
+    <!-- FIRST SET -->
+
+    <div
+      id="photo1"
+      class="polaroid photo1"
+    >
+      <img src="photo1.jpeg" alt="photo 1">
+      <div class="polaroid-caption">
+        happy ♡
+      </div>
+    </div>
+
+    <div
+      id="photo2"
+      class="polaroid photo2"
+    >
+      <img src="photo2.jpeg" alt="photo 2">
+      <div class="polaroid-caption">
+        birthday ♡
+      </div>
+    </div>
+
+    <div
+      id="photo3"
+      class="polaroid photo3"
+    >
+      <img src="photo3.jpeg" alt="photo 3">
+      <div class="polaroid-caption">
+        justin ♡
+      </div>
+    </div>
+
+
+    <!-- SECOND SET — ONLY 2 PHOTOS -->
+
+    <div
+      id="photo4"
+      class="polaroid photo4"
+    >
+      <img src="photo4.jpeg" alt="photo 4">
+      <div class="polaroid-caption">
+        ♡
+      </div>
+    </div>
+
+    <div
+      id="photo5"
+      class="polaroid photo5"
+    >
+      <img src="photo5.jpeg" alt="photo 5">
+      <div class="polaroid-caption">
+        ♡
+      </div>
+    </div>
+
+
+    <div
+      id="tapGuide"
+      class="tap-guide"
+    >
+      tap! ♡
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LED SCREEN
+========================= -->
+
+<div
+  id="ledScreen"
+  class="led-screen"
+>
+
+  <div class="led-track">
+    XOREH BABYCAKES, CUTE KA NAMAN DON E HAHAHA ITO NA TALAGA ANG SERIOUSNESS
+  </div>
+
+</div>
+
+
+<!-- =========================
+     BIOLOGY SCREEN
+========================= -->
+
+<div
+  id="biologyScreen"
+  class="biology-screen"
+>
+
+  <div
+    id="egg"
+    class="egg"
+  ></div>
+
+  <div
+    id="sperm"
+    class="sperm"
+  >
+
+    <div class="sperm-head"></div>
+    <div class="sperm-tail"></div>
+
+  </div>
+
+
+  <div
+    id="bioReveal"
+    class="bio-reveal"
+  >
+
+    <h1>
+      HAPPY JUSTIN DAY 💜
+    </h1>
+
+    <p>
+      okayyy, look what happened here HAHAHA
+    </p>
+
+  </div>
+
+
+  <div
+    id="celebrate"
+    class="celebrate"
+  >
+
+    <span>💜</span>
+    <span>♡</span>
+    <span>✦</span>
+    <span>💜</span>
+    <span>✧</span>
+
+  </div>
+
+</div>
 
 
 <script>
 
-/* ==============================
-   SCREENS
-============================== */
+/* =========================
+   SCREEN HELPERS
+========================= */
 
-const openingScreen =
-    document.getElementById("openingScreen");
+function showScreen(id) {
 
-const letterScreen =
-    document.getElementById("letterScreen");
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
 
-const polaroidScreen =
-    document.getElementById("polaroidScreen");
-
-
-function showScreen(screen) {
-
-    openingScreen.classList.remove("active");
-
-    letterScreen.classList.remove("active");
-
-    polaroidScreen.classList.remove("active");
-
-    screen.classList.add("active");
+  document.getElementById(id).classList.add("active");
 }
 
 
-/* ==============================
-   OPEN LETTER SCREEN
-============================== */
+/* =========================
+   OPENING → LETTER
+========================= */
 
 function startLetter() {
 
-    showScreen(letterScreen);
+  showScreen("letterScreen");
 
 }
 
 
-/* ==============================
+/* =========================
    OPEN ENVELOPE
-============================== */
-
-let envelopeOpened = false;
-
+========================= */
 
 function openEnvelope() {
 
-    if (envelopeOpened) {
-        return;
-    }
+  const envelope = document.getElementById("mainEnvelope");
+  const doneButton = document.getElementById("doneButton");
 
-    envelopeOpened = true;
+  if (envelope.classList.contains("open")) {
+    return;
+  }
 
+  envelope.classList.add("open");
 
-    const envelope =
-        document.getElementById("mainEnvelope");
-
-    const text =
-        document.getElementById("tapEnvelopeText");
-
-    const paper =
-        document.getElementById("paper");
-
-
-    envelope.classList.add("open");
-
-    text.style.opacity = "0";
-
-
-    /* paper comes out */
-
-    setTimeout(() => {
-
-        paper.classList.add("show");
-
-    }, 850);
-
-
-    /* envelope disappears */
-
-    setTimeout(() => {
-
-        envelope.classList.add("hide");
-
-    }, 1900);
+  setTimeout(() => {
+    doneButton.classList.add("show");
+  }, 1700);
 
 }
 
 
-/* ==============================
-   DONE READING
-============================== */
+/* =========================
+   LETTER → POLAROIDS
+========================= */
 
-function doneReading(event) {
+function finishLetter() {
 
-    event.stopPropagation();
+  document.getElementById("doneButton").classList.remove("show");
 
+  const envelope = document.getElementById("mainEnvelope");
 
-    const paper =
-        document.getElementById("paper");
+  envelope.style.opacity = "0";
+  envelope.style.transform = "translateY(40px)";
 
+  setTimeout(() => {
 
-    paper.classList.add("fade-out");
+    showScreen("polaroidScreen");
 
+    envelope.style.opacity = "";
+    envelope.style.transform = "";
 
-    setTimeout(() => {
+    startPolaroids();
 
-        showScreen(polaroidScreen);
-
-        paper.classList.remove("fade-out");
-
-    }, 650);
+  }, 700);
 
 }
 
 
-/* ==============================
+/* =========================
    POLAROIDS
-============================== */
+========================= */
 
 let photoTapCount = 0;
+let secondSet = false;
+let transitionRunning = false;
 
+
+function startPolaroids() {
+
+  photoTapCount = 0;
+  secondSet = false;
+  transitionRunning = false;
+
+  const photo1 = document.getElementById("photo1");
+  const photo2 = document.getElementById("photo2");
+  const photo3 = document.getElementById("photo3");
+
+  const photo4 = document.getElementById("photo4");
+  const photo5 = document.getElementById("photo5");
+
+  photo1.classList.remove("forward", "fade-polaroid");
+  photo2.classList.remove("forward", "fade-polaroid");
+  photo3.classList.remove("forward", "fade-polaroid");
+
+  photo4.classList.remove("forward", "fade-polaroid", "visible");
+  photo5.classList.remove("forward", "fade-polaroid", "visible");
+
+  document.getElementById("tapGuide").classList.remove("hide");
+
+}
+
+
+/* =========================
+   EVERY TAP
+========================= */
 
 function nextPolaroid() {
 
-    const guide =
-        document.getElementById("tapGuide");
+  if (transitionRunning) {
+    return;
+  }
 
 
-    /* FIRST TAP */
+  /* FIRST SET */
 
-    if (photoTapCount === 0) {
+  if (!secondSet) {
 
-        document
-            .getElementById("photo1")
-            .classList.add("forward");
+    photoTapCount++;
 
-        photoTapCount = 1;
+    const tapGuide = document.getElementById("tapGuide");
 
-        guide.classList.add("hide");
+    if (photoTapCount === 1) {
 
-    }
+      document
+        .getElementById("photo1")
+        .classList.add("forward");
 
-
-    /* SECOND TAP */
-
-    else if (photoTapCount === 1) {
-
-        document
-            .getElementById("photo2")
-            .classList.add("forward");
-
-        photoTapCount = 2;
+      tapGuide.classList.add("hide");
 
     }
-
-
-    /* THIRD TAP */
 
     else if (photoTapCount === 2) {
 
-        document
-            .getElementById("photo3")
-            .classList.add("forward");
-
-        photoTapCount = 3;
+      document
+        .getElementById("photo2")
+        .classList.add("forward");
 
     }
+
+    else if (photoTapCount === 3) {
+
+      document
+        .getElementById("photo3")
+        .classList.add("forward");
+
+    }
+
+    else if (photoTapCount === 4) {
+
+      fadeFirstSet();
+
+    }
+
+    return;
+  }
+
+
+  /* SECOND SET — ONLY 2 PHOTOS */
+
+  photoTapCount++;
+
+  if (photoTapCount === 1) {
+
+    document
+      .getElementById("photo4")
+      .classList.add("forward");
+
+  }
+
+  else if (photoTapCount === 2) {
+
+    document
+      .getElementById("photo5")
+      .classList.add("forward");
+
+  }
+
+  else if (photoTapCount === 3) {
+
+    fadeSecondSet();
+
+  }
+
+}
+
+
+/* =========================
+   FIRST SET FADE
+========================= */
+
+function fadeFirstSet() {
+
+  transitionRunning = true;
+
+  document
+    .getElementById("photo1")
+    .classList.add("fade-polaroid");
+
+  document
+    .getElementById("photo2")
+    .classList.add("fade-polaroid");
+
+  document
+    .getElementById("photo3")
+    .classList.add("fade-polaroid");
+
+  setTimeout(() => {
+
+    showLED();
+
+  }, 750);
+
+}
+
+
+/* =========================
+   LED
+========================= */
+
+function showLED() {
+
+  const led = document.getElementById("ledScreen");
+
+  led.classList.add("show");
+
+  setTimeout(() => {
+
+    led.classList.add("fade-led");
+
+  }, 1000);
+
+
+  setTimeout(() => {
+
+    led.classList.remove("show", "fade-led");
+
+    startSecondPolaroids();
+
+  }, 1750);
+
+}
+
+
+/* =========================
+   SECOND SET
+========================= */
+
+function startSecondPolaroids() {
+
+  secondSet = true;
+
+  photoTapCount = 0;
+  transitionRunning = false;
+
+  const photo4 = document.getElementById("photo4");
+  const photo5 = document.getElementById("photo5");
+
+  photo4.classList.add("visible");
+  photo5.classList.add("visible");
+
+  photo4.classList.remove("forward", "fade-polaroid");
+  photo5.classList.remove("forward", "fade-polaroid");
+
+  document
+    .getElementById("tapGuide")
+    .classList.remove("hide");
+
+}
+
+
+/* =========================
+   SECOND SET FADE
+========================= */
+
+function fadeSecondSet() {
+
+  transitionRunning = true;
+
+  document
+    .getElementById("photo4")
+    .classList.add("fade-polaroid");
+
+  document
+    .getElementById("photo5")
+    .classList.add("fade-polaroid");
+
+  document
+    .getElementById("tapGuide")
+    .classList.add("hide");
+
+  setTimeout(() => {
+
+    startBiology();
+
+  }, 850);
+
+}
+
+
+/* =========================
+   BIOLOGY ANIMATION
+========================= */
+
+function startBiology() {
+
+  const biology = document.getElementById("biologyScreen");
+  const egg = document.getElementById("egg");
+  const sperm = document.getElementById("sperm");
+  const reveal = document.getElementById("bioReveal");
+  const celebrate = document.getElementById("celebrate");
+
+
+  biology.classList.add("show");
+
+  egg.classList.remove("show");
+  sperm.classList.remove("show", "swim");
+  reveal.classList.remove("show");
+  celebrate.classList.remove("show");
+
+
+  /* sperm appears */
+
+  setTimeout(() => {
+
+    sperm.classList.add("show");
+    sperm.classList.add("swim");
+
+  }, 400);
+
+
+  /* egg appears */
+
+  setTimeout(() => {
+
+    egg.classList.add("show");
+
+  }, 2100);
+
+
+  /* sperm disappears after reaching egg */
+
+  setTimeout(() => {
+
+    sperm.style.opacity = "0";
+
+  }, 3950);
+
+
+  /* final reveal */
+
+  setTimeout(() => {
+
+    reveal.classList.add("show");
+    celebrate.classList.add("show");
+
+  }, 4500);
 
 }
 
