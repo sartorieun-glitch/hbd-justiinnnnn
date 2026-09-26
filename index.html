@@ -25,7 +25,7 @@ button {
 }
 
 /* =========================
-   OPENING
+   OPENING — UNCHANGED
 ========================= */
 
 .screen {
@@ -96,7 +96,7 @@ button {
 }
 
 /* =========================
-   LETTER
+   LETTER — UNCHANGED
 ========================= */
 
 .letter-screen {
@@ -241,7 +241,7 @@ button {
 }
 
 /* =========================
-   POLAROIDS
+   POLAROIDS — FIXED
 ========================= */
 
 .polaroid-screen {
@@ -268,6 +268,11 @@ button {
   height: 430px;
 }
 
+/*
+   All 3 photos are visible.
+   They are stacked like real polaroids.
+*/
+
 .polaroid {
   position: absolute;
   left: 50%;
@@ -277,14 +282,10 @@ button {
   background: white;
   padding: 10px 10px 35px;
   box-shadow: 0 10px 25px rgba(50, 30, 80, .2);
-  transform:
-    translate(-50%, -50%)
-    rotate(var(--rotation))
-    translateX(var(--offset));
+  cursor: pointer;
   transition:
     transform 1s cubic-bezier(.2,.8,.2,1),
     opacity .8s ease;
-  cursor: pointer;
 }
 
 .polaroid img {
@@ -300,6 +301,59 @@ button {
   color: #5d4a70;
 }
 
+/* Starting positions */
+#polaroid1 {
+  z-index: 3;
+  transform:
+    translate(-50%, -50%)
+    rotate(-8deg)
+    translateX(-25px);
+}
+
+#polaroid2 {
+  z-index: 2;
+  transform:
+    translate(-50%, -50%)
+    rotate(4deg)
+    translateX(5px);
+}
+
+#polaroid3 {
+  z-index: 1;
+  transform:
+    translate(-50%, -50%)
+    rotate(10deg)
+    translateX(35px);
+}
+
+/* When each photo moves forward */
+#polaroid1.forward {
+  z-index: 10;
+  transform:
+    translate(-50%, -50%)
+    rotate(-2deg)
+    translateX(0)
+    scale(1.04);
+}
+
+#polaroid2.forward {
+  z-index: 10;
+  transform:
+    translate(-50%, -50%)
+    rotate(-2deg)
+    translateX(0)
+    scale(1.04);
+}
+
+#polaroid3.forward {
+  z-index: 10;
+  transform:
+    translate(-50%, -50%)
+    rotate(-2deg)
+    translateX(0)
+    scale(1.04);
+}
+
 .tap-indicator {
   position: absolute;
   bottom: 35px;
@@ -309,6 +363,7 @@ button {
   font-size: 13px;
   letter-spacing: 1px;
   transition: opacity .5s;
+  z-index: 20;
 }
 
 .tap-indicator.hide {
@@ -316,7 +371,7 @@ button {
 }
 
 /* =========================
-   LED
+   LED — FASTER
 ========================= */
 
 .led-screen {
@@ -339,8 +394,8 @@ button {
   position: absolute;
   white-space: nowrap;
   top: 50%;
+  left: 100%;
   transform: translateY(-50%);
-  right: -100%;
   color: #e8d8ff;
   font-size: clamp(22px, 6vw, 50px);
   font-weight: 700;
@@ -455,6 +510,7 @@ button {
 }
 
 @keyframes flyUp {
+
   0% {
     transform:
       translate(-50%, 0)
@@ -477,6 +533,7 @@ button {
       scale(1);
     opacity: 0;
   }
+
 }
 
 /* =========================
@@ -523,6 +580,7 @@ button {
 }
 
 @keyframes balloonRise {
+
   from {
     transform: translate(-50%, 130vh);
   }
@@ -530,6 +588,7 @@ button {
   to {
     transform: translate(-50%, -10vh);
   }
+
 }
 
 .balloon.pop {
@@ -537,6 +596,7 @@ button {
 }
 
 @keyframes balloonPop {
+
   0% {
     transform: translate(-50%, -10vh) scale(1);
   }
@@ -549,6 +609,7 @@ button {
     transform: translate(-50%, -10vh) scale(0);
     opacity: 0;
   }
+
 }
 
 /* =========================
@@ -566,6 +627,7 @@ button {
 }
 
 @keyframes confettiFall {
+
   0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
@@ -580,20 +642,21 @@ button {
       rotate(720deg);
     opacity: 0;
   }
+
 }
 
 /* =========================
-   BIRTHDAY MESSAGE
+   BIRTHDAY GREETING — TOP
 ========================= */
 
 .birthday-message {
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: 90%;
-  transform: translate(-50%, -50%) scale(.7);
+  top: 9%;
+  width: 92%;
+  transform: translate(-50%, -20px) scale(.7);
   text-align: center;
-  font-size: clamp(25px, 7vw, 55px);
+  font-size: clamp(22px, 6vw, 48px);
   font-weight: 800;
   color: #684b91;
   opacity: 0;
@@ -605,7 +668,7 @@ button {
 
 .birthday-message.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, 0) scale(1);
 }
 
 /* =========================
@@ -633,13 +696,14 @@ button {
     translate(-50%, 0)
     scale(.85);
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- =========================
-     OPENING
+     OPENING — UNCHANGED
 ========================= -->
 
 <section class="screen" id="openingScreen">
@@ -663,7 +727,10 @@ button {
       i know it's just a small thing, but i hope you'll still appreciate it :>
     </p>
 
-    <button class="open-btn" onclick="startLetter()">
+    <button
+      class="open-btn"
+      onclick="startLetter()"
+    >
       CLICK →
     </button>
 
@@ -673,10 +740,13 @@ button {
 
 
 <!-- =========================
-     LETTER
+     LETTER — UNCHANGED
 ========================= -->
 
-<section class="letter-screen" id="letterScreen">
+<section
+  class="letter-screen"
+  id="letterScreen"
+>
 
   <div class="envelope-area">
 
@@ -685,10 +755,13 @@ button {
       id="envelope"
       onclick="openEnvelope()"
     >
+
       <div class="tap-envelope">
         tap the envelope ♡
       </div>
+
     </div>
+
 
     <div
       class="letter-paper"
@@ -727,6 +800,7 @@ I LOVE YOU, BABY! 💜
 
     </div>
 
+
     <button
       class="done-btn"
       id="doneBtn"
@@ -754,7 +828,6 @@ I LOVE YOU, BABY! 💜
     <div
       class="polaroid"
       id="polaroid1"
-      style="--rotation:-8deg; --offset:-30px;"
       onclick="nextPhoto()"
     >
 
@@ -773,7 +846,6 @@ I LOVE YOU, BABY! 💜
     <div
       class="polaroid"
       id="polaroid2"
-      style="--rotation:4deg; --offset:10px;"
       onclick="nextPhoto()"
     >
 
@@ -792,7 +864,6 @@ I LOVE YOU, BABY! 💜
     <div
       class="polaroid"
       id="polaroid3"
-      style="--rotation:10deg; --offset:45px;"
       onclick="nextPhoto()"
     >
 
@@ -840,15 +911,13 @@ I LOVE YOU, BABY! 💜
 
 
 <!-- =========================
-     FINAL SCREEN
+     FINAL
 ========================= -->
 
 <section
   class="final-screen"
   id="finalScreen"
 >
-
-  <!-- BIRTHDAY BOX -->
 
   <div
     class="box"
@@ -857,27 +926,21 @@ I LOVE YOU, BABY! 💜
   >
 
     <div class="box-text">
-
       HAPPY JUSTIN DAY!!!
 
       <div class="box-sub">
         tap ♡
       </div>
-
     </div>
 
   </div>
 
-
-  <!-- BALLOON -->
 
   <div
     class="balloon"
     id="balloon"
   ></div>
 
-
-  <!-- FINAL MESSAGE -->
 
   <div
     class="birthday-message"
@@ -886,8 +949,6 @@ I LOVE YOU, BABY! 💜
     HAPPY BIRTHDAY, BEYBIKEYKS MWAMWA KA SA' KIN💜
   </div>
 
-
-  <!-- YOUR COMPLETE BOUQUET IMAGE -->
 
   <img
     id="bouquet"
@@ -902,7 +963,7 @@ I LOVE YOU, BABY! 💜
 <script>
 
 /* =========================
-   OPEN LETTER
+   OPENING — UNCHANGED
 ========================= */
 
 function startLetter() {
@@ -923,7 +984,7 @@ function startLetter() {
 
 
 /* =========================
-   ENVELOPE
+   ENVELOPE — UNCHANGED
 ========================= */
 
 function openEnvelope() {
@@ -984,7 +1045,7 @@ function finishLetter() {
 
 
 /* =========================
-   POLAROIDS
+   POLAROIDS — FIXED
 ========================= */
 
 let photoStep = 0;
@@ -1006,42 +1067,44 @@ function nextPhoto() {
     document.getElementById("polaroid3");
 
 
+  /* FIRST TAP */
+
   if (photoStep === 1) {
 
     indicator.classList.add("hide");
 
-    p1.style.transform =
-      "translate(-50%, -50%) rotate(-8deg) translateX(-100px)";
-
-    p2.style.transform =
-      "translate(-50%, -50%) rotate(3deg) translateX(-10px)";
-
-    p3.style.transform =
-      "translate(-50%, -50%) rotate(8deg) translateX(60px)";
+    p1.classList.add("forward");
 
   }
 
+
+  /* SECOND TAP */
 
   else if (photoStep === 2) {
 
-    p2.style.transform =
-      "translate(-50%, -50%) rotate(-5deg) translateX(-85px)";
+    p1.classList.remove("forward");
 
-    p3.style.transform =
-      "translate(-50%, -50%) rotate(6deg) translateX(20px)";
+    p2.classList.add("forward");
 
   }
 
+
+  /* THIRD TAP */
 
   else if (photoStep === 3) {
 
-    p3.style.transform =
-      "translate(-50%, -50%) rotate(0deg) translateX(0)";
+    p2.classList.remove("forward");
+
+    p3.classList.add("forward");
 
   }
 
 
-  else if (photoStep >= 4) {
+  /* FOURTH TAP = CONTINUE */
+
+  else if (photoStep === 4) {
+
+    p3.classList.remove("forward");
 
     p1.style.opacity = "0";
     p2.style.opacity = "0";
@@ -1063,7 +1126,7 @@ function nextPhoto() {
 
 
 /* =========================
-   LED
+   LED — FASTER + ACTUALLY MOVES
 ========================= */
 
 function startLED() {
@@ -1076,11 +1139,20 @@ function startLED() {
 
   ledScreen.classList.add("show");
 
+  /*
+    Start completely off-screen
+    on the right.
+  */
+
   ledText.style.transition = "none";
-  ledText.style.right = "-100%";
+  ledText.style.left = "100%";
 
+  /*
+    Force browser to calculate
+    the actual text width.
+  */
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
 
     const screenWidth =
       window.innerWidth;
@@ -1088,17 +1160,33 @@ function startLED() {
     const textWidth =
       ledText.offsetWidth;
 
-    const finalPosition =
-      (screenWidth - textWidth) / 2;
+    /*
+      Move until the END of the
+      sentence reaches the center.
+    */
+
+    const finalLeft =
+      (screenWidth / 2) - textWidth;
+
+    /*
+      Faster than before:
+      11 seconds instead of 18.
+    */
 
     ledText.style.transition =
-      "right 18s linear";
+      "left 11s linear";
 
-    ledText.style.right =
-      finalPosition + "px";
+    ledText.style.left =
+      finalLeft + "px";
 
-  }, 300);
+  });
 
+
+  /*
+    Wait for the animation to
+    finish, then go straight
+    to the birthday screen.
+  */
 
   setTimeout(() => {
 
@@ -1112,7 +1200,7 @@ function startLED() {
 
     }, 800);
 
-  }, 19000);
+  }, 11200);
 
 }
 
@@ -1169,14 +1257,14 @@ function startFlyingPhotos() {
   const finalScreen =
     document.getElementById("finalScreen");
 
-
   photoInterval =
     setInterval(() => {
 
       const photo =
         document.createElement("img");
 
-      photo.src = "picture4.png";
+      photo.src =
+        "picture4.png";
 
       photo.className =
         "flying-photo";
