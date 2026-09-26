@@ -28,9 +28,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    OPENING
-========================= */
+===================================== */
 
 .screen {
   position: fixed;
@@ -122,9 +122,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    LETTER
-========================= */
+===================================== */
 
 #letterScreen {
   position: fixed;
@@ -162,7 +162,6 @@ body {
   height: 100%;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
@@ -252,7 +251,7 @@ body {
 }
 
 
-/* LETTER PAPER */
+/* PAPER */
 
 .paper {
   position: absolute;
@@ -344,9 +343,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    POLAROIDS
-========================= */
+===================================== */
 
 #polaroidScreen {
   position: fixed;
@@ -400,7 +399,7 @@ body {
 
   padding: 10px 10px 28px;
 
-  background: #fff;
+  background: white;
 
   box-shadow:
     0 15px 35px rgba(80, 40, 100, .17);
@@ -508,9 +507,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    LED
-========================= */
+===================================== */
 
 #ledScreen {
   position: fixed;
@@ -594,9 +593,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    FINAL SCREEN
-========================= */
+===================================== */
 
 #finalScreen {
   position: fixed;
@@ -631,9 +630,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    BIRTHDAY BOX
-========================= */
+===================================== */
 
 .final-content {
   position: absolute;
@@ -773,9 +772,9 @@ body {
 }
 
 
-/* =========================
-   FLYING PICTURES
-========================= */
+/* =====================================
+   FLYING PICTURE4
+===================================== */
 
 .flying-container {
   position: absolute;
@@ -839,9 +838,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    BALLOON
-========================= */
+===================================== */
 
 .balloon {
   position: absolute;
@@ -945,9 +944,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    BALLOON POP
-========================= */
+===================================== */
 
 .balloon.pop {
   animation:
@@ -984,9 +983,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    BIRTHDAY MESSAGE
-========================= */
+===================================== */
 
 .birthday-message {
   position: absolute;
@@ -1058,9 +1057,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    CONFETTI
-========================= */
+===================================== */
 
 .confetti-container {
   position: absolute;
@@ -1076,9 +1075,6 @@ body {
 
 .confetti {
   position: absolute;
-
-  top: 42%;
-  left: 50%;
 
   width: 7px;
   height: 13px;
@@ -1115,9 +1111,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================
    HEARTS
-========================= */
+===================================== */
 
 .heart {
   position: absolute;
@@ -1167,195 +1163,56 @@ body {
 }
 
 
-/* =========================
-   PHOTO BOUQUET
-========================= */
+/* =====================================
+   COMPLETE BOUQUET
+===================================== */
+
+/*
+   IMPORTANT:
+   me-bouquet.png is already the COMPLETE
+   bouquet image.
+
+   We are NOT duplicating the individual
+   photos anymore.
+*/
 
 .bouquet {
   position: absolute;
 
   left: 50%;
-  bottom: 48px;
+  bottom: -30px;
 
-  width: 270px;
-  height: 390px;
+  width: min(90vw, 430px);
+
+  height: auto;
 
   transform:
-    translateX(-50%)
-    translateY(120%);
+    translate(-50%, 120%)
+    scale(.85);
 
   opacity: 0;
 
-  z-index: 18;
+  z-index: 40;
 
   pointer-events: none;
 
-  overflow: hidden;
-
   transition:
-    transform 1.5s cubic-bezier(.2,.9,.2,1),
-    opacity .6s ease;
+    transform 1.7s cubic-bezier(.2,.9,.2,1),
+    opacity .8s ease;
 }
 
 .bouquet.show {
   opacity: 1;
 
   transform:
-    translateX(-50%)
-    translateY(0);
-}
-
-.bouquet-photos {
-  position: absolute;
-
-  inset: 0;
-}
-
-.bouquet-photo {
-  position: absolute;
-
-  width: 82px;
-  height: 110px;
-
-  object-fit: cover;
-
-  border-radius:
-    50% 50% 45% 45%;
-
-  border: 4px solid #f8edff;
-
-  box-shadow:
-    0 5px 12px rgba(80, 35, 100, .18);
-
-  opacity: 0;
-
-  transform:
-    translateY(150px)
-    scale(.4);
-
-  transition:
-    transform .8s cubic-bezier(.2,.9,.2,1),
-    opacity .5s ease;
-}
-
-.bouquet.show .bouquet-photo {
-  opacity: 1;
-}
-
-.bouquet-photo:nth-child(1) {
-  left: 95px;
-  top: 95px;
-
-  transform:
-    rotate(-20deg)
+    translate(-50%, 0)
     scale(.85);
 }
 
-.bouquet-photo:nth-child(2) {
-  left: 45px;
-  top: 125px;
 
-  transform:
-    rotate(-35deg)
-    scale(.78);
-}
-
-.bouquet-photo:nth-child(3) {
-  left: 140px;
-  top: 125px;
-
-  transform:
-    rotate(30deg)
-    scale(.78);
-}
-
-.bouquet-photo:nth-child(4) {
-  left: 15px;
-  top: 165px;
-
-  transform:
-    rotate(-45deg)
-    scale(.7);
-}
-
-.bouquet-photo:nth-child(5) {
-  left: 175px;
-  top: 165px;
-
-  transform:
-    rotate(42deg)
-    scale(.7);
-}
-
-.bouquet-photo:nth-child(6) {
-  left: 65px;
-  top: 190px;
-
-  transform:
-    rotate(-15deg)
-    scale(.85);
-}
-
-.bouquet-photo:nth-child(7) {
-  left: 125px;
-  top: 190px;
-
-  transform:
-    rotate(15deg)
-    scale(.85);
-}
-
-.bouquet-photo:nth-child(8) {
-  left: 95px;
-  top: 210px;
-
-  transform:
-    rotate(0deg)
-    scale(.9);
-}
-
-
-/* BOUQUET NOTE */
-
-.bouquet-note {
-  position: absolute;
-
-  top: 105px;
-  left: 50%;
-
-  transform:
-    translateX(-50%)
-    rotate(-6deg);
-
-  background: #fffdf8;
-
-  color: #795083;
-
-  padding: 7px 13px;
-
-  font-size: 10px;
-
-  white-space: nowrap;
-
-  box-shadow:
-    0 4px 10px rgba(70, 35, 80, .15);
-
-  z-index: 30;
-
-  opacity: 0;
-
-  transition:
-    opacity .8s ease 1s;
-}
-
-.bouquet.show .bouquet-note {
-  opacity: 1;
-}
-
-
-/* =========================
+/* =====================================
    MOBILE
-========================= */
+===================================== */
 
 @media (max-width: 400px) {
 
@@ -1373,16 +1230,33 @@ body {
     width: 230px;
     height: 305px;
   }
+
+  .bouquet {
+    width: 95vw;
+
+    bottom: -20px;
+
+    transform:
+      translate(-50%, 120%)
+      scale(.85);
+  }
+
+  .bouquet.show {
+    transform:
+      translate(-50%, 0)
+      scale(.85);
+  }
 }
 </style>
 </head>
 
+
 <body>
 
 
-<!-- =========================
+<!-- =====================================
      OPENING
-========================= -->
+===================================== -->
 
 <section id="opening" class="screen">
 
@@ -1417,9 +1291,9 @@ body {
 </section>
 
 
-<!-- =========================
+<!-- =====================================
      LETTER
-========================= -->
+===================================== -->
 
 <section id="letterScreen">
 
@@ -1495,9 +1369,9 @@ I LOVE YOU, BABY! 💜
 </section>
 
 
-<!-- =========================
+<!-- =====================================
      POLAROIDS
-========================= -->
+===================================== -->
 
 <section id="polaroidScreen">
 
@@ -1542,9 +1416,9 @@ I LOVE YOU, BABY! 💜
 </section>
 
 
-<!-- =========================
+<!-- =====================================
      LED
-========================= -->
+===================================== -->
 
 <section id="ledScreen">
 
@@ -1561,9 +1435,9 @@ I LOVE YOU, BABY! 💜
 </section>
 
 
-<!-- =========================
-     FINAL SCREEN
-========================= -->
+<!-- =====================================
+     FINAL
+===================================== -->
 
 <section id="finalScreen">
 
@@ -1609,23 +1483,14 @@ I LOVE YOU, BABY! 💜
   </div>
 
 
-  <!-- BOUQUET -->
+  <!-- COMPLETE BOUQUET -->
 
-  <div
+  <img
     id="bouquet"
     class="bouquet"
+    src="me-bouquet.png"
+    alt="birthday bouquet"
   >
-
-    <div
-      id="bouquetPhotos"
-      class="bouquet-photos"
-    ></div>
-
-    <div class="bouquet-note">
-      for you ♡
-    </div>
-
-  </div>
 
 
   <!-- BIRTHDAY BOX -->
@@ -1663,9 +1528,9 @@ I LOVE YOU, BABY! 💜
 
 <script>
 
-/* =========================
+/* =====================================
    OPENING → LETTER
-========================= */
+===================================== */
 
 function startLetter() {
 
@@ -1688,9 +1553,9 @@ function startLetter() {
 }
 
 
-/* =========================
+/* =====================================
    OPEN ENVELOPE
-========================= */
+===================================== */
 
 let envelopeOpened = false;
 
@@ -1725,9 +1590,9 @@ function openEnvelope() {
 }
 
 
-/* =========================
+/* =====================================
    LETTER → POLAROIDS
-========================= */
+===================================== */
 
 function finishLetter() {
 
@@ -1758,9 +1623,9 @@ function finishLetter() {
 }
 
 
-/* =========================
+/* =====================================
    POLAROIDS
-========================= */
+===================================== */
 
 let photoTaps = 0;
 
@@ -1847,9 +1712,9 @@ document
   );
 
 
-/* =========================
+/* =====================================
    LED
-========================= */
+===================================== */
 
 function showLED() {
 
@@ -1933,9 +1798,9 @@ function showLED() {
 }
 
 
-/* =========================
+/* =====================================
    FINAL SCREEN
-========================= */
+===================================== */
 
 function showFinalScreen() {
 
@@ -1950,9 +1815,9 @@ function showFinalScreen() {
 }
 
 
-/* =========================
+/* =====================================
    BIRTHDAY BOX
-========================= */
+===================================== */
 
 let boxOpened = false;
 
@@ -1989,9 +1854,9 @@ function openBirthdayBox() {
 }
 
 
-/* =========================
+/* =====================================
    INFINITE PICTURE4
-========================= */
+===================================== */
 
 let photoInterval;
 
@@ -2106,9 +1971,9 @@ function createFlyingPhoto() {
 }
 
 
-/* =========================
+/* =====================================
    BALLOON
-========================= */
+===================================== */
 
 function launchBalloon() {
 
@@ -2131,9 +1996,9 @@ function launchBalloon() {
 }
 
 
-/* =========================
+/* =====================================
    BALLOON POP
-========================= */
+===================================== */
 
 function popBalloon() {
 
@@ -2165,6 +2030,8 @@ function popBalloon() {
     createHearts();
 
 
+    /* COMPLETE BOUQUET RISES */
+
     setTimeout(() => {
 
       showBouquet();
@@ -2175,9 +2042,9 @@ function popBalloon() {
 }
 
 
-/* =========================
-   PHOTO BOUQUET
-========================= */
+/* =====================================
+   COMPLETE BOUQUET
+===================================== */
 
 function showBouquet() {
 
@@ -2186,68 +2053,25 @@ function showBouquet() {
       "bouquet"
     );
 
-  const container =
-    document.getElementById(
-      "bouquetPhotos"
-    );
-
-
-  container.innerHTML = "";
-
 
   /*
-    ONE PHOTO:
-    me-bouquet.png
+    me-bouquet.png is already the
+    COMPLETE bouquet.
 
-    gets duplicated into
-    multiple bouquet pieces.
+    No duplication.
+    No individual photos.
+    Just the whole bouquet.
   */
 
-  const totalPhotos = 8;
-
-
-  for (
-    let i = 0;
-    i < totalPhotos;
-    i++
-  ) {
-
-    const photo =
-      document.createElement("img");
-
-
-    photo.src =
-      "me-bouquet.png";
-
-
-    photo.className =
-      "bouquet-photo";
-
-
-    photo.alt =
-      "for you ♡";
-
-
-    container.appendChild(
-      photo
-    );
-
-  }
-
-
-  requestAnimationFrame(() => {
-
-    bouquet.classList.add(
-      "show"
-    );
-
-  });
+  bouquet.classList.add(
+    "show"
+  );
 }
 
 
-/* =========================
+/* =====================================
    CONFETTI
-========================= */
+===================================== */
 
 function createConfetti() {
 
@@ -2349,9 +2173,9 @@ function createConfetti() {
 }
 
 
-/* =========================
+/* =====================================
    HEARTS
-========================= */
+===================================== */
 
 function createHearts() {
 
