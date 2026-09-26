@@ -10,10 +10,6 @@
 
 <style>
 
-/* =========================
-   GENERAL
-========================= */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -1070,16 +1066,11 @@ body {
       id="photo1"
       class="polaroid photo1"
     >
-
-      <img
-        src="photo1.jpeg"
-        alt="photo 1"
-      >
+      <img src="photo1.jpeg" alt="photo 1">
 
       <div class="polaroid-caption">
         happy ♡
       </div>
-
     </div>
 
 
@@ -1087,16 +1078,11 @@ body {
       id="photo2"
       class="polaroid photo2"
     >
-
-      <img
-        src="photo2.jpeg"
-        alt="photo 2"
-      >
+      <img src="photo2.jpeg" alt="photo 2">
 
       <div class="polaroid-caption">
         birthday ♡
       </div>
-
     </div>
 
 
@@ -1104,16 +1090,11 @@ body {
       id="photo3"
       class="polaroid photo3"
     >
-
-      <img
-        src="photo3.jpeg"
-        alt="photo 3"
-      >
+      <img src="photo3.jpeg" alt="photo 3">
 
       <div class="polaroid-caption">
         justin ♡
       </div>
-
     </div>
 
 
@@ -1158,21 +1139,19 @@ body {
     id="birthdayVideo"
     class="birthday-video"
     playsinline
+    webkit-playsinline
     controls
+    preload="auto"
   >
 
     <source
-      src="video.mp4"
+      src="./video.mp4"
       type="video/mp4"
     >
 
     Your browser does not support the video.
 
   </video>
-
-  <div class="video-hint">
-    ♡
-  </div>
 
 </div>
 
@@ -1354,10 +1333,6 @@ function startPolaroids() {
 }
 
 
-/* =========================
-   POLAROID TAPS
-========================= */
-
 function nextPolaroid() {
 
   if (transitionRunning) {
@@ -1447,10 +1422,6 @@ function showLED() {
     led.querySelector(".led-track");
 
 
-  /*
-    RESET
-  */
-
   led.classList.remove(
     "show",
     "fade-led"
@@ -1460,24 +1431,18 @@ function showLED() {
 
 
   /*
-    BLANK SCREEN FIRST
+    BLANK FIRST
   */
 
   setTimeout(() => {
 
     led.classList.add("show");
 
-
-    /*
-      Force animation restart
-    */
-
     void track.offsetWidth;
 
 
     /*
-      VERY SLOW SCROLL
-      so every word can be read
+      SLOW SCROLL
     */
 
     track.style.animation =
@@ -1485,31 +1450,24 @@ function showLED() {
 
 
     /*
-      After 24 seconds,
-      the entire sentence has
-      disappeared from the left.
+      WAIT UNTIL TEXT
+      FULLY DISAPPEARS
     */
 
     setTimeout(() => {
 
 
       /*
-        WAIT 1 SECOND
-        ON BLANK SCREEN
+        BLANK FOR 1 SECOND
       */
 
       setTimeout(() => {
-
-        /*
-          FADE LED OUT
-        */
 
         led.classList.add("fade-led");
 
 
         /*
-          After fade:
-          go to video
+          FADE → VIDEO
         */
 
         setTimeout(() => {
@@ -1546,27 +1504,44 @@ function startVideo() {
   const video =
     document.getElementById("birthdayVideo");
 
+
   videoScreen.classList.remove("fade-out");
 
   videoScreen.classList.add("show");
 
+
+  /*
+    RESET VIDEO
+  */
+
+  video.pause();
   video.currentTime = 0;
 
-  const playPromise =
-    video.play();
+  /*
+    LOAD THE MP4 AGAIN
+  */
 
-  if (playPromise !== undefined) {
+  video.load();
 
-    playPromise.catch(() => {
+
+  /*
+    WAIT A LITTLE FOR THE
+    BROWSER TO LOAD THE FILE
+  */
+
+  setTimeout(() => {
+
+    video.play().catch(() => {
 
       /*
-        Controls remain available
-        if autoplay is blocked.
+        If autoplay is blocked,
+        the controls remain visible
+        so the video can be played manually.
       */
 
     });
 
-  }
+  }, 500);
 
 }
 
@@ -1661,8 +1636,7 @@ function createFlyingPhotos() {
 
 
     /*
-      ONE IMAGE,
-      MANY COPIES
+      SAME PHOTO COPIED MANY TIMES
     */
 
     photo.src = "picture4.png";
@@ -1671,19 +1645,11 @@ function createFlyingPhotos() {
       "flying-photo";
 
 
-    /*
-      RANDOM HORIZONTAL MOVEMENT
-    */
-
     const x =
       (
         Math.random() * 300 - 150
       ).toFixed(0) + "px";
 
-
-    /*
-      RANDOM HEIGHT
-    */
 
     const y =
       -(
@@ -1691,19 +1657,11 @@ function createFlyingPhotos() {
       ).toFixed(0) + "px";
 
 
-    /*
-      RANDOM ROTATION
-    */
-
     const rotation =
       (
         Math.random() * 70 - 35
       ).toFixed(0) + "deg";
 
-
-    /*
-      RANDOM SIZE
-    */
 
     const scale =
       (
@@ -1731,11 +1689,6 @@ function createFlyingPhotos() {
       scale
     );
 
-
-    /*
-      STAGGER
-      THE PHOTOS
-    */
 
     const delay =
       i * 110 +
