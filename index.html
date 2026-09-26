@@ -10,6 +10,10 @@
 
 <style>
 
+/* =========================
+   GENERAL
+========================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,10 +31,6 @@ body {
   color: #39204f;
 }
 
-/* =========================
-   GENERAL
-========================= */
-
 .screen {
   position: fixed;
   inset: 0;
@@ -46,6 +46,11 @@ body {
   opacity: 1;
   visibility: visible;
 }
+
+
+/* =========================
+   SPARKLES
+========================= */
 
 .sparkle {
   position: absolute;
@@ -88,6 +93,7 @@ body {
     transform: scale(1.25);
   }
 }
+
 
 /* =========================
    OPENING
@@ -147,6 +153,7 @@ body {
   background: #66378b;
 }
 
+
 /* =========================
    ENVELOPE
 ========================= */
@@ -170,8 +177,13 @@ body {
 }
 
 @keyframes softPulse {
-  0%,100% { opacity: .45; }
-  50% { opacity: 1; }
+  0%,100% {
+    opacity: .45;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .envelope {
@@ -195,7 +207,13 @@ body {
   position: absolute;
   inset: 0;
   background: #d6b8ee;
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(
+    0 0,
+    50% 55%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
   border-radius: 5px;
   z-index: 4;
 }
@@ -207,20 +225,20 @@ body {
   width: 100%;
   height: 100%;
   background: #b98bdd;
-  clip-path: polygon(0 0, 50% 62%, 100% 0);
+  clip-path: polygon(
+    0 0,
+    50% 62%,
+    100% 0
+  );
   transform-origin: top;
   transition: transform .8s ease;
   z-index: 5;
 }
 
-.envelope.open .envelope-flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
 
-.envelope.open .envelope-front {
-  z-index: 3;
-}
+/* =========================
+   LETTER
+========================= */
 
 .paper {
   position: absolute;
@@ -233,7 +251,7 @@ body {
   border-radius: 3px;
   padding: 24px 20px;
   overflow-y: auto;
-  z-index: 2;
+  z-index: 10;
   opacity: 0;
   transition:
     transform 1.5s ease,
@@ -250,9 +268,19 @@ body {
   border-radius: 10px;
 }
 
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .envelope-front {
+  z-index: 0;
+}
+
 .envelope.open .paper {
   opacity: 1;
   transform: translate(-50%, -65%);
+  z-index: 10;
 }
 
 .letter {
@@ -277,6 +305,7 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+
 
 /* =========================
    POLAROIDS
@@ -306,7 +335,13 @@ body {
   position: absolute;
   inset: 0;
   background: #d3b6eb;
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(
+    0 0,
+    50% 55%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
   border-radius: 5px;
 }
 
@@ -322,7 +357,6 @@ body {
     opacity .7s ease;
   transform-origin: center;
   opacity: 1;
-  z-index: 3;
 }
 
 .polaroid img {
@@ -370,40 +404,6 @@ body {
   z-index: 10;
 }
 
-/* SECOND SET */
-
-.photo4,
-.photo5 {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.photo4 {
-  transform: rotate(-8deg) translate(-25px, 5px);
-  z-index: 2;
-}
-
-.photo5 {
-  transform: rotate(7deg) translate(25px, 8px);
-  z-index: 1;
-}
-
-.photo4.visible,
-.photo5.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.photo4.forward {
-  transform: rotate(-2deg) translate(-85px, -30px) scale(1.08);
-  z-index: 10;
-}
-
-.photo5.forward {
-  transform: rotate(2deg) translate(85px, -30px) scale(1.08);
-  z-index: 10;
-}
-
 .fade-polaroid {
   opacity: 0 !important;
   transform: translateY(50px) scale(.9) !important;
@@ -433,8 +433,9 @@ body {
   }
 }
 
+
 /* =========================
-   LED SCREEN
+   LED
 ========================= */
 
 .led-screen {
@@ -446,7 +447,7 @@ body {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .5s ease;
+  transition: opacity .8s ease;
   z-index: 100;
 }
 
@@ -460,237 +461,350 @@ body {
 }
 
 .led-track {
+  position: absolute;
+  left: 0;
   white-space: nowrap;
+
   font-family: monospace;
   font-size: clamp(24px, 7vw, 55px);
+
   color: #d9a7ff;
+
   text-shadow:
     0 0 5px #c77cff,
     0 0 15px #b65cff,
     0 0 30px #9b3dff;
-  animation: ledMove 5s linear infinite;
+
+  transform: translateX(100vw);
+}
+
+.led-screen.show .led-track {
+  animation: ledMove 24s linear forwards;
 }
 
 @keyframes ledMove {
-  from {
+
+  0% {
     transform: translateX(100vw);
   }
 
-  to {
-    transform: translateX(-100%);
+  100% {
+    transform: translateX(
+      calc(-100% - 100vw)
+    );
   }
+
 }
 
+
 /* =========================
-   BIOLOGY
+   VIDEO
 ========================= */
 
-.biology-screen {
+.video-screen {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle at center, #f1ddff, #c99de7 65%, #a871ca);
+  background: #120b18;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .8s ease;
-  z-index: 200;
+  transition: opacity 1.2s ease;
+  z-index: 150;
 }
 
-.biology-screen.show {
+.video-screen.show {
   opacity: 1;
   visibility: visible;
 }
 
-.egg {
-  position: absolute;
-  width: 130px;
-  height: 150px;
-  border-radius: 50%;
-  background: #fff3bc;
-  border: 5px solid #e6c875;
-  box-shadow:
-    0 0 25px rgba(255,230,120,.7),
-    0 0 60px rgba(255,220,100,.4);
+.video-screen.fade-out {
   opacity: 0;
-  transform: scale(.5);
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
 }
 
-.egg.show {
-  opacity: 1;
-  transform: scale(1);
+.birthday-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #120b18;
 }
 
-.egg::after {
-  content: "♡";
+.video-hint {
   position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+
+/* =========================
+   FINAL SCREEN
+========================= */
+
+.final-screen {
+  position: fixed;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  color: #d59acb;
-}
-
-.sperm {
-  position: absolute;
-  left: -100px;
-  top: 50%;
-  width: 70px;
-  height: 20px;
+  background:
+    radial-gradient(
+      circle at center bottom,
+      #ead5ff,
+      #c69ce7 60%,
+      #a775c9
+    );
+  overflow: hidden;
   opacity: 0;
-  transition: opacity .5s ease;
+  visibility: hidden;
+  transition: opacity 1s ease;
+  z-index: 180;
 }
 
-.sperm.show {
+.final-screen.show {
   opacity: 1;
+  visibility: visible;
 }
 
-.sperm-head {
-  position: absolute;
-  left: 0;
-  top: 1px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-}
 
-.sperm-tail {
-  position: absolute;
-  left: 15px;
-  top: 9px;
-  width: 55px;
-  height: 2px;
-  background: #fff;
-  transform-origin: left;
-  animation: wiggle .3s infinite alternate;
-}
+/* =========================
+   FLYING PHOTOS
+========================= */
 
-@keyframes wiggle {
-  from {
-    transform: rotate(15deg);
-  }
-
-  to {
-    transform: rotate(-15deg);
-  }
-}
-
-.sperm.swim {
-  animation: swim 3.2s ease-in-out forwards;
-}
-
-@keyframes swim {
-  0% {
-    left: -100px;
-    top: 48%;
-  }
-
-  45% {
-    left: 35%;
-    top: 53%;
-  }
-
-  75% {
-    left: 45%;
-    top: 49%;
-  }
-
-  100% {
-    left: calc(50% - 35px);
-    top: calc(50% - 10px);
-  }
-}
-
-.bio-reveal {
-  position: absolute;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 1s ease;
-}
-
-.bio-reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.bio-reveal h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(38px, 10vw, 70px);
-  color: #60327e;
-  margin-bottom: 12px;
-}
-
-.bio-reveal p {
-  color: #704c83;
-  font-size: 14px;
-}
-
-.celebrate {
+.flying-photos {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.flying-photo {
+  position: absolute;
+  bottom: 115px;
+  left: 50%;
+  width: 52px;
+  height: 65px;
+  object-fit: cover;
+  padding: 4px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(50,20,70,.25);
+  opacity: 0;
+
+  transform:
+    translate(-50%, 0)
+    rotate(0deg)
+    scale(.5);
+}
+
+.flying-photo.fly {
+  animation:
+    photoFly 3.2s cubic-bezier(.2,.7,.2,1)
+    forwards;
+}
+
+@keyframes photoFly {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, 0)
+      rotate(0deg)
+      scale(.45);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .9;
+    transform:
+      translate(
+        calc(-50% + var(--x)),
+        var(--y)
+      )
+      rotate(var(--rotation))
+      scale(var(--scale));
+  }
+
+}
+
+
+/* =========================
+   BIRTHDAY BOX
+========================= */
+
+.birthday-box-area {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 180px;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.birthday-box-area.opened {
+  cursor: default;
+}
+
+.box-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 175px;
+  height: 25px;
+  background: rgba(65,30,85,.18);
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+.box {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  width: 160px;
+  height: 105px;
+  transform: translateX(-50%);
+  background: #a86dcc;
+  border-radius: 4px;
+  box-shadow: 0 15px 25px rgba(65,30,85,.25);
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 100%;
+  background: #d6a8ed;
+}
+
+.box-lid {
+  position: absolute;
+  bottom: 105px;
+  left: 50%;
+  width: 178px;
+  height: 32px;
+  transform: translateX(-50%);
+  background: #bb82dd;
+  border-radius: 5px;
+  box-shadow: 0 8px 15px rgba(65,30,85,.18);
+  transition:
+    transform .8s cubic-bezier(.2,.8,.2,1),
+    bottom .8s ease;
+  transform-origin: center bottom;
+}
+
+.box-lid::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 27px;
+  height: 100%;
+  background: #d6a8ed;
+}
+
+.birthday-box-area.opened .box-lid {
+  bottom: 140px;
+  transform:
+    translateX(-50%)
+    rotate(-8deg);
+}
+
+.box-message {
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  transform: translateX(-50%) scale(.7);
+  width: 150px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  line-height: 1.1;
+  color: white;
+  opacity: 0;
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+  z-index: 5;
+}
+
+.birthday-box-area.opened .box-message {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.box-tap {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #644073;
+  font-size: 13px;
+  white-space: nowrap;
+  animation: tapPulse 1.5s infinite;
+  transition: opacity .5s ease;
+}
+
+.birthday-box-area.opened .box-tap {
   opacity: 0;
 }
 
-.celebrate.show {
-  opacity: 1;
-}
 
-.celebrate span {
+/* =========================
+   FINAL HEARTS
+========================= */
+
+.final-heart {
   position: absolute;
-  font-size: 25px;
-  animation: floatHeart 3s ease-in-out infinite;
+  font-size: 20px;
+  opacity: .45;
+  animation: finalFloat 3s ease-in-out infinite;
 }
 
-.celebrate span:nth-child(1) {
-  left: 15%;
-  top: 25%;
-}
-
-.celebrate span:nth-child(2) {
-  left: 25%;
-  top: 70%;
-  animation-delay: .4s;
-}
-
-.celebrate span:nth-child(3) {
-  right: 18%;
+.final-heart:nth-child(1) {
+  left: 12%;
   top: 20%;
+}
+
+.final-heart:nth-child(2) {
+  right: 15%;
+  top: 25%;
   animation-delay: .8s;
 }
 
-.celebrate span:nth-child(4) {
-  right: 25%;
-  bottom: 20%;
+.final-heart:nth-child(3) {
+  left: 20%;
+  bottom: 35%;
   animation-delay: 1.2s;
 }
 
-.celebrate span:nth-child(5) {
-  left: 50%;
-  top: 12%;
-  animation-delay: 1.6s;
+.final-heart:nth-child(4) {
+  right: 20%;
+  bottom: 40%;
+  animation-delay: 1.7s;
 }
 
-@keyframes floatHeart {
+@keyframes finalFloat {
+
   0%,100% {
-    transform: translateY(0) rotate(0);
-    opacity: .4;
+    transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-25px) rotate(12deg);
-    opacity: 1;
+    transform: translateY(-15px);
   }
+
 }
+
 
 /* =========================
    MOBILE
@@ -731,41 +845,41 @@ body {
   }
 
   .photo1.forward {
-    transform: rotate(-2deg) translate(-75px, -25px) scale(1.06);
+    transform:
+      rotate(-2deg)
+      translate(-75px, -25px)
+      scale(1.06);
   }
 
   .photo2.forward {
-    transform: rotate(2deg) translate(75px, -25px) scale(1.06);
+    transform:
+      rotate(2deg)
+      translate(75px, -25px)
+      scale(1.06);
   }
 
   .photo3.forward {
-    transform: rotate(0deg) translate(0, -35px) scale(1.06);
+    transform:
+      rotate(0deg)
+      translate(0, -35px)
+      scale(1.06);
   }
 
-  .photo4 {
-    transform: rotate(-8deg) translate(-20px, 5px);
+  .birthday-box-area {
+    bottom: 30px;
   }
 
-  .photo5 {
-    transform: rotate(7deg) translate(20px, 8px);
-  }
-
-  .photo4.forward {
-    transform: rotate(-2deg) translate(-65px, -25px) scale(1.06);
-  }
-
-  .photo5.forward {
-    transform: rotate(2deg) translate(65px, -25px) scale(1.06);
-  }
 }
 
 </style>
 </head>
 
+
 <body>
 
+
 <!-- =========================
-     OPENING SCREEN
+     OPENING
 ========================= -->
 
 <section id="opening" class="screen active">
@@ -795,7 +909,10 @@ body {
       i know it's just a small thing, but i hope you'll still appreciate it :>
     </p>
 
-    <button class="main-button" onclick="startLetter()">
+    <button
+      class="main-button"
+      onclick="startLetter()"
+    >
       CLICK →
     </button>
 
@@ -805,7 +922,7 @@ body {
 
 
 <!-- =========================
-     LETTER SCREEN
+     LETTER
 ========================= -->
 
 <section id="letterScreen" class="screen">
@@ -830,70 +947,84 @@ body {
 
           <p>
             Wait lang, ga panumdom pa ko kon ano ihambal ko
-            HAHAHAHAHAHAHAHA.
+            HAHAHAHAHAHAHAHA okayy First of all, I hope you don't
+            find this cringe HAHAHHA seriousness na, ano...
+            Since it’s your birthday, I hope this new year of yours
+            brings you happiness, peace, and all the good things in life.
           </p>
 
           <p>
-            Okayy, seriousness na. Since it's your birthday,
-            I hope this new year of yours brings you happiness,
-            peace, and all the good things in life.
+            I hope you achieve the things you've been working hard for,
+            even the ones you don't talk about much.
           </p>
 
           <p>
-            I hope you achieve the things you've been working hard
-            for, even the ones you don't talk about much.
-            I hope you get more reasons to be proud of yourself
-            and more moments that make you genuinely happy.
+            Life might not always go the way you want it to be,
+            but please remember that I'm always here for you —
+            through your ups and downs. When you're tired, don't give up.
+            And remember to keep going. There may be days where you feel
+            like you can't handle everything anymore, but I’m here,
+            and I’ll continue to get through whatever comes your way.
           </p>
 
           <p>
-            Life might not always go the way you want it to,
-            and I know there will be days when things get tiring
-            or overwhelming. When that happens, please don't
-            forget to rest. You don't always have to have
-            everything figured out.
+            No matter how difficult life gets, I hope you won't forget
+            that there are still so many good things waiting for you.
           </p>
 
           <p>
-            Just don't give up on yourself, okay?
-            You've made it this far, and that's already something
-            worth being proud of.
+            And if ever things get too heavy or you just need someone
+            to talk to, know that I'm always here and you don't always
+            have to handle everything alone. You can talk to me,
+            rant to me, or just annoy me — I'll still be here.
+            I might not always find the right words, but I'll still
+            try my best to listen and be there for you.
           </p>
 
           <p>
-            And just so you know, I'm always here.
-            If you want to talk, rant, complain, laugh about
-            something stupid, or even just sit there and do
-            absolutely nothing, I'm here.
+            cringe-an ka na? HAHAHA bahala ka da, basaha tanan bcs
+            i just put a lot of thought into this because you matter
+            to me more than I probably say. mwamwa ka sa 'kin🔥
           </p>
 
           <p>
-            Also, thank you for being you.
-            Thank you for making me laugh, for staying even
-            when I'm not exactly at my best, and for somehow
-            making ordinary moments feel a little more special.
+            But seriously, thank you for choosing to hear me out
+            instead of ignoring me every time there's something
+            bothering me, or when we have misunderstandings,
+            and thank you for not judging me for it.
           </p>
 
           <p>
-            I hope you know how much I appreciate you,
-            even if I don't always know how to say it properly.
+            Do remember that I'll always be proud of everything
+            that you do. I hope you get the improvements you've
+            been craving for.
           </p>
 
           <p>
-            Anywayyy, enough of the serious stuff HAHAHAHA.
-            It's your birthday, so enjoy your day, enjoy your food,
-            and don't let anyone ruin it.
+            So please, keep going. Kupal, there are still so many
+            things waiting for you, many places to see, memories
+            to make, and good things that life might give you.
           </p>
 
           <p>
-            Happy birthday, baby.
-            I hope this year is kind to you.
-            You deserve all the good things coming your way.
+            Huo na, lapit na lang ma tapos isa na lang.
+            Last na. HUAHAHAHAHA
           </p>
 
           <p>
-            And yes, unfortunately for you,
-            you're stuck with me annoying you for a while.
+            And I guess that's all I wanted to say. I’m not really
+            good at saying these things out loud, so I hope this
+            somehow makes up for it. Thank you for being someone
+            I can laugh with, annoy, and share random things with.
+            I hope you know that you’re appreciated more than you think.
+            Whatever happens, I hope you keep choosing yourself,
+            keep growing, and keep going. And if life gets a little
+            too much, you already know where to find me, okaayyyy?????
+          </p>
+
+          <p>
+            Happy birthday, baby. Enjoy your day, and don’t get too
+            emo over this letter HAHAHAHAHA
           </p>
 
           <p>
@@ -923,7 +1054,7 @@ body {
 
 
 <!-- =========================
-     POLAROID SCREEN
+     POLAROIDS
 ========================= -->
 
 <section id="polaroidScreen" class="screen">
@@ -935,59 +1066,54 @@ body {
 
     <div class="photo-envelope"></div>
 
-    <!-- FIRST SET -->
-
     <div
       id="photo1"
       class="polaroid photo1"
     >
-      <img src="photo1.jpeg" alt="photo 1">
+
+      <img
+        src="photo1.jpeg"
+        alt="photo 1"
+      >
+
       <div class="polaroid-caption">
         happy ♡
       </div>
+
     </div>
+
 
     <div
       id="photo2"
       class="polaroid photo2"
     >
-      <img src="photo2.jpeg" alt="photo 2">
+
+      <img
+        src="photo2.jpeg"
+        alt="photo 2"
+      >
+
       <div class="polaroid-caption">
         birthday ♡
       </div>
+
     </div>
+
 
     <div
       id="photo3"
       class="polaroid photo3"
     >
-      <img src="photo3.jpeg" alt="photo 3">
+
+      <img
+        src="photo3.jpeg"
+        alt="photo 3"
+      >
+
       <div class="polaroid-caption">
         justin ♡
       </div>
-    </div>
 
-
-    <!-- SECOND SET — ONLY 2 PHOTOS -->
-
-    <div
-      id="photo4"
-      class="polaroid photo4"
-    >
-      <img src="photo4.jpeg" alt="photo 4">
-      <div class="polaroid-caption">
-        ♡
-      </div>
-    </div>
-
-    <div
-      id="photo5"
-      class="polaroid photo5"
-    >
-      <img src="photo5.jpeg" alt="photo 5">
-      <div class="polaroid-caption">
-        ♡
-      </div>
     </div>
 
 
@@ -1004,7 +1130,7 @@ body {
 
 
 <!-- =========================
-     LED SCREEN
+     LED
 ========================= -->
 
 <div
@@ -1020,56 +1146,79 @@ body {
 
 
 <!-- =========================
-     BIOLOGY SCREEN
+     VIDEO
 ========================= -->
 
 <div
-  id="biologyScreen"
-  class="biology-screen"
+  id="videoScreen"
+  class="video-screen"
 >
 
+  <video
+    id="birthdayVideo"
+    class="birthday-video"
+    playsinline
+    controls
+  >
+
+    <source
+      src="video.mp4"
+      type="video/mp4"
+    >
+
+    Your browser does not support the video.
+
+  </video>
+
+  <div class="video-hint">
+    ♡
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FINAL SCREEN
+========================= -->
+
+<div
+  id="finalScreen"
+  class="final-screen"
+>
+
+  <div class="final-heart">♡</div>
+  <div class="final-heart">✦</div>
+  <div class="final-heart">♡</div>
+  <div class="final-heart">✧</div>
+
   <div
-    id="egg"
-    class="egg"
+    id="flyingPhotos"
+    class="flying-photos"
   ></div>
 
-  <div
-    id="sperm"
-    class="sperm"
-  >
-
-    <div class="sperm-head"></div>
-    <div class="sperm-tail"></div>
-
-  </div>
-
 
   <div
-    id="bioReveal"
-    class="bio-reveal"
+    id="birthdayBoxArea"
+    class="birthday-box-area"
+    onclick="openBirthdayBox()"
   >
 
-    <h1>
-      HAPPY JUSTIN DAY 💜
-    </h1>
+    <div class="box-shadow"></div>
 
-    <p>
-      okayyy, look what happened here HAHAHA
-    </p>
+    <div class="box">
 
-  </div>
+      <div class="box-message">
+        HAPPY<br>
+        JUSTIN DAY!!!
+      </div>
 
+    </div>
 
-  <div
-    id="celebrate"
-    class="celebrate"
-  >
+    <div class="box-lid"></div>
 
-    <span>💜</span>
-    <span>♡</span>
-    <span>✦</span>
-    <span>💜</span>
-    <span>✧</span>
+    <div class="box-tap">
+      tap the box ♡
+    </div>
 
   </div>
 
@@ -1079,21 +1228,25 @@ body {
 <script>
 
 /* =========================
-   SCREEN HELPERS
+   SCREEN HELPER
 ========================= */
 
 function showScreen(id) {
 
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+      screen.classList.remove("active");
+    });
 
-  document.getElementById(id).classList.add("active");
+  document
+    .getElementById(id)
+    .classList.add("active");
 }
 
 
 /* =========================
-   OPENING → LETTER
+   OPENING
 ========================= */
 
 function startLetter() {
@@ -1104,13 +1257,16 @@ function startLetter() {
 
 
 /* =========================
-   OPEN ENVELOPE
+   ENVELOPE
 ========================= */
 
 function openEnvelope() {
 
-  const envelope = document.getElementById("mainEnvelope");
-  const doneButton = document.getElementById("doneButton");
+  const envelope =
+    document.getElementById("mainEnvelope");
+
+  const doneButton =
+    document.getElementById("doneButton");
 
   if (envelope.classList.contains("open")) {
     return;
@@ -1119,7 +1275,9 @@ function openEnvelope() {
   envelope.classList.add("open");
 
   setTimeout(() => {
+
     doneButton.classList.add("show");
+
   }, 1700);
 
 }
@@ -1131,12 +1289,16 @@ function openEnvelope() {
 
 function finishLetter() {
 
-  document.getElementById("doneButton").classList.remove("show");
+  document
+    .getElementById("doneButton")
+    .classList.remove("show");
 
-  const envelope = document.getElementById("mainEnvelope");
+  const envelope =
+    document.getElementById("mainEnvelope");
 
   envelope.style.opacity = "0";
-  envelope.style.transform = "translateY(40px)";
+  envelope.style.transform =
+    "translateY(40px)";
 
   setTimeout(() => {
 
@@ -1157,37 +1319,43 @@ function finishLetter() {
 ========================= */
 
 let photoTapCount = 0;
-let secondSet = false;
 let transitionRunning = false;
-
 
 function startPolaroids() {
 
   photoTapCount = 0;
-  secondSet = false;
   transitionRunning = false;
 
-  const photo1 = document.getElementById("photo1");
-  const photo2 = document.getElementById("photo2");
-  const photo3 = document.getElementById("photo3");
+  document
+    .getElementById("photo1")
+    .classList.remove(
+      "forward",
+      "fade-polaroid"
+    );
 
-  const photo4 = document.getElementById("photo4");
-  const photo5 = document.getElementById("photo5");
+  document
+    .getElementById("photo2")
+    .classList.remove(
+      "forward",
+      "fade-polaroid"
+    );
 
-  photo1.classList.remove("forward", "fade-polaroid");
-  photo2.classList.remove("forward", "fade-polaroid");
-  photo3.classList.remove("forward", "fade-polaroid");
+  document
+    .getElementById("photo3")
+    .classList.remove(
+      "forward",
+      "fade-polaroid"
+    );
 
-  photo4.classList.remove("forward", "fade-polaroid", "visible");
-  photo5.classList.remove("forward", "fade-polaroid", "visible");
-
-  document.getElementById("tapGuide").classList.remove("hide");
+  document
+    .getElementById("tapGuide")
+    .classList.remove("hide");
 
 }
 
 
 /* =========================
-   EVERY TAP
+   POLAROID TAPS
 ========================= */
 
 function nextPolaroid() {
@@ -1196,74 +1364,41 @@ function nextPolaroid() {
     return;
   }
 
-
-  /* FIRST SET */
-
-  if (!secondSet) {
-
-    photoTapCount++;
-
-    const tapGuide = document.getElementById("tapGuide");
-
-    if (photoTapCount === 1) {
-
-      document
-        .getElementById("photo1")
-        .classList.add("forward");
-
-      tapGuide.classList.add("hide");
-
-    }
-
-    else if (photoTapCount === 2) {
-
-      document
-        .getElementById("photo2")
-        .classList.add("forward");
-
-    }
-
-    else if (photoTapCount === 3) {
-
-      document
-        .getElementById("photo3")
-        .classList.add("forward");
-
-    }
-
-    else if (photoTapCount === 4) {
-
-      fadeFirstSet();
-
-    }
-
-    return;
-  }
-
-
-  /* SECOND SET — ONLY 2 PHOTOS */
-
   photoTapCount++;
+
+  const tapGuide =
+    document.getElementById("tapGuide");
+
 
   if (photoTapCount === 1) {
 
     document
-      .getElementById("photo4")
+      .getElementById("photo1")
       .classList.add("forward");
+
+    tapGuide.classList.add("hide");
 
   }
 
   else if (photoTapCount === 2) {
 
     document
-      .getElementById("photo5")
+      .getElementById("photo2")
       .classList.add("forward");
 
   }
 
   else if (photoTapCount === 3) {
 
-    fadeSecondSet();
+    document
+      .getElementById("photo3")
+      .classList.add("forward");
+
+  }
+
+  else if (photoTapCount === 4) {
+
+    fadeFirstSet();
 
   }
 
@@ -1271,7 +1406,7 @@ function nextPolaroid() {
 
 
 /* =========================
-   FIRST SET FADE
+   FADE POLAROIDS
 ========================= */
 
 function fadeFirstSet() {
@@ -1305,141 +1440,321 @@ function fadeFirstSet() {
 
 function showLED() {
 
-  const led = document.getElementById("ledScreen");
+  const led =
+    document.getElementById("ledScreen");
 
-  led.classList.add("show");
+  const track =
+    led.querySelector(".led-track");
+
+
+  /*
+    RESET
+  */
+
+  led.classList.remove(
+    "show",
+    "fade-led"
+  );
+
+  track.style.animation = "none";
+
+
+  /*
+    BLANK SCREEN FIRST
+  */
 
   setTimeout(() => {
 
-    led.classList.add("fade-led");
-
-  }, 1000);
+    led.classList.add("show");
 
 
-  setTimeout(() => {
+    /*
+      Force animation restart
+    */
 
-    led.classList.remove("show", "fade-led");
+    void track.offsetWidth;
 
-    startSecondPolaroids();
 
-  }, 1750);
+    /*
+      VERY SLOW SCROLL
+      so every word can be read
+    */
+
+    track.style.animation =
+      "ledMove 24s linear forwards";
+
+
+    /*
+      After 24 seconds,
+      the entire sentence has
+      disappeared from the left.
+    */
+
+    setTimeout(() => {
+
+
+      /*
+        WAIT 1 SECOND
+        ON BLANK SCREEN
+      */
+
+      setTimeout(() => {
+
+        /*
+          FADE LED OUT
+        */
+
+        led.classList.add("fade-led");
+
+
+        /*
+          After fade:
+          go to video
+        */
+
+        setTimeout(() => {
+
+          led.classList.remove(
+            "show",
+            "fade-led"
+          );
+
+          track.style.animation = "none";
+
+          startVideo();
+
+        }, 800);
+
+      }, 1000);
+
+    }, 24000);
+
+  }, 700);
 
 }
 
 
 /* =========================
-   SECOND SET
+   VIDEO
 ========================= */
 
-function startSecondPolaroids() {
+function startVideo() {
 
-  secondSet = true;
+  const videoScreen =
+    document.getElementById("videoScreen");
 
-  photoTapCount = 0;
-  transitionRunning = false;
+  const video =
+    document.getElementById("birthdayVideo");
 
-  const photo4 = document.getElementById("photo4");
-  const photo5 = document.getElementById("photo5");
+  videoScreen.classList.remove("fade-out");
 
-  photo4.classList.add("visible");
-  photo5.classList.add("visible");
+  videoScreen.classList.add("show");
 
-  photo4.classList.remove("forward", "fade-polaroid");
-  photo5.classList.remove("forward", "fade-polaroid");
+  video.currentTime = 0;
 
-  document
-    .getElementById("tapGuide")
-    .classList.remove("hide");
+  const playPromise =
+    video.play();
+
+  if (playPromise !== undefined) {
+
+    playPromise.catch(() => {
+
+      /*
+        Controls remain available
+        if autoplay is blocked.
+      */
+
+    });
+
+  }
 
 }
 
 
 /* =========================
-   SECOND SET FADE
+   VIDEO FINISHED
 ========================= */
 
-function fadeSecondSet() {
+document
+  .getElementById("birthdayVideo")
+  .addEventListener(
+    "ended",
+    function() {
 
-  transitionRunning = true;
+      const videoScreen =
+        document.getElementById("videoScreen");
 
-  document
-    .getElementById("photo4")
-    .classList.add("fade-polaroid");
+      videoScreen.classList.add("fade-out");
 
-  document
-    .getElementById("photo5")
-    .classList.add("fade-polaroid");
+      setTimeout(() => {
 
-  document
-    .getElementById("tapGuide")
-    .classList.add("hide");
+        videoScreen.classList.remove("show");
 
-  setTimeout(() => {
+        showFinalScreen();
 
-    startBiology();
+      }, 1200);
 
-  }, 850);
+    }
+  );
+
+
+/* =========================
+   FINAL SCREEN
+========================= */
+
+function showFinalScreen() {
+
+  const finalScreen =
+    document.getElementById("finalScreen");
+
+  finalScreen.classList.add("show");
 
 }
 
 
 /* =========================
-   BIOLOGY ANIMATION
+   BIRTHDAY BOX
 ========================= */
 
-function startBiology() {
+let boxOpened = false;
 
-  const biology = document.getElementById("biologyScreen");
-  const egg = document.getElementById("egg");
-  const sperm = document.getElementById("sperm");
-  const reveal = document.getElementById("bioReveal");
-  const celebrate = document.getElementById("celebrate");
+function openBirthdayBox() {
 
+  if (boxOpened) {
+    return;
+  }
 
-  biology.classList.add("show");
+  boxOpened = true;
 
-  egg.classList.remove("show");
-  sperm.classList.remove("show", "swim");
-  reveal.classList.remove("show");
-  celebrate.classList.remove("show");
+  const boxArea =
+    document.getElementById("birthdayBoxArea");
 
+  boxArea.classList.add("opened");
 
-  /* sperm appears */
+  createFlyingPhotos();
 
-  setTimeout(() => {
-
-    sperm.classList.add("show");
-    sperm.classList.add("swim");
-
-  }, 400);
+}
 
 
-  /* egg appears */
+/* =========================
+   FLYING PHOTOS
+========================= */
 
-  setTimeout(() => {
+function createFlyingPhotos() {
 
-    egg.classList.add("show");
+  const container =
+    document.getElementById("flyingPhotos");
 
-  }, 2100);
+  container.innerHTML = "";
 
-
-  /* sperm disappears after reaching egg */
-
-  setTimeout(() => {
-
-    sperm.style.opacity = "0";
-
-  }, 3950);
+  const totalPhotos = 24;
 
 
-  /* final reveal */
+  for (
+    let i = 0;
+    i < totalPhotos;
+    i++
+  ) {
 
-  setTimeout(() => {
+    const photo =
+      document.createElement("img");
 
-    reveal.classList.add("show");
-    celebrate.classList.add("show");
 
-  }, 4500);
+    /*
+      ONE IMAGE,
+      MANY COPIES
+    */
+
+    photo.src = "picture4.png";
+
+    photo.className =
+      "flying-photo";
+
+
+    /*
+      RANDOM HORIZONTAL MOVEMENT
+    */
+
+    const x =
+      (
+        Math.random() * 300 - 150
+      ).toFixed(0) + "px";
+
+
+    /*
+      RANDOM HEIGHT
+    */
+
+    const y =
+      -(
+        Math.random() * 520 + 300
+      ).toFixed(0) + "px";
+
+
+    /*
+      RANDOM ROTATION
+    */
+
+    const rotation =
+      (
+        Math.random() * 70 - 35
+      ).toFixed(0) + "deg";
+
+
+    /*
+      RANDOM SIZE
+    */
+
+    const scale =
+      (
+        Math.random() * .55 + .65
+      ).toFixed(2);
+
+
+    photo.style.setProperty(
+      "--x",
+      x
+    );
+
+    photo.style.setProperty(
+      "--y",
+      y
+    );
+
+    photo.style.setProperty(
+      "--rotation",
+      rotation
+    );
+
+    photo.style.setProperty(
+      "--scale",
+      scale
+    );
+
+
+    /*
+      STAGGER
+      THE PHOTOS
+    */
+
+    const delay =
+      i * 110 +
+      Math.random() * 180;
+
+
+    setTimeout(() => {
+
+      container.appendChild(photo);
+
+      requestAnimationFrame(() => {
+
+        photo.classList.add("fly");
+
+      });
+
+    }, delay);
+
+  }
 
 }
 
