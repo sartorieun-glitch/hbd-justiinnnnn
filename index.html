@@ -3,16 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Happy Birthday, Baby 💜</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-
 <style>
-
-/* =========================
-   GENERAL
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -21,15 +15,17 @@
 }
 
 body {
+  width: 100%;
   min-height: 100vh;
   overflow: hidden;
   font-family: "DM Sans", sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(190,150,255,.25), transparent 30%),
-    radial-gradient(circle at 80% 80%, rgba(130,80,200,.3), transparent 35%),
-    linear-gradient(135deg, #eee1ff, #cdb1ef, #a982d1);
-  color: #39204f;
+  background: #f7efff;
+  color: #3d234d;
 }
+
+/* =========================
+   OPENING SCREEN
+========================= */
 
 .screen {
   position: fixed;
@@ -37,176 +33,131 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .7s ease;
+  text-align: center;
+  transition: opacity 1s ease;
 }
 
-.screen.active {
+#opening {
+  background: #f7efff;
+  z-index: 100;
+}
+
+.opening-content {
+  width: 90%;
+  max-width: 430px;
+}
+
+.hearts {
+  font-size: 20px;
+  letter-spacing: 5px;
+  color: #9b59c9;
+  margin-bottom: 15px;
+}
+
+.small-title {
+  font-size: 14px;
+  color: #805092;
+  margin-bottom: 8px;
+}
+
+.main-title {
+  font-size: clamp(34px, 10vw, 58px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: #6f2f91;
+  margin-bottom: 20px;
+}
+
+.opening-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #694878;
+  max-width: 330px;
+  margin: 0 auto 28px;
+}
+
+.main-button {
+  border: none;
+  background: #8e45b6;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(115, 45, 150, .2);
+  transition: transform .2s ease, background .2s ease;
+}
+
+.main-button:active {
+  transform: scale(.95);
+}
+
+/* =========================
+   LETTER SCREEN
+========================= */
+
+#letterScreen {
+  background: #f7efff;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 90;
+  transition: opacity 1s ease;
+}
+
+#letterScreen.show {
   opacity: 1;
   visibility: visible;
 }
 
-
-/* =========================
-   SPARKLES
-========================= */
-
-.sparkle {
-  position: absolute;
-  color: rgba(255,255,255,.75);
-  font-size: 16px;
-  animation: sparkle 2.5s ease-in-out infinite;
-}
-
-.sparkle:nth-child(1) {
-  top: 12%;
-  left: 15%;
-}
-
-.sparkle:nth-child(2) {
-  top: 25%;
-  right: 17%;
-  animation-delay: .7s;
-}
-
-.sparkle:nth-child(3) {
-  bottom: 20%;
-  left: 20%;
-  animation-delay: 1.2s;
-}
-
-.sparkle:nth-child(4) {
-  bottom: 14%;
-  right: 15%;
-  animation-delay: 1.8s;
-}
-
-@keyframes sparkle {
-  0%,100% {
-    opacity: .25;
-    transform: scale(.8);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.25);
-  }
-}
-
-
-/* =========================
-   OPENING
-========================= */
-
-.opening-content {
-  width: min(90%, 500px);
-  text-align: center;
-  padding: 30px;
-}
-
-.opening-hearts {
-  font-size: 18px;
-  letter-spacing: 6px;
-  margin-bottom: 18px;
-  color: #75459b;
-}
-
-.opening-small {
-  font-size: 15px;
-  margin-bottom: 8px;
-  color: #69447f;
-}
-
-.opening-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(42px, 11vw, 78px);
-  line-height: .95;
-  color: #552879;
-  margin-bottom: 22px;
-}
-
-.opening-message {
-  max-width: 420px;
-  margin: auto;
-  font-size: 14px;
-  line-height: 1.7;
-  color: #553d64;
-}
-
-.main-button {
-  margin-top: 28px;
-  border: none;
-  background: #74429b;
-  color: white;
-  padding: 13px 23px;
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  transition: .3s ease;
-  box-shadow: 0 8px 25px rgba(87,45,120,.18);
-}
-
-.main-button:hover {
-  transform: translateY(-3px);
-  background: #66378b;
-}
-
-
-/* =========================
-   ENVELOPE
-========================= */
-
-.envelope-scene {
+.letter-area {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 }
 
-.envelope-title {
+.tap-envelope-text {
   position: absolute;
-  top: 15%;
-  font-size: 14px;
-  color: #634276;
-  animation: softPulse 2s infinite;
-}
-
-@keyframes softPulse {
-  0%,100% {
-    opacity: .45;
-  }
-
-  50% {
-    opacity: 1;
-  }
+  top: 16%;
+  font-size: 13px;
+  color: #815493;
+  letter-spacing: .3px;
+  z-index: 20;
 }
 
 .envelope {
   position: relative;
-  width: 270px;
-  height: 175px;
+  width: 285px;
+  height: 190px;
+  background: #c89be4;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(70, 30, 90, .18);
   cursor: pointer;
-  transition: .8s ease;
-  z-index: 5;
+  transition: transform .5s ease;
 }
 
-.envelope-back {
+.envelope-flap {
   position: absolute;
-  inset: 0;
-  background: #c4a1e5;
-  border-radius: 5px;
-  box-shadow: 0 20px 40px rgba(70,35,90,.2);
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 142px solid transparent;
+  border-right: 142px solid transparent;
+  border-top: 105px solid #b67bd7;
+  transform-origin: top center;
+  transition: transform 1s ease;
+  z-index: 5;
 }
 
 .envelope-front {
   position: absolute;
   inset: 0;
-  background: #d6b8ee;
+  background: #c89be4;
   clip-path: polygon(
     0 0,
     50% 55%,
@@ -214,31 +165,18 @@ body {
     100% 100%,
     0 100%
   );
-  border-radius: 5px;
-  z-index: 4;
+  border-radius: 8px;
+  z-index: 6;
 }
 
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #b98bdd;
-  clip-path: polygon(
-    0 0,
-    50% 62%,
-    100% 0
-  );
-  transform-origin: top;
-  transition: transform .8s ease;
-  z-index: 5;
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
 }
 
-
-/* =========================
-   LETTER
-========================= */
+.envelope.open .envelope-front {
+  z-index: 0;
+}
 
 .paper {
   position: absolute;
@@ -253,28 +191,8 @@ body {
   overflow-y: auto;
   z-index: 10;
   opacity: 0;
-  transition:
-    transform 1.5s ease,
-    opacity .7s ease;
-  box-shadow: 0 15px 35px rgba(50,20,70,.15);
-}
-
-.paper::-webkit-scrollbar {
-  width: 4px;
-}
-
-.paper::-webkit-scrollbar-thumb {
-  background: #c2a1d8;
-  border-radius: 10px;
-}
-
-.envelope.open .envelope-flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.envelope.open .envelope-front {
-  z-index: 0;
+  transition: transform 1.5s ease, opacity .7s ease;
+  box-shadow: 0 15px 35px rgba(50, 20, 70, .15);
 }
 
 .envelope.open .paper {
@@ -283,22 +201,41 @@ body {
   z-index: 10;
 }
 
-.letter {
-  color: #4d3859;
-  font-size: 12px;
-  line-height: 1.75;
+.paper::-webkit-scrollbar {
+  width: 3px;
 }
 
-.letter p {
-  margin-bottom: 14px;
+.paper::-webkit-scrollbar-thumb {
+  background: #c79bda;
+  border-radius: 5px;
+}
+
+.letter-text {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #4f3858;
+  text-align: left;
+  white-space: pre-line;
 }
 
 .done-button {
   position: absolute;
-  bottom: 9%;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  background: #8e45b6;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: .5s ease;
+  transition: opacity .5s ease;
+  z-index: 30;
 }
 
 .done-button.show {
@@ -306,167 +243,147 @@ body {
   pointer-events: auto;
 }
 
-
 /* =========================
    POLAROIDS
 ========================= */
 
-.polaroid-scene {
-  width: 100%;
-  height: 100%;
-  position: relative;
+#polaroidScreen {
+  position: fixed;
+  inset: 0;
+  background: #f7efff;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 80;
+  transition: opacity 1s ease;
 }
 
-.photo-envelope {
-  position: absolute;
-  width: 285px;
-  height: 185px;
-  background: #b991db;
-  border-radius: 5px;
-  box-shadow: 0 20px 40px rgba(60,30,80,.2);
+#polaroidScreen.show {
+  opacity: 1;
+  visibility: visible;
 }
 
-.photo-envelope::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #d3b6eb;
-  clip-path: polygon(
-    0 0,
-    50% 55%,
-    100% 0,
-    100% 100%,
-    0 100%
-  );
-  border-radius: 5px;
+.polaroid-area {
+  position: relative;
+  width: 280px;
+  height: 390px;
 }
 
 .polaroid {
   position: absolute;
-  width: 175px;
-  height: 220px;
+  left: 50%;
+  top: 50%;
+  width: 215px;
+  height: 275px;
+  padding: 10px 10px 28px;
   background: white;
-  padding: 10px 10px 27px;
-  box-shadow: 0 14px 35px rgba(50,25,70,.2);
+  box-shadow: 0 15px 35px rgba(60, 30, 80, .18);
   transition:
     transform 1s cubic-bezier(.2,.8,.2,1),
-    opacity .7s ease;
-  transform-origin: center;
-  opacity: 1;
+    opacity .8s ease;
 }
 
 .polaroid img {
   width: 100%;
-  height: 175px;
+  height: 225px;
   object-fit: cover;
   display: block;
 }
 
-.polaroid-caption {
+.polaroid p {
   text-align: center;
-  font-family: "Playfair Display", serif;
-  color: #56346d;
-  font-size: 13px;
-  margin-top: 7px;
+  font-size: 11px;
+  color: #62446f;
+  margin-top: 8px;
 }
 
-.photo1 {
-  transform: rotate(-9deg) translate(-28px, 5px);
-  z-index: 3;
+.polaroid.one {
+  transform: translate(-50%, -50%) rotate(-9deg);
 }
 
-.photo2 {
-  transform: rotate(6deg) translate(25px, 10px);
-  z-index: 2;
+.polaroid.two {
+  transform: translate(-50%, -50%) rotate(5deg);
 }
 
-.photo3 {
-  transform: rotate(-2deg) translate(0, 0);
-  z-index: 1;
+.polaroid.three {
+  transform: translate(-50%, -50%) rotate(13deg);
 }
 
-.photo1.forward {
-  transform: rotate(-2deg) translate(-100px, -25px) scale(1.08);
-  z-index: 10;
+.polaroid.one.forward {
+  transform: translate(-50%, -50%) rotate(-3deg) translateY(-15px);
+  z-index: 5;
 }
 
-.photo2.forward {
-  transform: rotate(2deg) translate(100px, -25px) scale(1.08);
-  z-index: 10;
+.polaroid.two.forward {
+  transform: translate(-50%, -50%) rotate(2deg) translateY(-15px);
+  z-index: 6;
 }
 
-.photo3.forward {
-  transform: rotate(0deg) translate(0, -45px) scale(1.08);
-  z-index: 10;
+.polaroid.three.forward {
+  transform: translate(-50%, -50%) rotate(-2deg) translateY(-15px);
+  z-index: 7;
 }
 
-.fade-polaroid {
-  opacity: 0 !important;
-  transform: translateY(50px) scale(.9) !important;
-}
-
-.tap-guide {
+.tap-indicator {
   position: absolute;
-  bottom: 12%;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #825093;
   font-size: 13px;
-  color: #674879;
-  animation: tapPulse 1.5s infinite;
-  z-index: 20;
-  transition: opacity .4s ease;
+  animation: pulse 1.5s infinite;
+  transition: opacity .5s ease;
 }
 
-.tap-guide.hide {
+.tap-indicator.hide {
   opacity: 0;
 }
 
-@keyframes tapPulse {
-  0%,100% {
+@keyframes pulse {
+  0%, 100% {
     opacity: .45;
   }
-
   50% {
     opacity: 1;
   }
 }
 
-
 /* =========================
-   LED
+   LED SCREEN
 ========================= */
 
-.led-screen {
+#ledScreen {
   position: fixed;
   inset: 0;
-  background: #130b19;
-  display: flex;
-  align-items: center;
+  background: #050308;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
+  z-index: 70;
   transition: opacity .8s ease;
-  z-index: 100;
 }
 
-.led-screen.show {
+#ledScreen.show {
   opacity: 1;
   visibility: visible;
 }
 
-.led-screen.fade-led {
+#ledScreen.fade-led {
   opacity: 0;
 }
 
 .led-track {
   position: absolute;
+  top: 50%;
   left: 0;
+  transform: translateX(100vw) translateY(-50%);
   white-space: nowrap;
 
   font-family: monospace;
   font-size: clamp(24px, 7vw, 55px);
+  font-weight: 700;
 
   color: #d9a7ff;
 
@@ -474,172 +391,132 @@ body {
     0 0 5px #c77cff,
     0 0 15px #b65cff,
     0 0 30px #9b3dff;
-
-  transform: translateX(100vw);
 }
 
-.led-screen.show .led-track {
+#ledScreen.show .led-track {
   animation: ledMove 24s linear forwards;
 }
 
 @keyframes ledMove {
-
   0% {
-    transform: translateX(100vw);
+    transform: translateX(100vw) translateY(-50%);
   }
 
   100% {
-    transform: translateX(
-      calc(-100% - 100vw)
-    );
+    transform: translateX(calc(-100% - 100vw)) translateY(-50%);
   }
-
 }
-
-
-/* =========================
-   VIDEO
-========================= */
-
-.video-screen {
-  position: fixed;
-  inset: 0;
-  background: #120b18;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: opacity 1.2s ease;
-
-  z-index: 150;
-}
-
-.video-screen.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.video-screen.fade-out {
-  opacity: 0;
-}
-
-.birthday-video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: #120b18;
-}
-
-.play-video-button {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-
-  border: none;
-  border-radius: 999px;
-
-  padding: 15px 24px;
-
-  background: #a86dcc;
-  color: white;
-
-  font-family: "DM Sans", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-
-  box-shadow: 0 8px 25px rgba(0,0,0,.3);
-
-  cursor: pointer;
-
-  z-index: 10;
-
-  transition:
-    opacity .5s ease,
-    transform .3s ease;
-}
-
-.play-video-button:hover {
-  transform:
-    translate(-50%, -50%)
-    scale(1.05);
-}
-
-.play-video-button.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.video-error {
-  position: absolute;
-  left: 50%;
-  bottom: 15%;
-  transform: translateX(-50%);
-
-  width: 85%;
-
-  text-align: center;
-
-  color: rgba(255,255,255,.8);
-
-  font-size: 12px;
-
-  line-height: 1.6;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition: opacity .5s ease;
-}
-
-.video-error.show {
-  opacity: 1;
-}
-
 
 /* =========================
    FINAL SCREEN
 ========================= */
 
-.final-screen {
+#finalScreen {
   position: fixed;
   inset: 0;
-
-  background:
-    radial-gradient(
-      circle at center bottom,
-      #ead5ff,
-      #c69ce7 60%,
-      #a775c9
-    );
-
-  overflow: hidden;
-
+  background: #f7efff;
   opacity: 0;
   visibility: hidden;
-
+  z-index: 60;
   transition: opacity 1s ease;
-
-  z-index: 180;
+  overflow: hidden;
 }
 
-.final-screen.show {
+#finalScreen.show {
   opacity: 1;
   visibility: visible;
 }
 
+.final-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 75px;
+}
 
-/* =========================
-   FLYING PHOTOS
-========================= */
+.birthday-box {
+  position: relative;
+  width: 190px;
+  height: 125px;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform .3s ease;
+}
 
-.flying-photos {
+.birthday-box:active {
+  transform: scale(.96);
+}
+
+.box-lid {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 206px;
+  height: 35px;
+  background: #a765c5;
+  border-radius: 5px;
+  box-shadow: 0 7px 15px rgba(80, 35, 100, .2);
+  z-index: 3;
+}
+
+.box-body {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 190px;
+  height: 100px;
+  background: #c28cda;
+  border-radius: 3px 3px 8px 8px;
+  box-shadow: 0 12px 25px rgba(70, 30, 90, .2);
+}
+
+.box-ribbon-vertical {
+  position: absolute;
+  left: 78px;
+  top: 0;
+  width: 34px;
+  height: 125px;
+  background: #e1b6ef;
+  z-index: 4;
+}
+
+.box-ribbon-horizontal {
+  position: absolute;
+  left: 0;
+  top: 44px;
+  width: 190px;
+  height: 24px;
+  background: #dca9eb;
+  z-index: 4;
+}
+
+.box-text {
+  position: absolute;
+  left: 50%;
+  top: 73px;
+  transform: translateX(-50%);
+  width: 170px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #684074;
+  z-index: 7;
+}
+
+.box-tap {
+  position: absolute;
+  bottom: -42px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #7d4b91;
+  font-size: 12px;
+  animation: pulse 1.5s infinite;
+}
+
+.flying-container {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -648,424 +525,91 @@ body {
 
 .flying-photo {
   position: absolute;
-
-  bottom: 115px;
   left: 50%;
+  bottom: 65px;
 
-  width: 52px;
-  height: 65px;
-
+  width: 105px;
+  height: 135px;
   object-fit: cover;
 
-  padding: 4px;
-
   background: white;
+  padding: 7px 7px 20px;
 
-  box-shadow:
-    0 5px 15px rgba(50,20,70,.25);
+  box-shadow: 0 8px 25px rgba(50, 20, 70, .18);
 
   opacity: 0;
-
   transform:
     translate(-50%, 0)
-    rotate(0deg)
-    scale(.5);
+    scale(.5)
+    rotate(0deg);
+
+  transition:
+    transform 1.4s cubic-bezier(.2,.8,.2,1),
+    opacity .5s ease;
 }
 
 .flying-photo.fly {
-  animation:
-    photoFly 3.2s cubic-bezier(.2,.7,.2,1)
-    forwards;
-}
-
-@keyframes photoFly {
-
-  0% {
-    opacity: 0;
-
-    transform:
-      translate(-50%, 0)
-      rotate(0deg)
-      scale(.45);
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: .9;
-
-    transform:
-      translate(
-        calc(-50% + var(--x)),
-        var(--y)
-      )
-      rotate(var(--rotation))
-      scale(var(--scale));
-  }
-
-}
-
-
-/* =========================
-   BIRTHDAY BOX
-========================= */
-
-.birthday-box-area {
-  position: absolute;
-
-  bottom: 25px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 210px;
-  height: 180px;
-
-  cursor: pointer;
-
-  z-index: 50;
-}
-
-.birthday-box-area.opened {
-  cursor: default;
-}
-
-.box-shadow {
-  position: absolute;
-
-  bottom: 0;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 175px;
-  height: 25px;
-
-  background: rgba(65,30,85,.18);
-
-  border-radius: 50%;
-
-  filter: blur(8px);
-}
-
-.box {
-  position: absolute;
-
-  bottom: 15px;
-  left: 50%;
-
-  width: 160px;
-  height: 105px;
-
-  transform: translateX(-50%);
-
-  background: #a86dcc;
-
-  border-radius: 4px;
-
-  box-shadow:
-    0 15px 25px rgba(65,30,85,.25);
-}
-
-.box::before {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 0;
-
-  transform: translateX(-50%);
-
-  width: 25px;
-  height: 100%;
-
-  background: #d6a8ed;
-}
-
-.box-lid {
-  position: absolute;
-
-  bottom: 105px;
-  left: 50%;
-
-  width: 178px;
-  height: 32px;
-
-  transform: translateX(-50%);
-
-  background: #bb82dd;
-
-  border-radius: 5px;
-
-  box-shadow:
-    0 8px 15px rgba(65,30,85,.18);
-
-  transition:
-    transform .8s cubic-bezier(.2,.8,.2,1),
-    bottom .8s ease;
-
-  transform-origin: center bottom;
-}
-
-.box-lid::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 0;
-
-  transform: translateX(-50%);
-
-  width: 27px;
-  height: 100%;
-
-  background: #d6a8ed;
-}
-
-.birthday-box-area.opened .box-lid {
-  bottom: 140px;
-
-  transform:
-    translateX(-50%)
-    rotate(-8deg);
-}
-
-.box-message {
-  position: absolute;
-
-  left: 50%;
-  bottom: 42px;
-
-  transform:
-    translateX(-50%)
-    scale(.7);
-
-  width: 150px;
-
-  text-align: center;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 18px;
-  line-height: 1.1;
-
-  color: white;
-
-  opacity: 0;
-
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
-
-  z-index: 5;
-}
-
-.birthday-box-area.opened .box-message {
   opacity: 1;
-
   transform:
-    translateX(-50%)
-    scale(1);
+    translate(
+      calc(-50% + var(--x)),
+      var(--y)
+    )
+    scale(var(--scale))
+    rotate(var(--rotation));
 }
-
-.box-tap {
-  position: absolute;
-
-  bottom: -5px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  color: #644073;
-
-  font-size: 13px;
-
-  white-space: nowrap;
-
-  animation: tapPulse 1.5s infinite;
-
-  transition: opacity .5s ease;
-}
-
-.birthday-box-area.opened .box-tap {
-  opacity: 0;
-}
-
-
-/* =========================
-   FINAL HEARTS
-========================= */
-
-.final-heart {
-  position: absolute;
-
-  font-size: 20px;
-
-  opacity: .45;
-
-  animation:
-    finalFloat 3s ease-in-out infinite;
-}
-
-.final-heart:nth-child(1) {
-  left: 12%;
-  top: 20%;
-}
-
-.final-heart:nth-child(2) {
-  right: 15%;
-  top: 25%;
-  animation-delay: .8s;
-}
-
-.final-heart:nth-child(3) {
-  left: 20%;
-  bottom: 35%;
-  animation-delay: 1.2s;
-}
-
-.final-heart:nth-child(4) {
-  right: 20%;
-  bottom: 40%;
-  animation-delay: 1.7s;
-}
-
-@keyframes finalFloat {
-
-  0%,100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-15px);
-  }
-
-}
-
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 500px) {
-
+@media (max-width: 400px) {
   .envelope {
-    width: 250px;
-    height: 160px;
+    width: 270px;
+  }
+
+  .envelope-flap {
+    border-left-width: 135px;
+    border-right-width: 135px;
   }
 
   .paper {
-    width: 220px;
+    width: 230px;
     height: 310px;
   }
-
-  .polaroid {
-    width: 155px;
-    height: 200px;
-
-    padding:
-      8px 8px 24px;
-  }
-
-  .polaroid img {
-    height: 157px;
-  }
-
-  .photo1 {
-    transform:
-      rotate(-9deg)
-      translate(-20px, 5px);
-  }
-
-  .photo2 {
-    transform:
-      rotate(6deg)
-      translate(20px, 10px);
-  }
-
-  .photo3 {
-    transform:
-      rotate(-2deg);
-  }
-
-  .photo1.forward {
-    transform:
-      rotate(-2deg)
-      translate(-75px, -25px)
-      scale(1.06);
-  }
-
-  .photo2.forward {
-    transform:
-      rotate(2deg)
-      translate(75px, -25px)
-      scale(1.06);
-  }
-
-  .photo3.forward {
-    transform:
-      rotate(0deg)
-      translate(0, -35px)
-      scale(1.06);
-  }
-
-  .birthday-box-area {
-    bottom: 30px;
-  }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <!-- =========================
      OPENING
 ========================= -->
 
-<section id="opening" class="screen active">
-
-  <span class="sparkle">✦</span>
-  <span class="sparkle">✧</span>
-  <span class="sparkle">✦</span>
-  <span class="sparkle">✧</span>
-
+<section id="opening" class="screen">
   <div class="opening-content">
 
-    <div class="opening-hearts">
-      ♡♡♡
-    </div>
+    <div class="hearts">♡♡♡</div>
 
-    <div class="opening-small">
+    <div class="small-title">
       hi baby!
     </div>
 
-    <h1 class="opening-title">
-      HAPPY<br>
-      BIRTHDAY!
+    <h1 class="main-title">
+      HAPPY BIRTHDAY!
     </h1>
 
-    <p class="opening-message">
+    <p class="opening-text">
       i honestly didn't know what to give you, so i made this instead.
       i know it's just a small thing, but i hope you'll still appreciate it :>
     </p>
 
-    <button
-      class="main-button"
-      onclick="startLetter()"
-    >
+    <button class="main-button" onclick="startLetter()">
       CLICK →
     </button>
 
   </div>
-
 </section>
 
 
@@ -1073,124 +617,57 @@ body {
      LETTER
 ========================= -->
 
-<section id="letterScreen" class="screen">
+<section id="letterScreen">
 
-  <div class="envelope-scene">
+  <div class="letter-area">
 
-    <div class="envelope-title">
+    <div class="tap-envelope-text">
       tap the envelope ♡
     </div>
 
-    <div
-      class="envelope"
-      id="mainEnvelope"
-      onclick="openEnvelope()"
-    >
+    <div id="envelope" class="envelope" onclick="openEnvelope()">
 
-      <div class="envelope-back"></div>
+      <div class="envelope-flap"></div>
 
       <div class="paper">
 
-        <div class="letter">
+        <div class="letter-text">
+Wait lang, ga panumdom pa ko kon ano ihambal ko HAHAHAHAHAHAHAHA okayy First of all, I hope you don't find this cringe HAHAHHA seriousness na, ano... Since it’s your birthday, I hope this new year of yours brings you happiness, peace, and all the good things in life.
 
-          <p>
-            Wait lang, ga panumdom pa ko kon ano ihambal ko
-            HAHAHAHAHAHAHAHA okayy First of all, I hope you don't
-            find this cringe HAHAHHA seriousness na, ano... Since it’s
-            your birthday, I hope this new year of yours brings you
-            happiness, peace, and all the good things in life.
-          </p>
+I hope you achieve the things you've been working hard for, even the ones you don't talk about much.
 
-          <p>
-            I hope you achieve the things you've been working hard for,
-            even the ones you don't talk about much.
-          </p>
+Life might not always go the way you want it to be, but please remember that I'm always here for you — through your ups and downs. When you're tired, don't give up. And remember to keep going. There may be days where you feel like you can't handle everything anymore, but I’m here, and I’ll continue to get through whatever comes your way.
 
-          <p>
-            Life might not always go the way you want it to be,
-            but please remember that I'm always here for you —
-            through your ups and downs. When you're tired, don't give up.
-            And remember to keep going. There may be days where you feel
-            like you can't handle everything anymore, but I’m here,
-            and I’ll continue to get through whatever comes your way.
-          </p>
+No matter how difficult life gets, I hope you won't forget that there are still so many good things waiting for you.
 
-          <p>
-            No matter how difficult life gets, I hope you won't forget
-            that there are still so many good things waiting for you.
-          </p>
+And if ever things get too heavy or you just need someone to talk to, know that I'm always here and you don't always have to handle everything alone. You can talk to me, rant to me, or just annoy me — I'll still be here. I might not always find the right words, but I'll still try my best to listen and be there for you.
 
-          <p>
-            And if ever things get too heavy or you just need someone
-            to talk to, know that I'm always here and you don't always
-            have to handle everything alone. You can talk to me,
-            rant to me, or just annoy me — I'll still be here.
-            I might not always find the right words, but I'll still
-            try my best to listen and be there for you.
-          </p>
+cringe-an ka na? HAHAHA bahala ka da, basaha tanan bcs i just put a lot of thought into this because you matter to me more than I probably say. mwamwa ka sa 'kin🔥
 
-          <p>
-            cringe-an ka na? HAHAHA bahala ka da, basaha tanan bcs
-            i just put a lot of thought into this because you matter
-            to me more than I probably say. mwamwa ka sa 'kin🔥
-          </p>
+But seriously, thank you for choosing to hear me out instead of ignoring me every time there's something bothering me, or when we have misunderstandings, and thank you for not judging me for it.
 
-          <p>
-            But seriously, thank you for choosing to hear me out
-            instead of ignoring me every time there's something
-            bothering me, or when we have misunderstandings,
-            and thank you for not judging me for it.
-          </p>
+Do remember that I'll always be proud of everything that you do. I hope you get the improvements you've been craving for.
 
-          <p>
-            Do remember that I'll always be proud of everything
-            that you do. I hope you get the improvements you've
-            been craving for.
-          </p>
+So please, keep going. Kupal, there are still so many things waiting for you, many places to see, memories to make, and good things that life might give you.
 
-          <p>
-            So please, keep going. Kupal, there are still so many
-            things waiting for you, many places to see, memories
-            to make, and good things that life might give you.
-          </p>
+Huo na, lapit na lang ma tapos isa na lang. Last na. HUAHAHAHAHA
 
-          <p>
-            Huo na, lapit na lang ma tapos isa na lang.
-            Last na. HUAHAHAHAHA
-          </p>
+And I guess that's all I wanted to say. I’m not really good at saying these things out loud, so I hope this somehow makes up for it. Thank you for being someone I can laugh with, annoy, and share random things with. I hope you know that you’re appreciated more than you think. Whatever happens, I hope you keep choosing yourself, keep growing, and keep going. And if life gets a little too much, you already know where to find me, okaayyyy?????
 
-          <p>
-            And I guess that's all I wanted to say. I’m not really
-            good at saying these things out loud, so I hope this
-            somehow makes up for it. Thank you for being someone
-            I can laugh with, annoy, and share random things with.
-            I hope you know that you’re appreciated more than you think.
-            Whatever happens, I hope you keep choosing yourself,
-            keep growing, and keep going. And if life gets a little
-            too much, you already know where to find me, okaayyyy?????
-          </p>
+Happy birthday, baby. Enjoy your day, and don’t get too emo over this letter HAHAHAHAHA
 
-          <p>
-            Happy birthday, baby. Enjoy your day, and don’t get too
-            emo over this letter HAHAHAHAHA
-          </p>
-
-          <p>
-            I LOVE YOU, BABY! 💜
-          </p>
-
+I LOVE YOU, BABY! 💜
         </div>
 
       </div>
 
-      <div class="envelope-flap"></div>
       <div class="envelope-front"></div>
 
     </div>
 
     <button
       id="doneButton"
-      class="main-button done-button"
+      class="done-button"
       onclick="finishLetter()"
     >
       DONE READING →
@@ -1205,73 +682,29 @@ body {
      POLAROIDS
 ========================= -->
 
-<section id="polaroidScreen" class="screen">
+<section id="polaroidScreen">
 
-  <div
-    class="polaroid-scene"
-    onclick="nextPolaroid()"
-  >
+  <div class="polaroid-area">
 
-    <div class="photo-envelope"></div>
-
-    <div
-      id="photo1"
-      class="polaroid photo1"
-    >
-
-      <img
-        src="photo1.jpeg"
-        alt="photo 1"
-      >
-
-      <div class="polaroid-caption">
-        happy ♡
-      </div>
-
+    <div class="polaroid one" id="photo1">
+      <img src="photo1.jpeg">
+      <p>happy ♡</p>
     </div>
 
-
-    <div
-      id="photo2"
-      class="polaroid photo2"
-    >
-
-      <img
-        src="photo2.jpeg"
-        alt="photo 2"
-      >
-
-      <div class="polaroid-caption">
-        birthday ♡
-      </div>
-
+    <div class="polaroid two" id="photo2">
+      <img src="photo2.jpeg">
+      <p>birthday ♡</p>
     </div>
 
-
-    <div
-      id="photo3"
-      class="polaroid photo3"
-    >
-
-      <img
-        src="photo3.jpeg"
-        alt="photo 3"
-      >
-
-      <div class="polaroid-caption">
-        justin ♡
-      </div>
-
+    <div class="polaroid three" id="photo3">
+      <img src="photo3.jpeg">
+      <p>justin ♡</p>
     </div>
 
+  </div>
 
-    <div
-      id="tapGuide"
-      class="tap-guide"
-    >
-      tap! ♡
-    </div>
-
+  <div id="tapIndicator" class="tap-indicator">
+    tap!
   </div>
 
 </section>
@@ -1281,148 +714,71 @@ body {
      LED
 ========================= -->
 
-<div
-  id="ledScreen"
-  class="led-screen"
->
+<section id="ledScreen">
 
   <div class="led-track">
-
     XOREH BABYCAKES, CUTE KA NAMAN DON E HAHAHA ITO NA TALAGA ANG SERIOUSNESS
-
   </div>
 
-</div>
+</section>
 
 
 <!-- =========================
-     VIDEO
+     FINAL BIRTHDAY BOX
 ========================= -->
 
-<div
-  id="videoScreen"
-  class="video-screen"
->
+<section id="finalScreen">
 
-  <video
-    id="birthdayVideo"
-    class="birthday-video"
-    playsinline
-    webkit-playsinline
-    controls
-    preload="metadata"
-  >
+  <div id="flyingPhotos" class="flying-container"></div>
 
-    <source
-      src="video.mp4"
-      type="video/mp4"
+  <div class="final-content">
+
+    <div
+      id="birthdayBox"
+      class="birthday-box"
+      onclick="openBirthdayBox()"
     >
 
-    Your browser does not support the video.
+      <div class="box-lid"></div>
 
-  </video>
+      <div class="box-body"></div>
 
+      <div class="box-ribbon-vertical"></div>
 
-  <button
-    id="playVideoButton"
-    class="play-video-button"
-    onclick="playBirthdayVideo()"
-  >
-    ▶ TAP TO PLAY
-  </button>
+      <div class="box-ribbon-horizontal"></div>
 
+      <div class="box-text">
+        HAPPY JUSTIN DAY!!!
+      </div>
 
-  <div
-    id="videoError"
-    class="video-error"
-  >
-    hmm 😭 the video couldn't load.<br>
-    make sure <b>video.mp4</b> is uploaded beside index.html
-  </div>
-
-</div>
-
-
-<!-- =========================
-     FINAL SCREEN
-========================= -->
-
-<div
-  id="finalScreen"
-  class="final-screen"
->
-
-  <div class="final-heart">♡</div>
-  <div class="final-heart">✦</div>
-  <div class="final-heart">♡</div>
-  <div class="final-heart">✧</div>
-
-
-  <div
-    id="flyingPhotos"
-    class="flying-photos"
-  ></div>
-
-
-  <div
-    id="birthdayBoxArea"
-    class="birthday-box-area"
-    onclick="openBirthdayBox()"
-  >
-
-    <div class="box-shadow"></div>
-
-
-    <div class="box">
-
-      <div class="box-message">
-        HAPPY<br>
-        JUSTIN DAY!!!
+      <div class="box-tap">
+        tap the box ♡
       </div>
 
     </div>
 
-
-    <div class="box-lid"></div>
-
-
-    <div class="box-tap">
-      tap the box ♡
-    </div>
-
   </div>
 
-</div>
+</section>
 
 
 <script>
 
 /* =========================
-   SCREEN HELPER
-========================= */
-
-function showScreen(id) {
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-      screen.classList.remove("active");
-    });
-
-  document
-    .getElementById(id)
-    .classList.add("active");
-}
-
-
-/* =========================
-   OPENING
+   OPEN LETTER
 ========================= */
 
 function startLetter() {
 
-  showScreen("letterScreen");
+  const opening = document.getElementById("opening");
+  const letter = document.getElementById("letterScreen");
 
+  opening.style.opacity = "0";
+
+  setTimeout(() => {
+    opening.style.visibility = "hidden";
+    letter.classList.add("show");
+  }, 900);
 }
 
 
@@ -1430,61 +786,43 @@ function startLetter() {
    ENVELOPE
 ========================= */
 
+let envelopeOpened = false;
+
 function openEnvelope() {
 
-  const envelope =
-    document.getElementById("mainEnvelope");
+  if (envelopeOpened) return;
 
-  const doneButton =
-    document.getElementById("doneButton");
+  envelopeOpened = true;
 
-  if (
-    envelope.classList.contains("open")
-  ) {
-    return;
-  }
+  const envelope = document.getElementById("envelope");
+  const doneButton = document.getElementById("doneButton");
 
   envelope.classList.add("open");
 
   setTimeout(() => {
-
     doneButton.classList.add("show");
-
-  }, 1700);
-
+  }, 1800);
 }
 
 
 /* =========================
-   LETTER → POLAROIDS
+   FINISH LETTER
 ========================= */
 
 function finishLetter() {
 
-  document
-    .getElementById("doneButton")
-    .classList.remove("show");
+  const letterScreen = document.getElementById("letterScreen");
+  const polaroidScreen = document.getElementById("polaroidScreen");
 
-  const envelope =
-    document.getElementById("mainEnvelope");
-
-  envelope.style.opacity = "0";
-
-  envelope.style.transform =
-    "translateY(40px)";
-
+  letterScreen.style.opacity = "0";
 
   setTimeout(() => {
 
-    showScreen("polaroidScreen");
+    letterScreen.style.visibility = "hidden";
 
-    envelope.style.opacity = "";
-    envelope.style.transform = "";
+    polaroidScreen.classList.add("show");
 
-    startPolaroids();
-
-  }, 700);
-
+  }, 900);
 }
 
 
@@ -1492,130 +830,47 @@ function finishLetter() {
    POLAROIDS
 ========================= */
 
-let photoTapCount = 0;
-let transitionRunning = false;
+let photoTaps = 0;
 
+document
+  .getElementById("polaroidScreen")
+  .addEventListener("click", function () {
 
-function startPolaroids() {
+    photoTaps++;
 
-  photoTapCount = 0;
-  transitionRunning = false;
+    const photo1 = document.getElementById("photo1");
+    const photo2 = document.getElementById("photo2");
+    const photo3 = document.getElementById("photo3");
+    const indicator = document.getElementById("tapIndicator");
 
+    indicator.classList.add("hide");
 
-  document
-    .getElementById("photo1")
-    .classList.remove(
-      "forward",
-      "fade-polaroid"
-    );
+    if (photoTaps === 1) {
+      photo1.classList.add("forward");
+    }
 
+    else if (photoTaps === 2) {
+      photo2.classList.add("forward");
+    }
 
-  document
-    .getElementById("photo2")
-    .classList.remove(
-      "forward",
-      "fade-polaroid"
-    );
+    else if (photoTaps === 3) {
+      photo3.classList.add("forward");
+    }
 
+    else if (photoTaps === 4) {
 
-  document
-    .getElementById("photo3")
-    .classList.remove(
-      "forward",
-      "fade-polaroid"
-    );
+      document.getElementById("polaroidScreen").style.opacity = "0";
 
+      setTimeout(() => {
 
-  document
-    .getElementById("tapGuide")
-    .classList.remove("hide");
+        document.getElementById("polaroidScreen").style.visibility = "hidden";
 
-}
+        showLED();
 
+      }, 900);
+    }
 
-function nextPolaroid() {
-
-  if (transitionRunning) {
-    return;
-  }
-
-
-  photoTapCount++;
-
-
-  const tapGuide =
-    document.getElementById("tapGuide");
-
-
-  if (photoTapCount === 1) {
-
-    document
-      .getElementById("photo1")
-      .classList.add("forward");
-
-    tapGuide.classList.add("hide");
-
-  }
-
-
-  else if (photoTapCount === 2) {
-
-    document
-      .getElementById("photo2")
-      .classList.add("forward");
-
-  }
-
-
-  else if (photoTapCount === 3) {
-
-    document
-      .getElementById("photo3")
-      .classList.add("forward");
-
-  }
-
-
-  else if (photoTapCount === 4) {
-
-    fadeFirstSet();
-
-  }
-
-}
-
-
-/* =========================
-   FADE POLAROIDS
-========================= */
-
-function fadeFirstSet() {
-
-  transitionRunning = true;
-
-
-  document
-    .getElementById("photo1")
-    .classList.add("fade-polaroid");
-
-
-  document
-    .getElementById("photo2")
-    .classList.add("fade-polaroid");
-
-
-  document
-    .getElementById("photo3")
-    .classList.add("fade-polaroid");
-
-
-  setTimeout(() => {
-
-    showLED();
-
-  }, 750);
-
-}
+  });
 
 
 /* =========================
@@ -1624,272 +879,58 @@ function fadeFirstSet() {
 
 function showLED() {
 
-  const led =
-    document.getElementById("ledScreen");
+  const led = document.getElementById("ledScreen");
+  const track = led.querySelector(".led-track");
 
-  const track =
-    led.querySelector(".led-track");
-
-
-  /*
-    RESET
-  */
-
-  led.classList.remove(
-    "show",
-    "fade-led"
-  );
+  led.classList.remove("show", "fade-led");
 
   track.style.animation = "none";
-
-
-  /*
-    BLANK SCREEN FIRST
-  */
 
   setTimeout(() => {
 
     led.classList.add("show");
 
-
-    /*
-      FORCE RESTART
-    */
-
     void track.offsetWidth;
 
+    track.style.animation = "ledMove 24s linear forwards";
 
     /*
-      SLOW LED
-      Starts at right edge
-      and disappears past left edge
-    */
-
-    track.style.animation =
-      "ledMove 24s linear forwards";
-
-
-    /*
-      24 SEC = FULL LED MOVEMENT
+      Wait until the LED completely crosses
+      the screen.
     */
 
     setTimeout(() => {
 
-
       /*
-        TEXT IS NOW COMPLETELY
-        GONE FROM LEFT SIDE
-      */
-
-
-      /*
-        WAIT 1 SECOND
+        Wait one extra second after
+        the message disappears.
       */
 
       setTimeout(() => {
-
-
-        /*
-          FADE OUT LED
-        */
 
         led.classList.add("fade-led");
 
-
-        /*
-          THEN VIDEO
-        */
-
         setTimeout(() => {
 
-          led.classList.remove(
-            "show",
-            "fade-led"
-          );
+          led.classList.remove("show", "fade-led");
 
           track.style.animation = "none";
 
+          /*
+            VIDEO REMOVED.
+            GO STRAIGHT TO BIRTHDAY BOX.
+          */
 
-          startVideo();
+          showFinalScreen();
 
         }, 800);
 
-
       }, 1000);
-
 
     }, 24000);
 
-
   }, 700);
-
 }
-
-
-/* =========================
-   VIDEO
-========================= */
-
-function startVideo() {
-
-  const videoScreen =
-    document.getElementById("videoScreen");
-
-  const video =
-    document.getElementById("birthdayVideo");
-
-  const playButton =
-    document.getElementById("playVideoButton");
-
-  const errorText =
-    document.getElementById("videoError");
-
-
-  /*
-    SHOW VIDEO
-  */
-
-  videoScreen.classList.remove(
-    "fade-out"
-  );
-
-  videoScreen.classList.add(
-    "show"
-  );
-
-
-  /*
-    RESET BUTTON
-  */
-
-  playButton.classList.remove(
-    "hide"
-  );
-
-
-  errorText.classList.remove(
-    "show"
-  );
-
-
-  /*
-    RESET VIDEO
-  */
-
-  video.pause();
-
-  video.currentTime = 0;
-
-  video.load();
-
-}
-
-
-/* =========================
-   PLAY VIDEO
-========================= */
-
-function playBirthdayVideo() {
-
-  const video =
-    document.getElementById("birthdayVideo");
-
-  const playButton =
-    document.getElementById("playVideoButton");
-
-  const errorText =
-    document.getElementById("videoError");
-
-
-  video.play()
-
-    .then(() => {
-
-      /*
-        PLAYING SUCCESSFULLY
-      */
-
-      playButton.classList.add(
-        "hide"
-      );
-
-      errorText.classList.remove(
-        "show"
-      );
-
-    })
-
-    .catch((error) => {
-
-      console.log(
-        "Video could not play:",
-        error
-      );
-
-
-      /*
-        SHOW ERROR MESSAGE
-      */
-
-      errorText.classList.add(
-        "show"
-      );
-
-    });
-
-}
-
-
-/* =========================
-   VIDEO LOADING ERROR
-========================= */
-
-document
-  .getElementById("birthdayVideo")
-  .addEventListener(
-    "error",
-    function() {
-
-      document
-        .getElementById("videoError")
-        .classList.add("show");
-
-    }
-  );
-
-
-/* =========================
-   VIDEO FINISHED
-========================= */
-
-document
-  .getElementById("birthdayVideo")
-  .addEventListener(
-    "ended",
-    function() {
-
-      const videoScreen =
-        document.getElementById("videoScreen");
-
-
-      videoScreen.classList.add(
-        "fade-out"
-      );
-
-
-      setTimeout(() => {
-
-        videoScreen.classList.remove(
-          "show"
-        );
-
-
-        showFinalScreen();
-
-      }, 1200);
-
-    }
-  );
 
 
 /* =========================
@@ -1898,13 +939,9 @@ document
 
 function showFinalScreen() {
 
-  const finalScreen =
-    document.getElementById("finalScreen");
+  const finalScreen = document.getElementById("finalScreen");
 
-
-  finalScreen.classList.add(
-    "show"
-  );
+  finalScreen.classList.add("show");
 
 }
 
@@ -1915,30 +952,24 @@ function showFinalScreen() {
 
 let boxOpened = false;
 
-
 function openBirthdayBox() {
 
-  if (boxOpened) {
-    return;
-  }
-
+  if (boxOpened) return;
 
   boxOpened = true;
 
+  const box = document.getElementById("birthdayBox");
 
-  const boxArea =
-    document.getElementById(
-      "birthdayBoxArea"
-    );
+  box.style.transform = "translateY(20px) scale(.9)";
+  box.style.opacity = "0";
 
+  setTimeout(() => {
 
-  boxArea.classList.add(
-    "opened"
-  );
+    box.style.display = "none";
 
+    createFlyingPhotos();
 
-  createFlyingPhotos();
-
+  }, 500);
 }
 
 
@@ -1948,113 +979,51 @@ function openBirthdayBox() {
 
 function createFlyingPhotos() {
 
-  const container =
-    document.getElementById(
-      "flyingPhotos"
-    );
-
+  const container = document.getElementById("flyingPhotos");
 
   container.innerHTML = "";
 
-
   const totalPhotos = 24;
 
+  for (let i = 0; i < totalPhotos; i++) {
 
-  for (
-    let i = 0;
-    i < totalPhotos;
-    i++
-  ) {
+    const photo = document.createElement("img");
 
-    const photo =
-      document.createElement("img");
+    photo.src = "picture4.png";
 
-
-    /*
-      SAME PHOTO
-      COPIED MANY TIMES
-    */
-
-    photo.src =
-      "picture4.png";
-
-
-    photo.className =
-      "flying-photo";
-
+    photo.className = "flying-photo";
 
     const x =
-      (
-        Math.random() * 300 - 150
-      ).toFixed(0) + "px";
-
+      (Math.random() * 300 - 150).toFixed(0) + "px";
 
     const y =
-      -(
-        Math.random() * 520 + 300
-      ).toFixed(0) + "px";
-
+      -(Math.random() * 520 + 300).toFixed(0) + "px";
 
     const rotation =
-      (
-        Math.random() * 70 - 35
-      ).toFixed(0) + "deg";
-
+      (Math.random() * 70 - 35).toFixed(0) + "deg";
 
     const scale =
-      (
-        Math.random() * .55 + .65
-      ).toFixed(2);
+      (Math.random() * .55 + .65).toFixed(2);
 
-
-    photo.style.setProperty(
-      "--x",
-      x
-    );
-
-
-    photo.style.setProperty(
-      "--y",
-      y
-    );
-
-
-    photo.style.setProperty(
-      "--rotation",
-      rotation
-    );
-
-
-    photo.style.setProperty(
-      "--scale",
-      scale
-    );
-
+    photo.style.setProperty("--x", x);
+    photo.style.setProperty("--y", y);
+    photo.style.setProperty("--rotation", rotation);
+    photo.style.setProperty("--scale", scale);
 
     const delay =
-      i * 110 +
-      Math.random() * 180;
-
+      i * 110 + Math.random() * 180;
 
     setTimeout(() => {
 
-      container.appendChild(
-        photo
-      );
-
+      container.appendChild(photo);
 
       requestAnimationFrame(() => {
-
-        photo.classList.add(
-          "fly"
-        );
-
+        photo.classList.add("fly");
       });
 
     }, delay);
 
   }
-
 }
 
 </script>
