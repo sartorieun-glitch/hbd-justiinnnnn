@@ -10,6 +10,10 @@
 
 <style>
 
+/* =========================
+   GENERAL
+========================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -504,9 +508,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
   opacity: 0;
   visibility: hidden;
+
   transition: opacity 1.2s ease;
+
   z-index: 150;
 }
 
@@ -526,14 +533,73 @@ body {
   background: #120b18;
 }
 
-.video-hint {
+.play-video-button {
   position: absolute;
-  bottom: 8%;
+
   left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255,255,255,.75);
-  font-size: 12px;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border: none;
+  border-radius: 999px;
+
+  padding: 15px 24px;
+
+  background: #a86dcc;
+  color: white;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,.3);
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  transition:
+    opacity .5s ease,
+    transform .3s ease;
+}
+
+.play-video-button:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.05);
+}
+
+.play-video-button.hide {
+  opacity: 0;
   pointer-events: none;
+}
+
+.video-error {
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
+  transform: translateX(-50%);
+
+  width: 85%;
+
+  text-align: center;
+
+  color: rgba(255,255,255,.8);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity .5s ease;
+}
+
+.video-error.show {
+  opacity: 1;
 }
 
 
@@ -544,6 +610,7 @@ body {
 .final-screen {
   position: fixed;
   inset: 0;
+
   background:
     radial-gradient(
       circle at center bottom,
@@ -551,10 +618,14 @@ body {
       #c69ce7 60%,
       #a775c9
     );
+
   overflow: hidden;
+
   opacity: 0;
   visibility: hidden;
+
   transition: opacity 1s ease;
+
   z-index: 180;
 }
 
@@ -577,14 +648,22 @@ body {
 
 .flying-photo {
   position: absolute;
+
   bottom: 115px;
   left: 50%;
+
   width: 52px;
   height: 65px;
+
   object-fit: cover;
+
   padding: 4px;
+
   background: white;
-  box-shadow: 0 5px 15px rgba(50,20,70,.25);
+
+  box-shadow:
+    0 5px 15px rgba(50,20,70,.25);
+
   opacity: 0;
 
   transform:
@@ -603,6 +682,7 @@ body {
 
   0% {
     opacity: 0;
+
     transform:
       translate(-50%, 0)
       rotate(0deg)
@@ -615,6 +695,7 @@ body {
 
   100% {
     opacity: .9;
+
     transform:
       translate(
         calc(-50% + var(--x)),
@@ -633,12 +714,17 @@ body {
 
 .birthday-box-area {
   position: absolute;
+
   bottom: 25px;
   left: 50%;
+
   transform: translateX(-50%);
+
   width: 210px;
   height: 180px;
+
   cursor: pointer;
+
   z-index: 50;
 }
 
@@ -648,68 +734,101 @@ body {
 
 .box-shadow {
   position: absolute;
+
   bottom: 0;
   left: 50%;
+
   transform: translateX(-50%);
+
   width: 175px;
   height: 25px;
+
   background: rgba(65,30,85,.18);
+
   border-radius: 50%;
+
   filter: blur(8px);
 }
 
 .box {
   position: absolute;
+
   bottom: 15px;
   left: 50%;
+
   width: 160px;
   height: 105px;
+
   transform: translateX(-50%);
+
   background: #a86dcc;
+
   border-radius: 4px;
-  box-shadow: 0 15px 25px rgba(65,30,85,.25);
+
+  box-shadow:
+    0 15px 25px rgba(65,30,85,.25);
 }
 
 .box::before {
   content: "";
+
   position: absolute;
+
   left: 50%;
   top: 0;
+
   transform: translateX(-50%);
+
   width: 25px;
   height: 100%;
+
   background: #d6a8ed;
 }
 
 .box-lid {
   position: absolute;
+
   bottom: 105px;
   left: 50%;
+
   width: 178px;
   height: 32px;
+
   transform: translateX(-50%);
+
   background: #bb82dd;
+
   border-radius: 5px;
-  box-shadow: 0 8px 15px rgba(65,30,85,.18);
+
+  box-shadow:
+    0 8px 15px rgba(65,30,85,.18);
+
   transition:
     transform .8s cubic-bezier(.2,.8,.2,1),
     bottom .8s ease;
+
   transform-origin: center bottom;
 }
 
 .box-lid::after {
   content: "";
+
   position: absolute;
+
   left: 50%;
   top: 0;
+
   transform: translateX(-50%);
+
   width: 27px;
   height: 100%;
+
   background: #d6a8ed;
 }
 
 .birthday-box-area.opened .box-lid {
   bottom: 140px;
+
   transform:
     translateX(-50%)
     rotate(-8deg);
@@ -717,36 +836,58 @@ body {
 
 .box-message {
   position: absolute;
+
   left: 50%;
   bottom: 42px;
-  transform: translateX(-50%) scale(.7);
+
+  transform:
+    translateX(-50%)
+    scale(.7);
+
   width: 150px;
+
   text-align: center;
+
   font-family: "Playfair Display", serif;
+
   font-size: 18px;
   line-height: 1.1;
+
   color: white;
+
   opacity: 0;
+
   transition:
     opacity .8s ease,
     transform .8s ease;
+
   z-index: 5;
 }
 
 .birthday-box-area.opened .box-message {
   opacity: 1;
-  transform: translateX(-50%) scale(1);
+
+  transform:
+    translateX(-50%)
+    scale(1);
 }
 
 .box-tap {
   position: absolute;
+
   bottom: -5px;
   left: 50%;
+
   transform: translateX(-50%);
+
   color: #644073;
+
   font-size: 13px;
+
   white-space: nowrap;
+
   animation: tapPulse 1.5s infinite;
+
   transition: opacity .5s ease;
 }
 
@@ -761,9 +902,13 @@ body {
 
 .final-heart {
   position: absolute;
+
   font-size: 20px;
+
   opacity: .45;
-  animation: finalFloat 3s ease-in-out infinite;
+
+  animation:
+    finalFloat 3s ease-in-out infinite;
 }
 
 .final-heart:nth-child(1) {
@@ -821,7 +966,9 @@ body {
   .polaroid {
     width: 155px;
     height: 200px;
-    padding: 8px 8px 24px;
+
+    padding:
+      8px 8px 24px;
   }
 
   .polaroid img {
@@ -829,15 +976,20 @@ body {
   }
 
   .photo1 {
-    transform: rotate(-9deg) translate(-20px, 5px);
+    transform:
+      rotate(-9deg)
+      translate(-20px, 5px);
   }
 
   .photo2 {
-    transform: rotate(6deg) translate(20px, 10px);
+    transform:
+      rotate(6deg)
+      translate(20px, 10px);
   }
 
   .photo3 {
-    transform: rotate(-2deg);
+    transform:
+      rotate(-2deg);
   }
 
   .photo1.forward {
@@ -944,9 +1096,9 @@ body {
           <p>
             Wait lang, ga panumdom pa ko kon ano ihambal ko
             HAHAHAHAHAHAHAHA okayy First of all, I hope you don't
-            find this cringe HAHAHHA seriousness na, ano...
-            Since it’s your birthday, I hope this new year of yours
-            brings you happiness, peace, and all the good things in life.
+            find this cringe HAHAHHA seriousness na, ano... Since it’s
+            your birthday, I hope this new year of yours brings you
+            happiness, peace, and all the good things in life.
           </p>
 
           <p>
@@ -1066,11 +1218,16 @@ body {
       id="photo1"
       class="polaroid photo1"
     >
-      <img src="photo1.jpeg" alt="photo 1">
+
+      <img
+        src="photo1.jpeg"
+        alt="photo 1"
+      >
 
       <div class="polaroid-caption">
         happy ♡
       </div>
+
     </div>
 
 
@@ -1078,11 +1235,16 @@ body {
       id="photo2"
       class="polaroid photo2"
     >
-      <img src="photo2.jpeg" alt="photo 2">
+
+      <img
+        src="photo2.jpeg"
+        alt="photo 2"
+      >
 
       <div class="polaroid-caption">
         birthday ♡
       </div>
+
     </div>
 
 
@@ -1090,11 +1252,16 @@ body {
       id="photo3"
       class="polaroid photo3"
     >
-      <img src="photo3.jpeg" alt="photo 3">
+
+      <img
+        src="photo3.jpeg"
+        alt="photo 3"
+      >
 
       <div class="polaroid-caption">
         justin ♡
       </div>
+
     </div>
 
 
@@ -1120,7 +1287,9 @@ body {
 >
 
   <div class="led-track">
+
     XOREH BABYCAKES, CUTE KA NAMAN DON E HAHAHA ITO NA TALAGA ANG SERIOUSNESS
+
   </div>
 
 </div>
@@ -1141,17 +1310,35 @@ body {
     playsinline
     webkit-playsinline
     controls
-    preload="auto"
+    preload="metadata"
   >
 
     <source
-      src="./video.mp4"
+      src="video.mp4"
       type="video/mp4"
     >
 
     Your browser does not support the video.
 
   </video>
+
+
+  <button
+    id="playVideoButton"
+    class="play-video-button"
+    onclick="playBirthdayVideo()"
+  >
+    ▶ TAP TO PLAY
+  </button>
+
+
+  <div
+    id="videoError"
+    class="video-error"
+  >
+    hmm 😭 the video couldn't load.<br>
+    make sure <b>video.mp4</b> is uploaded beside index.html
+  </div>
 
 </div>
 
@@ -1170,6 +1357,7 @@ body {
   <div class="final-heart">♡</div>
   <div class="final-heart">✧</div>
 
+
   <div
     id="flyingPhotos"
     class="flying-photos"
@@ -1184,6 +1372,7 @@ body {
 
     <div class="box-shadow"></div>
 
+
     <div class="box">
 
       <div class="box-message">
@@ -1193,7 +1382,9 @@ body {
 
     </div>
 
+
     <div class="box-lid"></div>
+
 
     <div class="box-tap">
       tap the box ♡
@@ -1247,7 +1438,9 @@ function openEnvelope() {
   const doneButton =
     document.getElementById("doneButton");
 
-  if (envelope.classList.contains("open")) {
+  if (
+    envelope.classList.contains("open")
+  ) {
     return;
   }
 
@@ -1276,8 +1469,10 @@ function finishLetter() {
     document.getElementById("mainEnvelope");
 
   envelope.style.opacity = "0";
+
   envelope.style.transform =
     "translateY(40px)";
+
 
   setTimeout(() => {
 
@@ -1300,10 +1495,12 @@ function finishLetter() {
 let photoTapCount = 0;
 let transitionRunning = false;
 
+
 function startPolaroids() {
 
   photoTapCount = 0;
   transitionRunning = false;
+
 
   document
     .getElementById("photo1")
@@ -1312,6 +1509,7 @@ function startPolaroids() {
       "fade-polaroid"
     );
 
+
   document
     .getElementById("photo2")
     .classList.remove(
@@ -1319,12 +1517,14 @@ function startPolaroids() {
       "fade-polaroid"
     );
 
+
   document
     .getElementById("photo3")
     .classList.remove(
       "forward",
       "fade-polaroid"
     );
+
 
   document
     .getElementById("tapGuide")
@@ -1339,7 +1539,9 @@ function nextPolaroid() {
     return;
   }
 
+
   photoTapCount++;
+
 
   const tapGuide =
     document.getElementById("tapGuide");
@@ -1355,6 +1557,7 @@ function nextPolaroid() {
 
   }
 
+
   else if (photoTapCount === 2) {
 
     document
@@ -1363,6 +1566,7 @@ function nextPolaroid() {
 
   }
 
+
   else if (photoTapCount === 3) {
 
     document
@@ -1370,6 +1574,7 @@ function nextPolaroid() {
       .classList.add("forward");
 
   }
+
 
   else if (photoTapCount === 4) {
 
@@ -1388,17 +1593,21 @@ function fadeFirstSet() {
 
   transitionRunning = true;
 
+
   document
     .getElementById("photo1")
     .classList.add("fade-polaroid");
+
 
   document
     .getElementById("photo2")
     .classList.add("fade-polaroid");
 
+
   document
     .getElementById("photo3")
     .classList.add("fade-polaroid");
+
 
   setTimeout(() => {
 
@@ -1422,6 +1631,10 @@ function showLED() {
     led.querySelector(".led-track");
 
 
+  /*
+    RESET
+  */
+
   led.classList.remove(
     "show",
     "fade-led"
@@ -1431,18 +1644,25 @@ function showLED() {
 
 
   /*
-    BLANK FIRST
+    BLANK SCREEN FIRST
   */
 
   setTimeout(() => {
 
     led.classList.add("show");
 
+
+    /*
+      FORCE RESTART
+    */
+
     void track.offsetWidth;
 
 
     /*
-      SLOW SCROLL
+      SLOW LED
+      Starts at right edge
+      and disappears past left edge
     */
 
     track.style.animation =
@@ -1450,24 +1670,34 @@ function showLED() {
 
 
     /*
-      WAIT UNTIL TEXT
-      FULLY DISAPPEARS
+      24 SEC = FULL LED MOVEMENT
     */
 
     setTimeout(() => {
 
 
       /*
-        BLANK FOR 1 SECOND
+        TEXT IS NOW COMPLETELY
+        GONE FROM LEFT SIDE
+      */
+
+
+      /*
+        WAIT 1 SECOND
       */
 
       setTimeout(() => {
+
+
+        /*
+          FADE OUT LED
+        */
 
         led.classList.add("fade-led");
 
 
         /*
-          FADE → VIDEO
+          THEN VIDEO
         */
 
         setTimeout(() => {
@@ -1479,13 +1709,17 @@ function showLED() {
 
           track.style.animation = "none";
 
+
           startVideo();
 
         }, 800);
 
+
       }, 1000);
 
+
     }, 24000);
+
 
   }, 700);
 
@@ -1504,10 +1738,38 @@ function startVideo() {
   const video =
     document.getElementById("birthdayVideo");
 
+  const playButton =
+    document.getElementById("playVideoButton");
 
-  videoScreen.classList.remove("fade-out");
+  const errorText =
+    document.getElementById("videoError");
 
-  videoScreen.classList.add("show");
+
+  /*
+    SHOW VIDEO
+  */
+
+  videoScreen.classList.remove(
+    "fade-out"
+  );
+
+  videoScreen.classList.add(
+    "show"
+  );
+
+
+  /*
+    RESET BUTTON
+  */
+
+  playButton.classList.remove(
+    "hide"
+  );
+
+
+  errorText.classList.remove(
+    "show"
+  );
 
 
   /*
@@ -1515,35 +1777,85 @@ function startVideo() {
   */
 
   video.pause();
-  video.currentTime = 0;
 
-  /*
-    LOAD THE MP4 AGAIN
-  */
+  video.currentTime = 0;
 
   video.load();
 
+}
 
-  /*
-    WAIT A LITTLE FOR THE
-    BROWSER TO LOAD THE FILE
-  */
 
-  setTimeout(() => {
+/* =========================
+   PLAY VIDEO
+========================= */
 
-    video.play().catch(() => {
+function playBirthdayVideo() {
+
+  const video =
+    document.getElementById("birthdayVideo");
+
+  const playButton =
+    document.getElementById("playVideoButton");
+
+  const errorText =
+    document.getElementById("videoError");
+
+
+  video.play()
+
+    .then(() => {
 
       /*
-        If autoplay is blocked,
-        the controls remain visible
-        so the video can be played manually.
+        PLAYING SUCCESSFULLY
       */
+
+      playButton.classList.add(
+        "hide"
+      );
+
+      errorText.classList.remove(
+        "show"
+      );
+
+    })
+
+    .catch((error) => {
+
+      console.log(
+        "Video could not play:",
+        error
+      );
+
+
+      /*
+        SHOW ERROR MESSAGE
+      */
+
+      errorText.classList.add(
+        "show"
+      );
 
     });
 
-  }, 500);
-
 }
+
+
+/* =========================
+   VIDEO LOADING ERROR
+========================= */
+
+document
+  .getElementById("birthdayVideo")
+  .addEventListener(
+    "error",
+    function() {
+
+      document
+        .getElementById("videoError")
+        .classList.add("show");
+
+    }
+  );
 
 
 /* =========================
@@ -1559,11 +1871,18 @@ document
       const videoScreen =
         document.getElementById("videoScreen");
 
-      videoScreen.classList.add("fade-out");
+
+      videoScreen.classList.add(
+        "fade-out"
+      );
+
 
       setTimeout(() => {
 
-        videoScreen.classList.remove("show");
+        videoScreen.classList.remove(
+          "show"
+        );
+
 
         showFinalScreen();
 
@@ -1582,7 +1901,10 @@ function showFinalScreen() {
   const finalScreen =
     document.getElementById("finalScreen");
 
-  finalScreen.classList.add("show");
+
+  finalScreen.classList.add(
+    "show"
+  );
 
 }
 
@@ -1593,18 +1915,27 @@ function showFinalScreen() {
 
 let boxOpened = false;
 
+
 function openBirthdayBox() {
 
   if (boxOpened) {
     return;
   }
 
+
   boxOpened = true;
 
-  const boxArea =
-    document.getElementById("birthdayBoxArea");
 
-  boxArea.classList.add("opened");
+  const boxArea =
+    document.getElementById(
+      "birthdayBoxArea"
+    );
+
+
+  boxArea.classList.add(
+    "opened"
+  );
+
 
   createFlyingPhotos();
 
@@ -1618,9 +1949,13 @@ function openBirthdayBox() {
 function createFlyingPhotos() {
 
   const container =
-    document.getElementById("flyingPhotos");
+    document.getElementById(
+      "flyingPhotos"
+    );
+
 
   container.innerHTML = "";
+
 
   const totalPhotos = 24;
 
@@ -1636,10 +1971,13 @@ function createFlyingPhotos() {
 
 
     /*
-      SAME PHOTO COPIED MANY TIMES
+      SAME PHOTO
+      COPIED MANY TIMES
     */
 
-    photo.src = "picture4.png";
+    photo.src =
+      "picture4.png";
+
 
     photo.className =
       "flying-photo";
@@ -1674,15 +2012,18 @@ function createFlyingPhotos() {
       x
     );
 
+
     photo.style.setProperty(
       "--y",
       y
     );
 
+
     photo.style.setProperty(
       "--rotation",
       rotation
     );
+
 
     photo.style.setProperty(
       "--scale",
@@ -1697,11 +2038,16 @@ function createFlyingPhotos() {
 
     setTimeout(() => {
 
-      container.appendChild(photo);
+      container.appendChild(
+        photo
+      );
+
 
       requestAnimationFrame(() => {
 
-        photo.classList.add("fly");
+        photo.classList.add(
+          "fly"
+        );
 
       });
 
